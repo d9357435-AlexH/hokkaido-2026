@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>2026 北海道 8天7夜 家庭自由行手冊</title>
+    
+    <!-- 防搜尋引擎檢索與隱私標籤 (Anti-Search / Noindex) -->
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+
+    <!-- iOS 獨立 App (PWA) 全螢幕與桌面圖示設定 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="北海道2026">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/2072/2072130.png">
+    <meta name="theme-color" content="#1D4ED8">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans TC', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .tab-active { border-bottom: 3px solid #2563EB; color: #1D4ED8; font-weight: 700; }
+        .badge { display: inline-flex; align-items: center; padding: 0.2rem 0.6rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        header { padding-top: max(1.75rem, env(safe-area-inset-top)); }
+        footer { padding-bottom: max(1.25rem, env(safe-area-inset-bottom)); }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 min-h-screen flex flex-col antialiased selection:bg-blue-500 selection:text-white">
+
+    <!-- 頂部 Hero 橫幅 -->
+    <header class="bg-gradient-to-r from-blue-700 via-indigo-700 to-sky-600 text-white pb-8 px-4 shadow-lg">
+        <div class="max-w-5xl mx-auto">
+            <div class="flex flex-wrap justify-between items-center gap-4">
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="bg-blue-500/30 text-blue-100 text-[11px] px-3 py-1 rounded-full uppercase tracking-wider font-semibold border border-blue-400/30">Hokkaido Family Trip 2026</span>
+                        <span class="bg-emerald-500/30 text-emerald-200 text-[10px] px-2 py-0.5 rounded-full font-bold border border-emerald-400/30"><i class="fa-solid fa-shield-halved"></i> 私密防搜尋</span>
+                    </div>
+                    <h1 class="text-2xl md:text-3xl font-extrabold mt-2 tracking-tight">❄️ 北海道 8天7夜 互動旅遊手冊</h1>
+                    <p class="text-blue-100 text-xs md:text-sm mt-1 flex flex-wrap items-center gap-2">
+                        <span><i class="fa-regular fa-calendar"></i> 2026.09.22 (二) ～ 09.29 (二)</span>
+                        <span>•</span>
+                        <span><i class="fa-solid fa-users"></i> 2大1小 (8歲小朋友)</span>
+                        <span>•</span>
+                        <span><i class="fa-solid fa-route"></i> 旭川 ➔ 美瑛 ➔ 札幌 ➔ 定山溪 ➔ 小樽</span>
+                    </p>
+                </div>
+                <div class="flex gap-2">
+                    <div class="bg-white/10 border border-white/20 px-3 py-2 rounded-xl text-center backdrop-blur-sm">
+                        <div class="text-[10px] text-blue-200">去程 (09/22)</div>
+                        <div class="font-bold text-xs md:text-sm">長榮 BR116</div>
+                    </div>
+                    <div class="bg-white/10 border border-white/20 px-3 py-2 rounded-xl text-center backdrop-blur-sm">
+                        <div class="text-[10px] text-blue-200">回程 (09/29)</div>
+                        <div class="font-bold text-xs md:text-sm">華航 CI131</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主選單導覽列 (Sticky Navigation) -->
+    <nav class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-md border-b border-slate-200">
+        <div class="max-w-5xl mx-auto flex overflow-x-auto no-scrollbar">
+            <button onclick="switchTab('itinerary')" id="btn-itinerary" class="tab-btn px-4 py-3.5 text-xs md:text-sm whitespace-nowrap text-slate-600 hover:text-blue-600 flex items-center gap-1.5 tab-active transition">
+                <i class="fa-solid fa-route"></i> 每日行程
+            </button>
+            <button onclick="switchTab('maps')" id="btn-maps" class="tab-btn px-4 py-3.5 text-xs md:text-sm whitespace-nowrap text-slate-600 hover:text-blue-600 flex items-center gap-1.5 transition">
+                <i class="fa-solid fa-map-location-dot text-rose-500"></i> 官方地圖 ＆ MapCode
+            </button>
+            <button onclick="switchTab('spots')" id="btn-spots" class="tab-btn px-4 py-3.5 text-xs md:text-sm whitespace-nowrap text-slate-600 hover:text-blue-600 flex items-center gap-1.5 transition">
+                <i class="fa-solid fa-utensils"></i> 美食景點庫 <span class="bg-rose-500 text-white text-[10px] px-1.5 py-0.2 rounded-full font-bold ml-0.5">50+</span>
+            </button>
+            <button onclick="switchTab('transport')" id="btn-transport" class="tab-btn px-4 py-3.5 text-xs md:text-sm whitespace-nowrap text-slate-600 hover:text-blue-600 flex items-center gap-1.5 transition">
+                <i class="fa-solid fa-train"></i> 交通與彈性班次
+            </button>
+            <button onclick="switchTab('hotels')" id="btn-hotels" class="tab-btn px-4 py-3.5 text-xs md:text-sm whitespace-nowrap text-slate-600 hover:text-blue-600 flex items-center gap-1.5 transition">
+                <i class="fa-solid fa-hotel"></i> 住宿管理
+            </button>
+            <button onclick="switchTab('budget')" id="btn-budget" class="tab-btn px-4 py-3.5 text-xs md:text-sm whitespace-nowrap text-slate-600 hover:text-blue-600 flex items-center gap-1.5 transition">
+                <i class="fa-solid fa-wallet text-emerald-600"></i> 專案預算 ＆ 個人記帳
+            </button>
+            <button onclick="switchTab('checklist')" id="btn-checklist" class="tab-btn px-4 py-3.5 text-xs md:text-sm whitespace-nowrap text-slate-600 hover:text-blue-600 flex items-center gap-1.5 transition">
+                <i class="fa-solid fa-list-check"></i> 行前備忘
+            </button>
+        </div>
+    </nav>
+
+    <!-- 主內容容器 -->
+    <main class="max-w-5xl mx-auto p-4 md:p-6 flex-1 w-full space-y-6">
+
+        <!-- ================= SECTION 1: 每日行程 ================= -->
+        <section id="tab-itinerary" class="tab-content space-y-5">
+            <div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm">
+                <div class="text-[11px] font-bold text-slate-400 mb-2">📅 選擇日期查看行程（點擊卡片開啟詳細說明與一鍵 Google Maps 導航）：</div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-1.5">
+                    <button onclick="filterDay(1)" class="day-chip px-2 py-2 rounded-lg bg-blue-600 text-white text-xs font-semibold text-center transition" id="chip-1">D1 (9/22)<br><span class="text-[10px] font-normal opacity-90">新千歲➔旭川</span></button>
+                    <button onclick="filterDay(2)" class="day-chip px-2 py-2 rounded-lg bg-slate-100 text-slate-700 text-xs font-semibold text-center transition" id="chip-2">D2 (9/23)<br><span class="text-[10px] font-normal opacity-80">動物園/美瑛</span></button>
+                    <button onclick="filterDay(3)" class="day-chip px-2 py-2 rounded-lg bg-slate-100 text-slate-700 text-xs font-semibold text-center transition" id="chip-3">D3 (9/24)<br><span class="text-[10px] font-normal opacity-80">旭川➔札幌</span></button>
+                    <button onclick="filterDay(4)" class="day-chip px-2 py-2 rounded-lg bg-slate-100 text-slate-700 text-xs font-semibold text-center transition" id="chip-4">D4 (9/25)<br><span class="text-[10px] font-normal opacity-80">定山溪私湯</span></button>
+                    <button onclick="filterDay(5)" class="day-chip px-2 py-2 rounded-lg bg-slate-100 text-slate-700 text-xs font-semibold text-center transition" id="chip-5">D5 (9/26)<br><span class="text-[10px] font-normal opacity-80">蟹本家火鍋</span></button>
+                    <button onclick="filterDay(6)" class="day-chip px-2 py-2 rounded-lg bg-slate-100 text-slate-700 text-xs font-semibold text-center transition" id="chip-6">D6 (9/27)<br><span class="text-[10px] font-normal opacity-80">小樽浪漫遊</span></button>
+                    <button onclick="filterDay(7)" class="day-chip px-2 py-2 rounded-lg bg-slate-100 text-slate-700 text-xs font-semibold text-center transition" id="chip-7">D7 (9/28)<br><span class="text-[10px] font-normal opacity-80">公園放電日</span></button>
+                    <button onclick="filterDay(8)" class="day-chip px-2 py-2 rounded-lg bg-slate-100 text-slate-700 text-xs font-semibold text-center transition" id="chip-8">D8 (9/29)<br><span class="text-[10px] font-normal opacity-80">新千歲返台</span></button>
+                </div>
+            </div>
+
+            <!-- Day 1 卡片 -->
+            <div id="day-card-1" class="day-detail bg-white rounded-2xl p-5 md:p-6 shadow-sm border border-slate-200 space-y-4">
+                <div class="flex justify-between items-center border-b pb-3">
+                    <div>
+                        <span class="badge bg-blue-100 text-blue-700">Day 1</span>
+                        <h2 class="text-lg md:text-xl font-bold mt-1 text-slate-900">2026/09/22 (週二) 抵達新千歲 ➔ 直奔旭川（零吹風轉乘）</h2>
+                    </div>
+                    <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full font-medium">宿：JR Inn 旭川</span>
+                </div>
+                <div class="space-y-3 text-xs md:text-sm">
+                    <div onclick="openSpotModal('新千歲機場 國際線航廈', '15:00', '交通抵達', '長榮航空 BR116 表定 15:00 抵達新千歲機場，下機後依指標前往 B1F 搭乘 JR 快速機場號。', '新千歳空港 国際線ターミナル', '預留 45~60 分鐘通關與提領行李。', '長榮航班 BR116')" class="p-3 bg-slate-50 hover:bg-blue-50/60 rounded-xl cursor-pointer transition border border-transparent hover:border-blue-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-blue-600 font-bold w-14">15:00</div><div><div class="font-semibold text-slate-900">長榮航空 BR116 抵達新千歲機場 ➔ 入境通關</div><p class="text-slate-500 text-xs mt-0.5">預留 60 分鐘提領行李，前往 B1F 搭乘 JR。</p></div></div>
+                        <span class="text-blue-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('JR 札幌車站', '16:24~17:30', '鐵道轉乘', '搭乘 JR 快速機場號 163號 抵達札幌站，同站更換月台轉乘 17:30 特急 Lilac 33號 直達旭川。', 'JR 札幌駅', '轉乘時間 28 分鐘，可於月台購買便當與飲料。', 'JR北海道官方')" class="p-3 bg-slate-50 hover:bg-blue-50/60 rounded-xl cursor-pointer transition border border-transparent hover:border-blue-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-blue-600 font-bold w-14">16:24</div><div><div class="font-semibold text-slate-900">搭乘 JR 快速機場號 163號 ➔ 札幌站轉乘</div><p class="text-slate-500 text-xs mt-0.5">17:02 抵達札幌站，轉乘 17:30 特急 Lilac 33號（全車指定席）。</p></div></div>
+                        <span class="text-blue-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('JR Inn 旭川', '18:55', '住宿飯店', '與 JR 旭川車站、AEON Mall 共構，出剪票口搭乘專用電梯直達飯店大廳。附設大浴場與選枕中心。', 'JRイン旭川', '訂單編號：21315090080055，現場支付住宿稅 ¥300。', 'G先生 / 頭城小夫妻 推薦')" class="p-3 bg-slate-50 hover:bg-blue-50/60 rounded-xl cursor-pointer transition border border-transparent hover:border-blue-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-blue-600 font-bold w-14">18:55</div><div><div class="font-semibold text-slate-900">抵達旭川站 ➔ 入住 JR Inn 旭川</div><p class="text-slate-500 text-xs mt-0.5">出剪票口直接搭電梯直通飯店，免拉行李吹風。</p></div></div>
+                        <span class="text-blue-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('成吉思汗烤肉 大黑屋 旭川本店', '19:30', '晚餐必吃', '全北海道排名第一名烤羊肉！招牌生羊肩里肌、厚切羊舌鮮嫩無騷味，洋蔥吸滿油脂極甜。', '成吉思汗大黒屋 旭川本店', '建議先至店門口抽號碼牌，回 JR Inn 房間休息等候叫號。', 'G先生 / 2F頭城小夫妻 / Tabelog #1')" class="p-3 bg-amber-50/60 hover:bg-amber-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-amber-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-amber-600 font-bold w-14">19:30</div><div><div class="font-semibold text-slate-900">晚餐：成吉思汗烤肉「大黑屋 旭川本店」</div><p class="text-slate-500 text-xs mt-0.5">步行 7 分鐘，全道第一名厚切烤羊肉！下樓逛 AEON Mall 超市買十勝鮮乳。</p></div></div>
+                        <span class="text-amber-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 2 卡片 -->
+            <div id="day-card-2" class="day-detail bg-white rounded-2xl p-5 md:p-6 shadow-sm border border-slate-200 space-y-4 hidden">
+                <div class="flex justify-between items-center border-b pb-3">
+                    <div><span class="badge bg-emerald-100 text-emerald-700">Day 2</span><h2 class="text-lg md:text-xl font-bold mt-1 text-slate-900">2026/09/23 (週三) 旭山動物園 ＆ 美瑛丘陵青池自駕</h2></div>
+                    <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full font-medium">宿：JR Inn 旭川</span>
+                </div>
+                <div class="space-y-3 text-xs md:text-sm">
+                    <div onclick="openSpotModal('TOYOTA 租車 旭川站前店', '09:00', '自駕取車', '出飯店步行 2 分鐘取車，禁菸 C1 車型含中文導航與 CDW 免責補償。', 'トヨタレンタカー 旭川駅前店', '預約號：101853439，必備：台灣駕照正本、日文譯本、護照正本。現場付費 ¥9,570。', 'Tabirai Japan 官方預約')" class="p-3 bg-slate-50 hover:bg-blue-50/60 rounded-xl cursor-pointer transition border border-transparent hover:border-blue-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-blue-600 font-bold w-14">09:00</div><div><div class="font-semibold text-slate-900">TOYOTA 租車 旭川站前店取車（預約號: 101853439）</div><p class="text-slate-500 text-xs mt-0.5">出飯店步行 2 分鐘，備妥駕照三寶。</p></div></div>
+                        <span class="text-blue-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('旭川市 旭山動物園', '09:20~11:30', '親子名勝', '日本第一人氣行動展示動物園！360度企鵝水中隧道、海豹垂直泳道、北極熊跳水水槽。', '旭川市旭山動物園', '車程約 20 分鐘，MapCode: 79 357 888*22。', 'G先生 / 波妞食境秀 推薦')" class="p-3 bg-emerald-50/60 hover:bg-emerald-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-emerald-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-emerald-600 font-bold w-14">09:20</div><div><div class="font-semibold text-slate-900">旭山動物園（日本第一人氣行動展示）</div><p class="text-slate-500 text-xs mt-0.5">企鵝隧道、海豹垂直泳道、北極熊跳水、高空紅毛猩猩。</p></div></div>
+                        <span class="text-emerald-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('純平洋食（洋食とCafe じゅんぺい）', '12:00', '美瑛名物', '必吃招牌海老丼（3隻酥脆巨大黑虎蝦）裹特調醬汁，或千代田農場美瑛和牛漢堡排。', '洋食とCafe じゅんぺい', '附設專屬停車場，MapCode: 389 010 564*25。', '2F頭城小夫妻 / 2A夫妻 推薦')" class="p-3 bg-amber-50/60 hover:bg-amber-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-amber-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-amber-600 font-bold w-14">12:00</div><div><div class="font-semibold text-slate-900">美瑛拼布名樹 ＆ 午餐：純平洋食（炸蝦丼）或 千代田農場</div><p class="text-slate-500 text-xs mt-0.5">純平洋食酥脆海老丼 / 千代田美瑛和牛牛排漢堡排。</p></div></div>
+                        <span class="text-amber-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('白金青池 ＆ 白鬚瀑布', '13:45', '自然絕景', '初秋清澈蒂芬妮藍青池（吃蘋果霜淇淋），順遊 3 分鐘車程外白鬚瀑布鐵橋俯瞰深藍溪流。', '白金青い池', '青池停車費 ¥500，MapCode: 345 581 635*55。', '2F頭城小夫妻 / 山步五時 / 雙人徐 推薦')" class="p-3 bg-blue-50/60 hover:bg-blue-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-blue-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-blue-600 font-bold w-14">13:45</div><div><div class="font-semibold text-slate-900">白金青池 ➔ 白鬚瀑布 ➔ 四季彩之丘</div><p class="text-slate-500 text-xs mt-0.5">蒂芬妮藍青池（蘋果霜淇淋）、白鬚瀑布鈷藍溪流、四季彩之丘羊駝餵食。</p></div></div>
+                        <span class="text-blue-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('回転寿し トリトン 旭神店', '18:30', '頂級壽司', '北海道在地評分最高迴轉壽司！厚切生干貝、生牡丹蝦、炙燒和牛握壽司、花咲蟹味噌湯。', '回転寿し トリトン 旭神店', '19:00 前先於旭川站前加滿油還車，再前往用餐。', 'JJ & 非白 / Ki笑人生 / 內內 推薦')" class="p-3 bg-amber-50/60 hover:bg-amber-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-amber-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-amber-600 font-bold w-14">18:30</div><div><div class="font-semibold text-slate-900">加油還車 ➔ 晚餐：Toriton 旭神店 迴轉壽司</div><p class="text-slate-500 text-xs mt-0.5">19:00 前旭川站前還車。晚餐品嚐在地第一厚切生干貝壽司。</p></div></div>
+                        <span class="text-amber-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 3 卡片 -->
+            <div id="day-card-3" class="day-detail bg-white rounded-2xl p-5 md:p-6 shadow-sm border border-slate-200 space-y-4 hidden">
+                <div class="flex justify-between items-center border-b pb-3">
+                    <div><span class="badge bg-indigo-100 text-indigo-700">Day 3</span><h2 class="text-lg md:text-xl font-bold mt-1 text-slate-900">2026/09/24 (週四) 旭川 ➔ 札幌（南北軸線・室內水族館）</h2></div>
+                    <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full font-medium">宿：ANA 札幌皇冠假日</span>
+                </div>
+                <div class="space-y-3 text-xs md:text-sm">
+                    <div onclick="openSpotModal('ANA 札幌全日空皇冠假日酒店', '11:25', '住宿飯店', '從旭川搭乘特急 Lilac 14號（10:00-11:25），出札幌站步行 3 分鐘抵達飯店寄放大件行李。地下通道直通地下街。', 'ANAクラウンプラザホテル札幌', '確認號：62481865。', 'Lester 萊斯特 推薦')" class="p-3 bg-slate-50 hover:bg-blue-50/60 rounded-xl cursor-pointer transition border border-transparent hover:border-blue-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-blue-600 font-bold w-14">10:00</div><div><div class="font-semibold text-slate-900">搭乘 JR 特急 Lilac 14號（全車指定席）➔ 札幌</div><p class="text-slate-500 text-xs mt-0.5">11:25 抵達札幌站，步行 3 分鐘至 ANA 皇冠假日酒店寄放大行李。</p></div></div>
+                        <span class="text-blue-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('奧芝商店 札幌站前店', '12:00', '排隊名店', '數千隻甜蝦熬製的濃郁「海老蝦高湯」湯咖哩，必點宗谷黑牛漢堡排海老湯咖哩。', '奥芝商店 駅前創成寺', '出飯店步行 3 分鐘即達，可自選辣度與飯量。', 'Lester 萊斯特 / Ki笑人生 推薦')" class="p-3 bg-amber-50/60 hover:bg-amber-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-amber-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-amber-600 font-bold w-14">12:00</div><div><div class="font-semibold text-slate-900">午餐：奧芝商店 站前店（海老湯咖哩）或 SAPPORO 餃子製造所</div><p class="text-slate-500 text-xs mt-0.5">飯店旁步行即達，鮮濃蝦高湯咖哩或拳頭大巨型彈牙蝦仁水餃。</p></div></div>
+                        <span class="text-amber-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('AOAO SAPPORO 都市型水族館', '16:00', '親子放電', '位於狸小路 moyuk 4~6 樓，營業至 22:00。全室內看企鵝跳水、水母光影與科學後台。', 'AOAO SAPPORO', '順路經過紅磚廳舍買生白色戀人，以及大通公園吃烤玉米。', 'E家愛吃愛旅遊 / 雙人徐 / Lester 推薦')" class="p-3 bg-indigo-50/60 hover:bg-indigo-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-indigo-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-indigo-600 font-bold w-14">13:30</div><div><div class="font-semibold text-slate-900">紅磚廳舍 ➔ 大通公園 ➔ AOAO SAPPORO 水族館</div><p class="text-slate-500 text-xs mt-0.5">全新紅磚廳舍買生白色戀人、大通公園烤玉米、水族館看企鵝。</p></div></div>
+                        <span class="text-indigo-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('成吉思汗烤肉 ひげのうし 本店', '18:30', '特色晚餐', '狸小路商圈專人代烤小羔羊！獨立包廂抽風極佳無油煙，肉質極嫩，結尾必做日式高湯茶泡飯。', '成吉思汗 ひげのうし 本店', '夜間可順遊 Parfaiteria 佐藤 品嚐開心果焦糖海鹽夜聖代。', 'E家愛吃愛旅遊 實測推薦')" class="p-3 bg-amber-50/60 hover:bg-amber-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-amber-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-amber-600 font-bold w-14">18:30</div><div><div class="font-semibold text-slate-900">晚餐：成吉思汗烤肉「ひげのうし」或 とんかつ 檍 炸豬排</div><p class="text-slate-500 text-xs mt-0.5">代烤小羔羊收尾茶泡飯，或 300g 低溫熟成豬排。夜間甜點：Parfaiteria 佐藤。</p></div></div>
+                        <span class="text-amber-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 4 卡片 -->
+            <div id="day-card-4" class="day-detail bg-white rounded-2xl p-5 md:p-6 shadow-sm border border-slate-200 space-y-4 hidden">
+                <div class="flex justify-between items-center border-b pb-3">
+                    <div><span class="badge bg-purple-100 text-purple-700">Day 4</span><h2 class="text-lg md:text-xl font-bold mt-1 text-slate-900">2026/09/25 (週五) 札幌 ➔ 定山溪溫泉（大行李留札幌・私湯享受）</h2></div>
+                    <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full font-medium">宿：定山溪第一寶亭留 翠山亭</span>
+                </div>
+                <div class="space-y-3 text-xs md:text-sm">
+                    <div onclick="openSpotModal('札幌站前 27號巴士站牌 (ホクレン大樓前)', '09:35', '交通乘車', '搭乘直達「河童Liner號」前往定山溪。大件行李免費留置 ANA 皇冠假日酒店櫃台，全家僅攜帶隨身過夜包！', 'ホクレンビル 札幌', '預約號：60925000001，車程約 60 分鐘直達「定山溪東2丁目」。', 'Jotetsu 巴士官方預約')" class="p-3 bg-rose-50/60 hover:bg-rose-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-rose-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-rose-600 font-bold w-14">09:00</div><div><div class="font-semibold text-rose-700">省力密技：大件行李免費寄放皇冠假日酒店櫃台！</div><p class="text-slate-500 text-xs mt-0.5">僅帶輕便隨身背包，過馬路至 27 號站牌搭乘 09:35 河童Liner號。</p></div></div>
+                        <span class="text-rose-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('定山源泉公園 ＆ J・glacée', '11:00', '溫泉散策', '體驗 60 度源泉自煮半熟溫泉蛋與戶外免費足湯，中午吃山之風小鎮厚切煙燻培根漢堡與 J・glacée 現烤手工酥皮蘋果派。', '定山源泉公園', '步行 5 分鐘即達定山溪神社與河童祈願手湯。', 'CHILL先生一家人 推薦')" class="p-3 bg-slate-50 hover:bg-blue-50/60 rounded-xl cursor-pointer transition border border-transparent hover:border-blue-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-blue-600 font-bold w-14">11:00</div><div><div class="font-semibold text-slate-900">溫泉街散策 ➔ 定山源泉公園煮蛋足湯 ➔ J・glacée 蘋果派</div><p class="text-slate-500 text-xs mt-0.5">午餐吃厚切培根漢堡，打卡河童祈願手湯與岩戶觀音堂。</p></div></div>
+                        <span class="text-blue-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('定山溪第一寶亭留 翠山亭', '15:00', '溫泉名宿', '桑拿＆展望私湯雙床房，1F 圖書館免費供應現做卡士達泡芙與研磨咖啡；享同集團俱樂部浴場免費巡禮。', '定山渓第一寶亭留 翠山亭', '訂單編號：21315090085246。含豪華翠山御膳一泊二食會席。', '三十口米 / 樂天高分推薦')" class="p-3 bg-purple-50/60 hover:bg-purple-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-purple-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-purple-600 font-bold w-14">15:00</div><div><div class="font-semibold text-slate-900">入住翠山亭（房內私湯）➔ 晚餐：翠山御膳會席晚宴</div><p class="text-slate-500 text-xs mt-0.5">1F 圖書館免費享用現做泡芙。晚上散步二見吊橋看 Nature Luminarie 光影秀。</p></div></div>
+                        <span class="text-purple-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 5 卡片 -->
+            <div id="day-card-5" class="day-detail bg-white rounded-2xl p-5 md:p-6 shadow-sm border border-slate-200 space-y-4 hidden">
+                <div class="flex justify-between items-center border-b pb-3">
+                    <div><span class="badge bg-rose-100 text-rose-700">Day 5</span><h2 class="text-lg md:text-xl font-bold mt-1 text-slate-900">2026/09/26 (週六) 定山溪 ➔ 札幌 ➔ 🦀 帝王蟹火鍋盛宴</h2></div>
+                    <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full font-medium">宿：ANA 札幌皇冠假日</span>
+                </div>
+                <div class="space-y-3 text-xs md:text-sm">
+                    <div onclick="openSpotModal('ANA 札幌全日空皇冠假日酒店', '13:15', '住宿飯店', '搭乘 12:15 河童Liner號（預約號: 60926000001）返回札幌站前，步行 3 分鐘回飯店取回大行李並辦理連住入住。', 'ANAクラウンプラザホテル札幌', '確認號：43574824（連住 3 晚）。', 'IHG 官方預約')" class="p-3 bg-slate-50 hover:bg-blue-50/60 rounded-xl cursor-pointer transition border border-transparent hover:border-blue-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-blue-600 font-bold w-14">11:00</div><div><div class="font-semibold text-slate-900">翠山亭悠閒退房 ➔ 12:15 搭河童Liner號 ➔ 返回札幌</div><p class="text-slate-500 text-xs mt-0.5">13:15 抵達札幌站，回 ANA 皇冠假日酒店取回大行李並入住（連住3晚）。</p></div></div>
+                        <span class="text-blue-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('白色戀人公園（白い恋人パーク）', '14:30', '童話樂園', '搭乘地鐵東西線至宮之澤站。歐風童話花園、小矮人迷你木屋捉迷藏、整點音樂鐘人偶秀，製作客製化照片鐵盒餅乾。', '白い恋人パーク', '亦可備選前往北海道神宮，於神宮茶屋吃現烤熱騰騰判官餅。', '雙人徐 / Lester 推薦')" class="p-3 bg-blue-50/60 hover:bg-blue-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-blue-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-blue-600 font-bold w-14">14:30</div><div><div class="font-semibold text-slate-900">午後景點：白色戀人公園（童話城堡人偶秀） 或 北海道神宮</div><p class="text-slate-500 text-xs mt-0.5">白色戀人公園印客製化鐵盒餅乾，或神宮茶屋吃現烤判官餅。</p></div></div>
+                        <span class="text-blue-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('札幌 蟹本家（札幌站前本店）', '18:00', '重點大餐', '出 ANA 皇冠假日酒店步行 3 分鐘！獨立包廂。生帝王蟹腿涮涮鍋、炭烤蟹腳、蟹肉刺身，最後煮黃金雜炊粥！', '札幌かに本家 札幌駅前本店', '建議出發前 1 個月於官網預訂包廂。宵夜可至薄野體驗 BAR ミルク村 冰淇淋調酒。', 'E家愛吃愛旅遊 / 三十口米 狂推')" class="p-3 bg-rose-50/70 hover:bg-rose-100/70 rounded-xl cursor-pointer transition border border-transparent hover:border-rose-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-rose-600 font-bold w-14">18:00</div><div><div class="font-semibold text-rose-700">重點大餐：札幌 蟹本家（札幌站前本店）帝王蟹涮涮鍋</div><p class="text-slate-500 text-xs mt-0.5">出飯店步行 3 分鐘！生帝王蟹腿涮涮鍋、炭烤蟹腳、最後煮黃金雜炊粥！</p></div></div>
+                        <span class="text-rose-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 6 卡片 -->
+            <div id="day-card-6" class="day-detail bg-white rounded-2xl p-5 md:p-6 shadow-sm border border-slate-200 space-y-4 hidden">
+                <div class="flex justify-between items-center border-b pb-3">
+                    <div><span class="badge bg-sky-100 text-sky-700">Day 6</span><h2 class="text-lg md:text-xl font-bold mt-1 text-slate-900">2026/09/27 (週日) 小樽浪漫一日遊（南小樽進、小樽出・一路下坡）</h2></div>
+                    <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full font-medium">宿：ANA 札幌皇冠假日</span>
+                </div>
+                <div class="space-y-3 text-xs md:text-sm">
+                    <div onclick="openSpotModal('JR 南小樽站', '10:05', '鐵道抵達', '搭乘 JR 快速列車（約 35 分鐘，刷 IC 卡）。在「南小樽站」下車，順著下坡漫步至童話十字路口，完全不走回頭路！', '南小樽駅', '省力秘訣：千萬不要從小樽站逆向上坡走！', 'JR北海道官方')" class="p-3 bg-slate-50 hover:bg-blue-50/60 rounded-xl cursor-pointer transition border border-transparent hover:border-blue-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-blue-600 font-bold w-14">09:30</div><div><div class="font-semibold text-slate-900">搭乘 JR 快速列車（刷 IC 卡）➔ 直達「南小樽站」下車</div><p class="text-slate-500 text-xs mt-0.5">10:05 抵達南小樽站，一路向下坡漫步，完全不走回頭路！</p></div></div>
+                        <span class="text-blue-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('小樽音樂盒堂 本館 ＆ 界町通甜點街', '10:15~12:30', '甜點老街', '小樽音樂盒堂每 15 分鐘噴氣蒸氣鐘、北菓樓夢不思議大泡芙、LeTAO 雙層乳酪蛋糕、六花亭小樽店。', '小樽オルゴール堂 本館', '界町通沿線匯集北海道各大甜點旗艦店[cite: 1]。', '2A夫妻 / Lester / 內內 推薦')" class="p-3 bg-slate-50 hover:bg-blue-50/60 rounded-xl cursor-pointer transition border border-transparent hover:border-blue-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-blue-600 font-bold w-14">10:15</div><div><div class="font-semibold text-slate-900">童話十字路口 ＆ 界町通甜點街</div><p class="text-slate-500 text-xs mt-0.5">音樂盒堂蒸氣鐘、北菓樓夢不思議泡芙、LeTAO 雙層乳酪蛋糕、六花亭[cite: 1]。</p></div></div>
+                        <span class="text-blue-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('三角市場 滝波食堂 / CFE 極嫩牛排飯', '12:30', '午餐推薦', '三角市場滝波食堂自選現剖生海膽干貝鮭魚卵海鮮丼，或對面 Cafe & Dining Bar CFE 肉質極嫩如蛋豆腐的發光牛排飯。', '北のどんぶり屋 滝波食堂', '出小樽站步行 1 分鐘即達。', 'Ki笑人生 激推 / 2A夫妻 推薦')" class="p-3 bg-amber-50/60 hover:bg-amber-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-amber-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-amber-600 font-bold w-14">12:30</div><div><div class="font-semibold text-slate-900">午餐：三角市場 滝波食堂（海鮮丼） 或 CFE 極嫩牛排飯</div><p class="text-slate-500 text-xs mt-0.5">自選現剖生海膽干貝丼，或小樽站對面肉質極嫩的招牌牛排飯[cite: 1]。</p></div></div>
+                        <span class="text-amber-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('日本銀行舊小樽支店（金融資料館）＆ 小樽運河', '14:30', '歷史景點', '免費入內參觀百年鋼鐵金庫，體驗抱起 10kg 一億日圓紙鈔；漫步運河畔欣賞大正紅磚倉庫與煤氣燈倒影，最後從小樽站搭車回札幌。', '金融資料館（日本銀行旧小樽支店）', '小樽運河拍照後步行 8 分鐘至 JR 小樽站搭車[cite: 1]。', '雙人徐 / 2A夫妻 推薦')" class="p-3 bg-blue-50/60 hover:bg-blue-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-blue-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-blue-600 font-bold w-14">14:30</div><div><div class="font-semibold text-slate-900">金融資料館（抱一億日圓體驗） ➔ 小樽運河紅磚倉庫群</div><p class="text-slate-500 text-xs mt-0.5">體驗 10kg 一億日圓紙鈔，漫步運河畔拍煤氣燈倒影，從小樽站搭 JR 返程[cite: 1]。</p></div></div>
+                        <span class="text-blue-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 7 卡片 -->
+            <div id="day-card-7" class="day-detail bg-white rounded-2xl p-5 md:p-6 shadow-sm border border-slate-200 space-y-4 hidden">
+                <div class="flex justify-between items-center border-b pb-3">
+                    <div><span class="badge bg-indigo-100 text-indigo-700">Day 7</span><h2 class="text-lg md:text-xl font-bold mt-1 text-slate-900">2026/09/28 (週一) 神級親子公園放電 ＆ 札幌集中採買日</h2></div>
+                    <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full font-medium">宿：ANA 札幌皇冠假日</span>
+                </div>
+                <div class="space-y-3 text-xs md:text-sm">
+                    <div onclick="openSpotModal('國營瀧野鈴蘭丘陵公園（国営滝野すずらん丘陵公園）', '09:00~12:30', '神級放電', '全北海道最大國營親子樂園！巨型白色雲朵彈跳床、長型滾輪溜滑梯、室內彩虹攀爬網[cite: 2]。', '国営滝野すずらん丘陵公園', '地鐵南北線至真駒內站，轉乘中央巴士直達公園東口[cite: 2]。小孩免費，大人門票僅 ¥450[cite: 2]。', 'CHILL先生一家人 狂推')" class="p-3 bg-indigo-50/60 hover:bg-indigo-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-indigo-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-indigo-600 font-bold w-14">09:00</div><div><div class="font-semibold text-slate-900">國營瀧野鈴蘭丘陵公園（北海道親子公園天花板）</div><p class="text-slate-500 text-xs mt-0.5">巨型白色雲朵彈跳床、長滾輪溜滑梯、室內彩虹編織攀爬網、巨球草地[cite: 2]。</p></div></div>
+                        <span class="text-indigo-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('珈琲とサンドイッチ さえら（Saera）', '13:00', '午餐推薦', '大通站排隊傳奇三明治！必點「帝王蟹沙拉 ＋ 酥脆炸蝦三明治」或「漢堡排 ＋ 季節水果鮮奶油三明治」；亦可選 とんかつ 檍 300g 炸豬排。', 'さえら 札幌', '大通站地下街，吐司濕潤鬆軟爆料。', '內內 Nene 狂推')" class="p-3 bg-amber-50/60 hover:bg-amber-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-amber-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-amber-600 font-bold w-14">13:00</div><div><div class="font-semibold text-slate-900">午餐：さえら（Saera 帝王蟹/炸蝦三明治） 或 とんかつ 檍 炸豬排</div><p class="text-slate-500 text-xs mt-0.5">大通站排隊傳奇蟹肉炸蝦三明治，或 300g 低溫熟成豬排。</p></div></div>
+                        <span class="text-amber-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('Sapporo Factory ＆ 札幌站商圈', '15:00', '集中採買', '全道最齊全戶外用品神殿（Snow Peak / The North Face 紫標 / Mont-bell），UNIQLO 札幌旗艦店體驗 UTme! 客製親子 T 恤。', 'サッポロファクトリー', '買完戰利品可直接步行 5 分鐘回 ANA 皇冠假日放回房間！', 'Kiki & May / 醉旅宿 推薦')" class="p-3 bg-slate-50 hover:bg-blue-50/60 rounded-xl cursor-pointer transition border border-transparent hover:border-blue-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-blue-600 font-bold w-14">15:00</div><div><div class="font-semibold text-slate-900">Sapporo Factory（戶外露營裝備） ＆ 札幌站 Stella Place 採買</div><p class="text-slate-500 text-xs mt-0.5">全道最齊全 Snow Peak/The North Face 紫標，UNIQLO 客製 UTme! 親子 T 恤。</p></div></div>
+                        <span class="text-blue-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('士別バーベキュー / 難陀 NANDA', '18:30', '晚餐盛宴', '士別バーベキュー品嚐全日本僅 0.5% 的極致黑臉「薩福克羊（Suffolk）」肉質媲美和牛；或難陀三大蟹炭火燒烤吃到飽。', '士別バーベキュー', '排隊點心：札幌農學校現烤紅豆奶油夾心餅乾與 TruffleBAKERY 松露麵包。', 'JJ & 非白 / 三十口米 推薦')" class="p-3 bg-amber-50/60 hover:bg-amber-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-amber-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-amber-600 font-bold w-14">18:30</div><div><div class="font-semibold text-slate-900">晚餐：士別バーベキュー（傳奇薩福克羊） 或 難陀 三大蟹燒烤</div><p class="text-slate-500 text-xs mt-0.5">品嚐極致黑臉羊肉，或三大蟹炭火吃到飽。買札幌農學校現烤紅豆奶油餅乾。</p></div></div>
+                        <span class="text-amber-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 8 卡片 -->
+            <div id="day-card-8" class="day-detail bg-white rounded-2xl p-5 md:p-6 shadow-sm border border-slate-200 space-y-4 hidden">
+                <div class="flex justify-between items-center border-b pb-3">
+                    <div><span class="badge bg-rose-100 text-rose-700">Day 8</span><h2 class="text-lg md:text-xl font-bold mt-1 text-slate-900">2026/09/29 (週二) 札幌 ➔ 新千歲機場國內線 ➔ 平安返台</h2></div>
+                    <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full font-medium">航班：華航 CI131 (15:05起飛)</span>
+                </div>
+                <div class="space-y-3 text-xs md:text-sm">
+                    <div onclick="openSpotModal('新千歲機場 國內線 3F 拉麵道場 ＆ 2F 伴手禮區', '12:30', '機場名店', '午餐吃一幻甜蝦拉麵或白樺山莊；評比 KINOTOYA 極上牛乳霜淇淋 vs 雪印；買美瑛選果現烤玉米麵包。', '新千歳空港 国内線ターミナル', '國內線 2F 買齊六花亭、北菓樓與冷藏乳酪海鮮，14:00 步行至國際線辦理登機。', '心甜 Christy / Lester / 2A夫妻 推薦')" class="p-3 bg-amber-50/60 hover:bg-amber-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-amber-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-amber-600 font-bold w-14">12:30</div><div><div class="font-semibold text-slate-900">國內線 3F 拉麵道場午餐 ＆ 雙冠軍霜淇淋大對決</div><p class="text-slate-500 text-xs mt-0.5">午餐吃一幻甜蝦拉麵/白樺山莊；評比 KINOTOYA 極上霜淇淋 vs 雪印，買美瑛玉米麵包。</p></div></div>
+                        <span class="text-amber-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION 2: 🗺️ 官方地圖 ＆ MapCode ＆ 悠悠北海道整合 ================= -->
+        <section id="tab-maps" class="tab-content hidden space-y-5">
+            <div class="bg-gradient-to-r from-slate-900 to-indigo-900 text-white rounded-2xl p-5 shadow-sm">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-map-marked-alt text-xl text-rose-400"></i>
+                    <h2 class="text-lg font-bold">官方中文旅遊地圖 ＆ 自駕 MapCode 檢索專區</h2>
+                </div>
+                <p class="text-xs text-slate-300 mt-1">整合「悠悠北海道 UU-Hokkaido」繁體中文門戶資源、小樽堺町通商店街官方地圖[cite: 1]、札幌觀光協會市中心/廣域地圖[cite: 2] 與自駕車機 MapCode。</p>
+            </div>
+
+            <!-- 悠悠北海道 官方入口 ＆ MapCode 快速檢索專卡 -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-sky-200">
+                <div class="flex flex-wrap items-center justify-between border-b pb-3 mb-3 gap-2">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-compass text-sky-600 text-xl"></i>
+                        <div>
+                            <h3 class="font-bold text-base text-slate-900">悠悠北海道（UU-Hokkaido）繁體中文官方旅遊庫</h3>
+                            <p class="text-[11px] text-slate-500">北海道官方認證繁體中文入口網站・自駕 MapCode、紅葉預報與折扣券</p>
+                        </div>
+                    </div>
+                    <a href="https://uu-beihaidao.tw/" target="_blank" class="badge bg-sky-100 text-sky-800 hover:bg-sky-200 transition">
+                        開啟悠悠北海道官網 <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- 必備自駕 MapCode 快速複製表 -->
+                <div class="space-y-2">
+                    <div class="text-xs font-bold text-slate-700 flex items-center gap-1"><i class="fa-solid fa-car text-emerald-600"></i> 本趟 9/23 美瑛自駕必備 MapCode（車機導航直接輸入）：</div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-xs">
+                        <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 flex justify-between items-center">
+                            <div><div class="font-bold text-slate-800">旭山動物園</div><div class="font-mono text-blue-600 font-bold">79 357 888*22</div></div>
+                            <button onclick="copyText('79 357 888*22')" class="text-xs bg-white px-2 py-1 border rounded text-slate-600 hover:bg-slate-100">複製</button>
+                        </div>
+                        <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 flex justify-between items-center">
+                            <div><div class="font-bold text-slate-800">美瑛 純平洋食</div><div class="font-mono text-blue-600 font-bold">389 010 564*25</div></div>
+                            <button onclick="copyText('389 010 564*25')" class="text-xs bg-white px-2 py-1 border rounded text-slate-600 hover:bg-slate-100">複製</button>
+                        </div>
+                        <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 flex justify-between items-center">
+                            <div><div class="font-bold text-slate-800">美瑛 白金青池</div><div class="font-mono text-blue-600 font-bold">345 581 635*55</div></div>
+                            <button onclick="copyText('345 581 635*55')" class="text-xs bg-white px-2 py-1 border rounded text-slate-600 hover:bg-slate-100">複製</button>
+                        </div>
+                        <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 flex justify-between items-center">
+                            <div><div class="font-bold text-slate-800">美瑛 白鬚瀑布</div><div class="font-mono text-blue-600 font-bold">796 182 604*22</div></div>
+                            <button onclick="copyText('796 182 604*22')" class="text-xs bg-white px-2 py-1 border rounded text-slate-600 hover:bg-slate-100">複製</button>
+                        </div>
+                        <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 flex justify-between items-center">
+                            <div><div class="font-bold text-slate-800">美瑛 四季彩之丘</div><div class="font-mono text-blue-600 font-bold">349 701 160*00</div></div>
+                            <button onclick="copyText('349 701 160*00')" class="text-xs bg-white px-2 py-1 border rounded text-slate-600 hover:bg-slate-100">複製</button>
+                        </div>
+                        <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 flex justify-between items-center">
+                            <div><div class="font-bold text-slate-800">Ken & Mary 之樹</div><div class="font-mono text-blue-600 font-bold">389 071 631*44</div></div>
+                            <button onclick="copyText('389 071 631*44')" class="text-xs bg-white px-2 py-1 border rounded text-slate-600 hover:bg-slate-100">複製</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs pt-3 mt-3 border-t">
+                    <a href="https://uu-beihaidao.tw/corporate/mapcode.shtml" target="_blank" class="p-2 bg-sky-50 text-sky-800 rounded-lg text-center font-semibold hover:bg-sky-100 transition">全道 MapCode 查詢</a>
+                    <a href="https://uu-beihaidao.tw/sight/sapporo.shtml" target="_blank" class="p-2 bg-sky-50 text-sky-800 rounded-lg text-center font-semibold hover:bg-sky-100 transition">札幌中文指南</a>
+                    <a href="https://uu-beihaidao.tw/sight/otaru.shtml" target="_blank" class="p-2 bg-sky-50 text-sky-800 rounded-lg text-center font-semibold hover:bg-sky-100 transition">小樽中文指南</a>
+                    <a href="https://uu-beihaidao.tw/sight/kamikawa.shtml" target="_blank" class="p-2 bg-sky-50 text-sky-800 rounded-lg text-center font-semibold hover:bg-sky-100 transition">旭川美瑛富良野</a>
+                </div>
+            </div>
+
+            <!-- 官方地圖快捷清單卡片 -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200">
+                <div class="flex items-center gap-2 border-b pb-3 mb-3">
+                    <i class="fa-solid fa-file-pdf text-rose-600 text-xl"></i>
+                    <h3 class="font-bold text-base text-slate-900">官方旅遊地圖檔案直達（點擊直接開啟地圖/下載手冊）</h3>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 text-xs">
+                    <a href="https://otaru-sakaimachi.com/map/" target="_blank" class="p-3 bg-slate-50 hover:bg-sky-50 border border-slate-200 rounded-xl flex items-center justify-between transition">
+                        <div>
+                            <div class="font-bold text-slate-800">🌊 小樽堺町通 全街店鋪地圖</div>
+                            <div class="text-[10px] text-slate-500">含 93 間店家、童話十字路口、觀光停車場[cite: 1]</div>
+                        </div>
+                        <i class="fa-solid fa-file-pdf text-rose-500 text-base"></i>
+                    </a>
+                    <a href="https://www.sapporo.travel/zh-tw/info/pamphlet/" target="_blank" class="p-3 bg-slate-50 hover:bg-sky-50 border border-slate-200 rounded-xl flex items-center justify-between transition">
+                        <div>
+                            <div class="font-bold text-slate-800">🏙️ 札幌市中心 ＆ 廣域導覽地圖</div>
+                            <div class="text-[10px] text-slate-500">札幌觀光協會官方版，地下街與分區景點[cite: 2]</div>
+                        </div>
+                        <i class="fa-solid fa-file-pdf text-rose-500 text-base"></i>
+                    </a>
+                    <a href="https://jozankei.jp/zh-hant/pamphlet/" target="_blank" class="p-3 bg-slate-50 hover:bg-sky-50 border border-slate-200 rounded-xl flex items-center justify-between transition">
+                        <div>
+                            <div class="font-bold text-slate-800">♨️ 定山溪溫泉散策地圖</div>
+                            <div class="text-[10px] text-slate-500">溫泉街、河童手湯足湯與二見吊橋指南[cite: 2]</div>
+                        </div>
+                        <i class="fa-solid fa-file-pdf text-rose-500 text-base"></i>
+                    </a>
+                    <a href="https://www.biei-hokkaido.jp/zh_TW/map/" target="_blank" class="p-3 bg-slate-50 hover:bg-sky-50 border border-slate-200 rounded-xl flex items-center justify-between transition">
+                        <div>
+                            <div class="font-bold text-slate-800">🚜 美瑛拼布之路自駕地圖</div>
+                            <div class="text-[10px] text-slate-500">丘陵名樹群、青池與四季彩之丘導覽</div>
+                        </div>
+                        <i class="fa-solid fa-file-pdf text-rose-500 text-base"></i>
+                    </a>
+                    <a href="https://www.city.asahikawa.hokkaido.jp/asahiyamazoo/generalinformation/d053787.html" target="_blank" class="p-3 bg-slate-50 hover:bg-sky-50 border border-slate-200 rounded-xl flex items-center justify-between transition">
+                        <div>
+                            <div class="font-bold text-slate-800">🎪 旭山動物園 中文園區圖</div>
+                            <div class="text-[10px] text-slate-500">企鵝館、海豹館、北極熊館行動展示動線</div>
+                        </div>
+                        <i class="fa-solid fa-file-pdf text-rose-500 text-base"></i>
+                    </a>
+                    <a href="https://www.new-chitose-airport.jp/tw/spend/shop/" target="_blank" class="p-3 bg-slate-50 hover:bg-sky-50 border border-slate-200 rounded-xl flex items-center justify-between transition">
+                        <div>
+                            <div class="font-bold text-slate-800">✈️ 新千歲航廈商場平面圖</div>
+                            <div class="text-[10px] text-slate-500">國內線 2F 伴手禮大街與 3F 拉麵道場</div>
+                        </div>
+                        <i class="fa-solid fa-file-pdf text-rose-500 text-base"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION 3: 美食景點超大資料庫 ================= -->
+        <section id="tab-spots" class="tab-content hidden space-y-4">
+            <!-- 雙維度篩選按鈕列 -->
+            <div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm space-y-2.5">
+                <div>
+                    <div class="text-[11px] font-bold text-slate-400 mb-1.5 flex items-center gap-1"><i class="fa-solid fa-location-dot text-blue-500"></i> 依地理區域篩選：</div>
+                    <div class="flex overflow-x-auto gap-1.5 no-scrollbar">
+                        <button onclick="setFilter('region', 'all')" class="rf-btn px-2.5 py-1 rounded-lg bg-blue-600 text-white text-xs font-medium whitespace-nowrap">全部地區</button>
+                        <button onclick="setFilter('region', 'asahikawa')" class="rf-btn px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium whitespace-nowrap">旭川・美瑛・富良野</button>
+                        <button onclick="setFilter('region', 'sapporo')" class="rf-btn px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium whitespace-nowrap">札幌市區</button>
+                        <button onclick="setFilter('region', 'jozankei')" class="rf-btn px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium whitespace-nowrap">定山溪</button>
+                        <button onclick="setFilter('region', 'otaru')" class="rf-btn px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium whitespace-nowrap">小樽</button>
+                        <button onclick="setFilter('region', 'cts')" class="rf-btn px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium whitespace-nowrap">新千歲機場</button>
+                    </div>
+                </div>
+                <div class="border-t pt-2">
+                    <div class="text-[11px] font-bold text-slate-400 mb-1.5 flex items-center gap-1"><i class="fa-solid fa-layer-group text-rose-500"></i> 依類別篩選：</div>
+                    <div class="flex overflow-x-auto gap-1.5 no-scrollbar">
+                        <button onclick="setFilter('category', 'all')" class="cf-btn px-2.5 py-1 rounded-lg bg-slate-800 text-white text-xs font-medium whitespace-nowrap">全部類別</button>
+                        <button onclick="setFilter('category', 'sightseeing')" class="cf-btn px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium whitespace-nowrap">🏛️ 觀光景點/歷史文化</button>
+                        <button onclick="setFilter('category', 'kids')" class="cf-btn px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium whitespace-nowrap">🎪 親子樂園/特色放電</button>
+                        <button onclick="setFilter('category', 'shopping')" class="cf-btn px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium whitespace-nowrap">🎁 必買伴手禮/商場</button>
+                        <button onclick="setFilter('category', 'crab')" class="cf-btn px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium whitespace-nowrap">🦀 帝王蟹/三大蟹</button>
+                        <button onclick="setFilter('category', 'sushi')" class="cf-btn px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium whitespace-nowrap">🐟 壽司/一夜干/海鮮</button>
+                        <button onclick="setFilter('category', 'bbq')" class="cf-btn px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium whitespace-nowrap">🥩 烤肉/和牛/烤羊</button>
+                        <button onclick="setFilter('category', 'curry')" class="cf-btn px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium whitespace-nowrap">🍛 湯咖哩/特色咖哩</button>
+                        <button onclick="setFilter('category', 'ramen')" class="cf-btn px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium whitespace-nowrap">🍜 頂級拉麵</button>
+                        <button onclick="setFilter('category', 'western')" class="cf-btn px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium whitespace-nowrap">🥪 炸豬排/三明治/牛排</button>
+                        <button onclick="setFilter('category', 'sweets')" class="cf-btn px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium whitespace-nowrap">🍦 冰品/夜聖代/甜點</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片列表區 -->
+            <div class="grid md:grid-cols-2 gap-3" id="spot-grid">
+                <div class="spot-card sapporo crab bg-white p-4 rounded-xl border border-rose-200 shadow-sm text-xs space-y-1.5">
+                    <div class="flex justify-between items-center"><span class="badge bg-rose-100 text-rose-800">🦀 帝王蟹火鍋首選</span><span class="text-purple-700 font-bold bg-purple-50 px-2 py-0.5 rounded text-[10px]">📺 E家愛吃愛旅遊 / 三十口米</span></div>
+                    <div class="font-bold text-sm text-slate-900">札幌 蟹本家（札幌站前本店）</div>
+                    <p class="text-slate-600"><strong>離 ANA 皇冠假日酒店步行僅 3 分鐘！</strong>全日式獨立包廂。必點生帝王蟹腿涮涮鍋（かにしゃぶ）、炭烤蟹腳、蟹膏豆腐，結尾專人煮「黃金雜炊粥」。</p>
+                    <div class="pt-1"><a href="https://www.google.com/maps/search/?api=1&query=札幌かに本家 札幌駅前本店" target="_blank" class="inline-flex items-center gap-1 text-blue-600 font-bold hover:underline"><i class="fa-solid fa-map-location-dot"></i> Google Maps 導航</a></div>
+                </div>
+
+                <div class="spot-card sapporo sushi bg-white p-4 rounded-xl border border-blue-200 shadow-sm text-xs space-y-1.5">
+                    <div class="flex justify-between items-center"><span class="badge bg-blue-100 text-blue-800">🐟 炭烤一夜干名店</span><span class="text-purple-700 font-bold bg-purple-50 px-2 py-0.5 rounded text-[10px]">📺 JJ & 非白 / Ki笑人生 / Kiki&May</span></div>
+                    <div class="font-bold text-sm text-slate-900">できたてや（DekitateYa / 根室花丸旗下）</div>
+                    <p class="text-slate-600">現點炭烤超大花魚一夜干、銀鮭魚卵蓋飯，白飯可加價換蘿蔔炊飯；結尾務必淋上免費熱魚介高湯做成鮮甜茶泡飯！</p>
+                    <div class="pt-1"><a href="https://www.google.com/maps/search/?api=1&query=できたてや 時計台店" target="_blank" class="inline-flex items-center gap-1 text-blue-600 font-bold hover:underline"><i class="fa-solid fa-map-location-dot"></i> Google Maps 導航</a></div>
+                </div>
+
+                <div class="spot-card sapporo otaru asahikawa shopping sweets bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-xs space-y-1.5">
+                    <div class="flex justify-between items-center"><span class="badge bg-rose-100 text-rose-800">🎁 必買名產第1名</span><span class="text-purple-700 font-bold bg-purple-50 px-2 py-0.5 rounded text-[10px]">📺 2A夫妻 / 北海道女婿</span></div>
+                    <div class="font-bold text-sm text-slate-900">六花亭（Rokkatei 各門市/機場）</div>
+                    <p class="text-slate-600">必買「蘭姆葡萄奶油夾心餅乾」、薄脆「六色酒糖」與草莓白巧克力球；小樽店位於界町通商店街核心[cite: 1]。</p>
+                    <div class="pt-1"><a href="https://www.google.com/maps/search/?api=1&query=六花亭 札幌本店" target="_blank" class="inline-flex items-center gap-1 text-blue-600 font-bold hover:underline"><i class="fa-solid fa-map-location-dot"></i> Google Maps 導航</a></div>
+                </div>
+
+                <div class="spot-card cts shopping western sweets bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-xs space-y-1.5">
+                    <div class="flex justify-between items-center"><span class="badge bg-amber-100 text-amber-800">🎁 機場限量排隊名物</span><span class="text-purple-700 font-bold bg-purple-50 px-2 py-0.5 rounded text-[10px]">📺 2F頭城小夫妻 / 2A夫妻</span></div>
+                    <div class="font-bold text-sm text-slate-900">美瑛選果（びえいのコーンぱん / 新千歲2F）</div>
+                    <p class="text-slate-600">新千歲機場排隊傳奇！不加一滴水與糖，滿滿美瑛甜玉米粒爆漿出爐，每人限購兩盒。</p>
+                    <div class="pt-1"><a href="https://www.google.com/maps/search/?api=1&query=美瑛選果 新千歳空港店" target="_blank" class="inline-flex items-center gap-1 text-blue-600 font-bold hover:underline"><i class="fa-solid fa-map-location-dot"></i> Google Maps 導航</a></div>
+                </div>
+
+                <div class="spot-card sapporo bbq bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-xs space-y-1.5">
+                    <div class="flex justify-between items-center"><span class="badge bg-amber-100 text-amber-800">🥩 0.5%傳奇薩福克羊</span><span class="text-purple-700 font-bold bg-purple-50 px-2 py-0.5 rounded text-[10px]">📺 JJ & 非白 激推</span></div>
+                    <div class="font-bold text-sm text-slate-900">士別バーベキュー（Shibetsu Jingisukan）</div>
+                    <p class="text-slate-600">自家牧場放牧極稀有黑臉「薩福克羊（Suffolk）」，油花媲美頂級和牛，肉質多汁毫無羶味，結尾必吃微辣羊肉咖哩飯。</p>
+                    <div class="pt-1"><a href="https://www.google.com/maps/search/?api=1&query=士別バーベキュー" target="_blank" class="inline-flex items-center gap-1 text-blue-600 font-bold hover:underline"><i class="fa-solid fa-map-location-dot"></i> Google Maps 導航</a></div>
+                </div>
+
+                <div class="spot-card asahikawa bbq bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-xs space-y-1.5">
+                    <div class="flex justify-between items-center"><span class="badge bg-amber-100 text-amber-800">全道第1烤羊肉</span><span class="text-purple-700 font-bold bg-purple-50 px-2 py-0.5 rounded text-[10px]">📺 G先生 / 2F頭城小夫妻 / Tabelog #1</span></div>
+                    <div class="font-bold text-sm text-slate-900">成吉思汗烤肉 大黑屋（旭川本店）</div>
+                    <p class="text-slate-600">厚切生羊里肌、特選羊肩肉、羊舌多汁無騷味，洋蔥吸滿肉汁極甜。（可先抽號碼牌回飯店等待）</p>
+                    <div class="pt-1"><a href="https://www.google.com/maps/search/?api=1&query=成吉思汗大黒屋 旭川本店" target="_blank" class="inline-flex items-center gap-1 text-blue-600 font-bold hover:underline"><i class="fa-solid fa-map-location-dot"></i> Google Maps 導航</a></div>
+                </div>
+
+                <div class="spot-card otaru western bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-xs space-y-1.5">
+                    <div class="flex justify-between items-center"><span class="badge bg-amber-100 text-amber-800">發光極嫩牛排</span><span class="text-purple-700 font-bold bg-purple-50 px-2 py-0.5 rounded text-[10px]">📺 Ki笑人生 驚艷激推</span></div>
+                    <div class="font-bold text-sm text-slate-900">Cafe & Dining Bar CFE</div>
+                    <p class="text-slate-600">小樽站對面三角市場旁隱藏版神店！招牌牛排飯熟度完美、肉質軟嫩如蛋豆腐，搭配特製香料粉與通心麵，老饕一致驚艷！[cite: 1]</p>
+                    <div class="pt-1"><a href="https://www.google.com/maps/search/?api=1&query=Cafe and Dining Bar CFE 小樽" target="_blank" class="inline-flex items-center gap-1 text-blue-600 font-bold hover:underline"><i class="fa-solid fa-map-location-dot"></i> Google Maps 導航</a></div>
+                </div>
+
+                <div class="spot-card sapporo curry bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-xs space-y-1.5">
+                    <div class="flex justify-between items-center"><span class="badge bg-amber-100 text-amber-800">海老蝦湯咖哩始祖</span><span class="text-purple-700 font-bold bg-purple-50 px-2 py-0.5 rounded text-[10px]">📺 Lester 萊斯特 / Ki笑人生 推薦</span></div>
+                    <div class="font-bold text-sm text-slate-900">奧芝商店 札幌站前店</div>
+                    <p class="text-slate-600">數千隻甜蝦熬製的濃郁鮮蝦湯頭，配宗谷黑牛漢堡排與炸牛蒡等豐富蔬菜，擠檸檬在飯上泡入濃湯吃法超驚艷。</p>
+                    <div class="pt-1"><a href="https://www.google.com/maps/search/?api=1&query=奥芝商店 駅前創成寺" target="_blank" class="inline-flex items-center gap-1 text-blue-600 font-bold hover:underline"><i class="fa-solid fa-map-location-dot"></i> Google Maps 導航</a></div>
+                </div>
+
+                <div class="spot-card sapporo sweets bg-white p-4 rounded-xl border border-purple-200 shadow-sm text-xs space-y-1.5">
+                    <div class="flex justify-between items-center"><span class="badge bg-purple-100 text-purple-800">🍦 夢幻冰淇淋調酒</span><span class="text-purple-700 font-bold bg-purple-50 px-2 py-0.5 rounded text-[10px]">📺 內內 Nene 開箱</span></div>
+                    <div class="font-bold text-sm text-slate-900">BAR ミルク村（Milk Mura）</div>
+                    <p class="text-slate-600">薄野昭和復古童話風酒吧！濃郁四葉鮮乳霜淇淋搭配 100 多種利口酒（附滴管淋酒），冰淇淋可免費續加，大人小孩都驚喜！</p>
+                    <div class="pt-1"><a href="https://www.google.com/maps/search/?api=1&query=BAR ミルク村 札幌" target="_blank" class="inline-flex items-center gap-1 text-blue-600 font-bold hover:underline"><i class="fa-solid fa-map-location-dot"></i> Google Maps 導航</a></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION 4: 交通與彈性班次 ================= -->
+        <section id="tab-transport" class="tab-content hidden space-y-4">
+            <div class="bg-white rounded-xl p-5 shadow-sm border border-slate-200">
+                <div class="flex items-center gap-2 border-b pb-3 mb-3">
+                    <i class="fa-solid fa-train text-indigo-600 text-xl"></i>
+                    <h3 class="font-bold text-base text-slate-900">JR 特急與快速列車彈性班次表</h3>
+                </div>
+                <div class="space-y-3 text-xs">
+                    <div class="p-3 bg-slate-50 rounded-lg space-y-1.5">
+                        <div class="font-bold text-blue-700 flex items-center justify-between">
+                            <span>🚆 9/22 (D1) 新千歲機場 ➔ 札幌 ➔ 旭川</span>
+                            <span class="text-slate-400 font-normal">全車指定席</span>
+                        </div>
+                        <div class="flex justify-between text-slate-900 font-bold bg-blue-50/80 p-1.5 rounded">
+                            <span>【推薦標準】快速機場號 163號 ➔ 特急 Lilac 33號</span>
+                            <span class="font-mono text-blue-700">16:24 機場發 ➔ 18:55 抵達旭川</span>
+                        </div>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded-lg space-y-1.5">
+                        <div class="font-bold text-blue-700 flex items-center justify-between">
+                            <span>🚆 9/24 (D3) 旭川 ➔ 札幌站</span>
+                            <span class="text-slate-400 font-normal">全車指定席</span>
+                        </div>
+                        <div class="flex justify-between text-slate-900 font-bold bg-blue-50/80 p-1.5 rounded">
+                            <span>【推薦標準】特急 Lilac 14號</span>
+                            <span class="font-mono text-blue-700">10:00 旭川發 ➔ 11:25 抵達札幌</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 自駕與河童Liner資訊 -->
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-white rounded-xl p-5 shadow-sm border border-slate-200 text-xs space-y-2">
+                    <div class="flex items-center gap-2 font-bold text-slate-900 border-b pb-2">
+                        <i class="fa-solid fa-car text-blue-600"></i>
+                        <span>9/23 TOYOTA 旭川站前租車（自駕）</span>
+                    </div>
+                    <div><strong>預約號碼：</strong><span class="font-mono font-bold text-blue-600">101853439</span></div>
+                    <div><strong>用車時間：</strong>09:00 取車 ～ 19:00 前還車</div>
+                    <div><strong>租車總額：</strong>¥9,570 日圓（現場信用卡結帳）</div>
+                </div>
+                <div class="bg-white rounded-xl p-5 shadow-sm border border-slate-200 text-xs space-y-2">
+                    <div class="flex items-center gap-2 font-bold text-slate-900 border-b pb-2">
+                        <i class="fa-solid fa-bus text-emerald-600"></i>
+                        <span>河童Liner號巴士（札幌 ⇄ 定山溪）</span>
+                    </div>
+                    <div><strong>去程 (9/25 09:35發)：</strong>札幌站前27號站牌 ➔ 預約號 <span class="font-mono font-bold text-emerald-600">60925000001</span></div>
+                    <div><strong>回程 (9/26 12:15發)：</strong>定山溪東2丁目 ➔ 預約號 <span class="font-mono font-bold text-emerald-600">60926000001</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION 5: 住宿管理 ================= -->
+        <section id="tab-hotels" class="tab-content hidden space-y-4">
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-white rounded-xl p-5 shadow-sm border border-slate-200 text-xs space-y-2">
+                    <span class="badge bg-blue-100 text-blue-700">9/22～9/24 (2晚)</span>
+                    <h3 class="text-base font-bold text-slate-900">JR Inn 旭川（JRイン旭川）</h3>
+                    <div><strong>訂單編號：</strong><span class="font-mono text-blue-600 font-bold">21315090080055</span> <button onclick="copyText('21315090080055')" class="text-blue-500 underline ml-1">複製</button></div>
+                    <div><strong>費用：</strong>¥69,660 + 現場住宿稅 ¥300</div>
+                </div>
+                <div class="bg-white rounded-xl p-5 shadow-sm border border-slate-200 text-xs space-y-2">
+                    <span class="badge bg-indigo-100 text-indigo-700">9/24~9/25 & 9/26~9/29 (共4晚)</span>
+                    <h3 class="text-base font-bold text-slate-900">ANA 札幌皇冠假日酒店</h3>
+                    <div><strong>確認號：</strong><span class="font-mono text-blue-600 font-bold">62481865 / 43574824</span> <button onclick="copyText('43574824')" class="text-blue-500 underline ml-1">複製</button></div>
+                    <div class="text-rose-600 font-bold">💡 9/25 退房大件行李免費留置櫃台，9/26 中午取回連住！</div>
+                </div>
+                <div class="bg-white rounded-xl p-5 shadow-sm border border-slate-200 text-xs space-y-2">
+                    <span class="badge bg-purple-100 text-purple-700">9/25～9/26 (1晚)</span>
+                    <h3 class="text-base font-bold text-slate-900">定山溪第一寶亭留 翠山亭</h3>
+                    <div><strong>訂單編號：</strong><span class="font-mono text-blue-600 font-bold">21315090085246</span> <button onclick="copyText('21315090085246')" class="text-blue-500 underline ml-1">複製</button></div>
+                    <div><strong>房型：</strong>桑拿＆展望私湯雙床房 75m²（含早晚翠山御膳）</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION 6: 專案預算 ＆ 個人互動記帳 ================= -->
+        <section id="tab-budget" class="tab-content hidden space-y-5">
+            
+            <!-- 頂部總覽數據卡 -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+                <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="text-slate-400 font-bold">總預算目標 (TWD)</div>
+                    <div class="text-lg md:text-xl font-extrabold text-slate-800 mt-1 font-mono" id="budget-target-disp">NT$ 120,000</div>
+                    <div class="text-[10px] text-blue-600 mt-0.5 cursor-pointer hover:underline" onclick="setBudgetTarget()">點此修改目標</div>
+                </div>
+                <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="text-slate-400 font-bold">固定專案支出 (TWD)</div>
+                    <div class="text-lg md:text-xl font-extrabold text-blue-600 mt-1 font-mono">NT$ 50,627</div>
+                    <div class="text-[10px] text-slate-400 mt-0.5">飯店+租車+巴士</div>
+                </div>
+                <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="text-slate-400 font-bold">現場累計支出 (TWD)</div>
+                    <div class="text-lg md:text-xl font-extrabold text-rose-600 mt-1 font-mono" id="budget-actual-disp">NT$ 0</div>
+                    <div class="text-[10px] text-slate-400 mt-0.5" id="budget-actual-jpy">¥ 0 日圓</div>
+                </div>
+                <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+                    <div class="text-slate-400 font-bold">剩餘可用額度 (TWD)</div>
+                    <div class="text-lg md:text-xl font-extrabold text-emerald-600 mt-1 font-mono" id="budget-remain-disp">NT$ 69,373</div>
+                    <div class="text-[10px] text-emerald-600 mt-0.5">充裕控制中</div>
+                </div>
+            </div>
+
+            <!-- 即時匯率換算機 -->
+            <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl p-5 shadow-sm">
+                <div class="flex justify-between items-center">
+                    <h3 class="font-bold text-base flex items-center gap-2"><i class="fa-solid fa-coins"></i> 日幣 ⇄ 台幣 即時換算機</h3>
+                    <span class="text-xs bg-white/20 px-2.5 py-1 rounded-lg">自訂匯率：1 JPY = <input type="number" step="0.001" id="custom-rate" value="0.205" oninput="convertJPY(); renderExpenses();" class="w-14 bg-white/20 text-white font-bold text-center rounded focus:bg-white focus:text-slate-800"> TWD</span>
+                </div>
+                <div class="grid grid-cols-2 gap-3 mt-3">
+                    <div>
+                        <label class="text-xs text-blue-200">日圓 (JPY ¥)</label>
+                        <input type="number" id="calc-jpy" value="10000" oninput="convertJPY()" class="w-full bg-white/10 border border-white/30 rounded-lg p-2.5 text-white font-mono font-bold focus:outline-none focus:bg-white/20">
+                    </div>
+                    <div>
+                        <label class="text-xs text-blue-200">新台幣 (TWD NT$)</label>
+                        <input type="number" id="calc-twd" value="2050" oninput="convertTWD()" class="w-full bg-white/10 border border-white/30 rounded-lg p-2.5 text-white font-mono font-bold focus:outline-none focus:bg-white/20">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 專案固定支出明細表 -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200">
+                <div class="flex justify-between items-center border-b pb-3 mb-3">
+                    <h3 class="font-bold text-base text-slate-900 flex items-center gap-2">
+                        <i class="fa-solid fa-file-invoice-dollar text-blue-600"></i> 專案固定支出一覽 (已確認預訂)
+                    </h3>
+                    <span class="text-xs bg-blue-50 text-blue-700 font-bold px-2 py-1 rounded-lg">共計 ¥246,963 (約 NT$ 50,627)</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs text-slate-700">
+                        <thead class="bg-slate-50 text-slate-500 uppercase font-bold border-b">
+                            <tr>
+                                <th class="p-2.5">項目說明</th>
+                                <th class="p-2.5">預訂憑證/編號</th>
+                                <th class="p-2.5">日幣金額 (JPY)</th>
+                                <th class="p-2.5">折合台幣 (TWD)</th>
+                                <th class="p-2.5">付款狀態</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr>
+                                <td class="p-2.5 font-semibold">JR Inn 旭川 (9/22~9/24 2晚含早)</td>
+                                <td class="p-2.5 font-mono text-slate-500">21315090080055</td>
+                                <td class="p-2.5 font-mono">¥69,660 + 稅¥300</td>
+                                <td class="p-2.5 font-mono">NT$ 14,342</td>
+                                <td class="p-2.5"><span class="badge bg-amber-100 text-amber-800">現場付款</span></td>
+                            </tr>
+                            <tr>
+                                <td class="p-2.5 font-semibold">ANA 札幌皇冠假日 (9/24 1晚)</td>
+                                <td class="p-2.5 font-mono text-slate-500">62481865</td>
+                                <td class="p-2.5 font-mono">¥17,500</td>
+                                <td class="p-2.5 font-mono">NT$ 3,588</td>
+                                <td class="p-2.5"><span class="badge bg-amber-100 text-amber-800">現場付款</span></td>
+                            </tr>
+                            <tr>
+                                <td class="p-2.5 font-semibold">定山溪翠山亭 (9/25 展望私湯一泊二食)</td>
+                                <td class="p-2.5 font-mono text-slate-500">21315090085246</td>
+                                <td class="p-2.5 font-mono">¥81,113 + 稅¥550</td>
+                                <td class="p-2.5 font-mono">NT$ 16,741</td>
+                                <td class="p-2.5"><span class="badge bg-amber-100 text-amber-800">現場付款</span></td>
+                            </tr>
+                            <tr>
+                                <td class="p-2.5 font-semibold">ANA 札幌皇冠假日 (9/26~9/29 3晚連住)</td>
+                                <td class="p-2.5 font-mono text-slate-500">43574824</td>
+                                <td class="p-2.5 font-mono">¥60,970</td>
+                                <td class="p-2.5 font-mono">NT$ 12,499</td>
+                                <td class="p-2.5"><span class="badge bg-amber-100 text-amber-800">現場付款</span></td>
+                            </tr>
+                            <tr>
+                                <td class="p-2.5 font-semibold">TOYOTA 旭川自駕租車 (9/23 全日)</td>
+                                <td class="p-2.5 font-mono text-slate-500">101853439</td>
+                                <td class="p-2.5 font-mono">¥9,570</td>
+                                <td class="p-2.5 font-mono">NT$ 1,961</td>
+                                <td class="p-2.5"><span class="badge bg-amber-100 text-amber-800">現場付款</span></td>
+                            </tr>
+                            <tr>
+                                <td class="p-2.5 font-semibold">河童Liner號 往返直達巴士 (2大1小)</td>
+                                <td class="p-2.5 font-mono text-slate-500">60925000001 / 60926000001</td>
+                                <td class="p-2.5 font-mono text-emerald-600">¥7,300</td>
+                                <td class="p-2.5 font-mono text-emerald-600">NT$ 1,496</td>
+                                <td class="p-2.5"><span class="badge bg-emerald-100 text-emerald-800">已刷卡付清</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 個人現場記帳功能 -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 space-y-4">
+                <div class="flex flex-wrap justify-between items-center border-b pb-3 gap-2">
+                    <div>
+                        <h3 class="font-bold text-base text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-pen-to-square text-emerald-600"></i> 個人現場消費記帳系統
+                        </h3>
+                        <p class="text-[11px] text-slate-500">即時登錄三餐、門票、藥妝與伴手禮，自動換算台幣並儲存於手機！</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="exportExpensesCSV()" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg transition flex items-center gap-1">
+                            <i class="fa-solid fa-file-csv"></i> 匯出 CSV
+                        </button>
+                        <button onclick="clearAllExpenses()" class="px-3 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-semibold rounded-lg transition">
+                            清空重設
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 記帳表單輸入區 -->
+                <form id="expense-form" onsubmit="addExpense(event)" class="bg-slate-50 p-4 rounded-xl border border-slate-200 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-2.5 text-xs">
+                    <div>
+                        <label class="font-bold text-slate-600 block mb-1">日期</label>
+                        <input type="date" id="exp-date" value="2026-09-22" class="w-full p-2 bg-white border border-slate-300 rounded-lg focus:outline-blue-500">
+                    </div>
+                    <div>
+                        <label class="font-bold text-slate-600 block mb-1">消費類別</label>
+                        <select id="exp-cat" class="w-full p-2 bg-white border border-slate-300 rounded-lg focus:outline-blue-500">
+                            <option value="餐飲美食">🍔 餐飲美食</option>
+                            <option value="交通車資">🚗 交通車資</option>
+                            <option value="門票體驗">🎟️ 門票體驗</option>
+                            <option value="購物伴手禮">🛍️ 購物伴手禮</option>
+                            <option value="便利超商">🏪 便利超商</option>
+                            <option value="其他雜支">📝 其他雜支</option>
+                        </select>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="font-bold text-slate-600 block mb-1">項目說明</label>
+                        <input type="text" id="exp-name" placeholder="例如：大黑屋烤羊肉、KINOTOYA 冰淇淋" required class="w-full p-2 bg-white border border-slate-300 rounded-lg focus:outline-blue-500">
+                    </div>
+                    <div>
+                        <label class="font-bold text-slate-600 block mb-1">金額</label>
+                        <div class="flex gap-1">
+                            <select id="exp-curr" class="p-2 bg-white border border-slate-300 rounded-lg font-bold">
+                                <option value="JPY">¥ JPY</option>
+                                <option value="TWD">NT$ TWD</option>
+                            </select>
+                            <input type="number" id="exp-amount" placeholder="金額" required class="w-full p-2 bg-white border border-slate-300 rounded-lg focus:outline-blue-500 font-mono">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="font-bold text-slate-600 block mb-1">付款人 / 方式</label>
+                        <select id="exp-payer" class="w-full p-2 bg-white border border-slate-300 rounded-lg focus:outline-blue-500">
+                            <option value="公費/共同">公費 (共同)</option>
+                            <option value="爸爸">爸爸支付</option>
+                            <option value="媽媽">媽媽支付</option>
+                            <option value="信用卡/IC卡">信用卡 / IC卡</option>
+                        </select>
+                    </div>
+                    <div class="md:col-span-6 flex justify-end">
+                        <button type="submit" class="w-full md:w-auto px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-md shadow-emerald-500/20 transition flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-plus"></i> 新增這筆消費紀錄
+                        </button>
+                    </div>
+                </form>
+
+                <!-- 記帳清單動態表格 -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs text-slate-700" id="expense-table">
+                        <thead class="bg-slate-50 text-slate-500 uppercase font-bold border-b">
+                            <tr>
+                                <th class="p-2.5">日期</th>
+                                <th class="p-2.5">類別</th>
+                                <th class="p-2.5">項目說明</th>
+                                <th class="p-2.5">原始金額</th>
+                                <th class="p-2.5">折合台幣 (TWD)</th>
+                                <th class="p-2.5">付款方式</th>
+                                <th class="p-2.5 text-center">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="expense-list-body" class="divide-y divide-slate-100">
+                            <!-- JS 動態插入 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ================= SECTION 7: 行前備忘清單 ================= -->
+        <section id="tab-checklist" class="tab-content hidden space-y-4">
+            <div class="bg-white rounded-xl p-5 shadow-sm border border-slate-200">
+                <div class="flex justify-between items-center border-b pb-3 mb-3">
+                    <h3 class="font-bold text-base text-slate-900">🧳 行前必備物品與手續檢核</h3>
+                    <span class="text-xs text-slate-400">自動記憶勾選狀態</span>
+                </div>
+                <div class="space-y-2 text-xs text-slate-700" id="checklist-items">
+                    <label class="flex items-center gap-2 p-2 bg-slate-50 rounded cursor-pointer hover:bg-slate-100">
+                        <input type="checkbox" onchange="saveChecklist()" class="chk w-4 h-4 text-blue-600 rounded">
+                        <span><strong>台灣駕照正本 ＋ 監理所日文譯本</strong>（9/23 旭川自駕必備）</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-2 bg-slate-50 rounded cursor-pointer hover:bg-slate-100">
+                        <input type="checkbox" onchange="saveChecklist()" class="chk w-4 h-4 text-blue-600 rounded">
+                        <span><strong>護照正本</strong>（效期 6 個月以上，2大1小全數備齊）</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-2 bg-slate-50 rounded cursor-pointer hover:bg-slate-100">
+                        <input type="checkbox" onchange="saveChecklist()" class="chk w-4 h-4 text-blue-600 rounded">
+                        <span><strong>Visit Japan Web</strong> 入境審查 QR Code 截圖</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-2 bg-slate-50 rounded cursor-pointer hover:bg-slate-100">
+                        <input type="checkbox" onchange="saveChecklist()" class="chk w-4 h-4 text-blue-600 rounded">
+                        <span><strong>Day 5 札幌蟹本家訂位</strong>：預約 9/26 18:00 包廂</span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 彈出式景點與導航 Modal 視窗 -->
+    <div id="spot-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-5 md:p-6 shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
+            <button onclick="closeSpotModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-100 transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="space-y-3">
+                <div class="flex flex-wrap items-center gap-2">
+                    <span id="modal-tag" class="badge bg-blue-100 text-blue-800">景點標籤</span>
+                    <span id="modal-time" class="text-xs font-bold text-blue-600">時間</span>
+                    <span id="modal-source" class="badge bg-purple-100 text-purple-800">推薦來源</span>
+                </div>
+                <h3 id="modal-title" class="text-xl font-bold text-slate-900">景點名稱</h3>
+                <p id="modal-desc" class="text-xs md:text-sm text-slate-600 leading-relaxed">景點詳細介紹內容...</p>
+                <div id="modal-tips-box" class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs text-amber-900 space-y-1">
+                    <div class="font-bold flex items-center gap-1.5"><i class="fa-solid fa-lightbulb"></i> 導遊重點提示：</div>
+                    <div id="modal-tips">提示資訊...</div>
+                </div>
+                <div class="pt-2">
+                    <a id="modal-gmap-btn" href="#" target="_blank" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-blue-500/30 transition text-sm">
+                        <i class="fa-solid fa-map-location-dot text-base"></i> 在 Google Maps 開啟導航
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部 Footer -->
+    <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-400">
+        2026 Hokkaido Family Trip Guide | 祝您與全家旅途愉快、平安順心 🍁
+    </footer>
+
+    <!-- JavaScript 邏輯 (包含記帳核心與資料持久化) -->
+    <script>
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('tab-active'));
+            
+            document.getElementById('tab-' + tabName).classList.remove('hidden');
+            document.getElementById('btn-' + tabName).classList.add('tab-active');
+            if (tabName === 'budget') renderExpenses();
+        }
+
+        function filterDay(dayNum) {
+            document.querySelectorAll('.day-chip').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('bg-slate-100', 'text-slate-700');
+            });
+            const activeChip = document.getElementById('chip-' + dayNum);
+            activeChip.classList.remove('bg-slate-100', 'text-slate-700');
+            activeChip.classList.add('bg-blue-600', 'text-white');
+
+            document.querySelectorAll('.day-detail').forEach(card => card.classList.add('hidden'));
+            document.getElementById('day-card-' + dayNum).classList.remove('hidden');
+        }
+
+        function openSpotModal(title, time, tag, desc, gmapQuery, tips, source) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-time').innerText = time;
+            document.getElementById('modal-tag').innerText = tag;
+            document.getElementById('modal-desc').innerText = desc;
+            document.getElementById('modal-tips').innerText = tips;
+            document.getElementById('modal-source').innerText = source || '官方推薦';
+            document.getElementById('modal-gmap-btn').href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(gmapQuery);
+            document.getElementById('spot-modal').classList.remove('hidden');
+        }
+
+        function closeSpotModal() {
+            document.getElementById('spot-modal').classList.add('hidden');
+        }
+
+        document.getElementById('spot-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeSpotModal();
+        });
+
+        let currentRegion = 'all';
+        let currentCategory = 'all';
+
+        function setFilter(type, value) {
+            if (type === 'region') {
+                currentRegion = value;
+                document.querySelectorAll('.rf-btn').forEach(btn => {
+                    btn.classList.remove('bg-blue-600', 'text-white');
+                    btn.classList.add('bg-slate-100', 'text-slate-700');
+                });
+                event.target.classList.remove('bg-slate-100', 'text-slate-700');
+                event.target.classList.add('bg-blue-600', 'text-white');
+            } else if (type === 'category') {
+                currentCategory = value;
+                document.querySelectorAll('.cf-btn').forEach(btn => {
+                    btn.classList.remove('bg-slate-800', 'text-white');
+                    btn.classList.add('bg-slate-100', 'text-slate-700');
+                });
+                event.target.classList.remove('bg-slate-100', 'text-slate-700');
+                event.target.classList.add('bg-slate-800', 'text-white');
+            }
+
+            const cards = document.querySelectorAll('.spot-card');
+            cards.forEach(card => {
+                const matchRegion = (currentRegion === 'all' || card.classList.contains(currentRegion));
+                const matchCategory = (currentCategory === 'all' || card.classList.contains(currentCategory));
+                if (matchRegion && matchCategory) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        function copyText(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('已複製：' + text);
+            });
+        }
+
+        function convertJPY() {
+            const jpy = parseFloat(document.getElementById('calc-jpy').value) || 0;
+            const rate = parseFloat(document.getElementById('custom-rate').value) || 0.205;
+            document.getElementById('calc-twd').value = Math.round(jpy * rate);
+        }
+
+        function convertTWD() {
+            const twd = parseFloat(document.getElementById('calc-twd').value) || 0;
+            const rate = parseFloat(document.getElementById('custom-rate').value) || 0.205;
+            if (rate > 0) {
+                document.getElementById('calc-jpy').value = Math.round(twd / rate);
+            }
+        }
+
+        /* ===== 記帳系統核心邏輯 ===== */
+        let expenses = [];
+        let budgetTarget = 120000;
+
+        function loadExpenses() {
+            const savedExp = localStorage.getItem('hokkaido_expenses_v2026');
+            if (savedExp) {
+                expenses = JSON.parse(savedExp);
+            } else {
+                expenses = [
+                    { id: 1, date: '2026-09-22', cat: '餐飲美食', name: '大黑屋烤羊肉旭川本店', amount: 8500, curr: 'JPY', payer: '公費/共同' },
+                    { id: 2, date: '2026-09-22', cat: '便利超商', name: 'AEON超市十勝鮮乳與零食', amount: 1850, curr: 'JPY', payer: '爸爸' }
+                ];
+            }
+            const savedTarget = localStorage.getItem('hokkaido_budget_target');
+            if (savedTarget) budgetTarget = parseFloat(savedTarget);
+            renderExpenses();
+        }
+
+        function saveExpenses() {
+            localStorage.setItem('hokkaido_expenses_v2026', JSON.stringify(expenses));
+            localStorage.setItem('hokkaido_budget_target', budgetTarget.toString());
+            renderExpenses();
+        }
+
+        function addExpense(e) {
+            e.preventDefault();
+            const date = document.getElementById('exp-date').value;
+            const cat = document.getElementById('exp-cat').value;
+            const name = document.getElementById('exp-name').value.trim();
+            const amount = parseFloat(document.getElementById('exp-amount').value);
+            const curr = document.getElementById('exp-curr').value;
+            const payer = document.getElementById('exp-payer').value;
+
+            if (!name || isNaN(amount) || amount <= 0) return;
+
+            const newExp = {
+                id: Date.now(),
+                date,
+                cat,
+                name,
+                amount,
+                curr,
+                payer
+            };
+
+            expenses.unshift(newExp);
+            saveExpenses();
+            document.getElementById('exp-name').value = '';
+            document.getElementById('exp-amount').value = '';
+        }
+
+        function deleteExpense(id) {
+            if (confirm('確定要刪除此筆記帳項目嗎？')) {
+                expenses = expenses.filter(item => item.id !== id);
+                saveExpenses();
+            }
+        }
+
+        function clearAllExpenses() {
+            if (confirm('確定要清空所有個人現場記帳紀錄嗎？（固定支出不受影響）')) {
+                expenses = [];
+                saveExpenses();
+            }
+        }
+
+        function setBudgetTarget() {
+            const newTarget = prompt('請輸入總預算目標 (TWD)：', budgetTarget);
+            if (newTarget && !isNaN(newTarget) && parseFloat(newTarget) > 0) {
+                budgetTarget = parseFloat(newTarget);
+                saveExpenses();
+            }
+        }
+
+        function renderExpenses() {
+            const rate = parseFloat(document.getElementById('custom-rate').value) || 0.205;
+            const tbody = document.getElementById('expense-list-body');
+            tbody.innerHTML = '';
+
+            let totalActualTWD = 0;
+            let totalActualJPY = 0;
+
+            expenses.forEach(item => {
+                let twdVal = (item.curr === 'JPY') ? Math.round(item.amount * rate) : item.amount;
+                let jpyVal = (item.curr === 'JPY') ? item.amount : Math.round(item.amount / rate);
+                
+                totalActualTWD += twdVal;
+                totalActualJPY += jpyVal;
+
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-50 transition';
+                tr.innerHTML = `
+                    <td class="p-2.5 font-mono text-slate-500">${item.date}</td>
+                    <td class="p-2.5"><span class="badge bg-slate-100 text-slate-700">${item.cat}</span></td>
+                    <td class="p-2.5 font-semibold text-slate-900">${item.name}</td>
+                    <td class="p-2.5 font-mono font-bold">${item.curr === 'JPY' ? '¥' : 'NT$'} ${item.amount.toLocaleString()}</td>
+                    <td class="p-2.5 font-mono text-blue-600 font-bold">NT$ ${twdVal.toLocaleString()}</td>
+                    <td class="p-2.5 text-slate-600">${item.payer}</td>
+                    <td class="p-2.5 text-center">
+                        <button onclick="deleteExpense(${item.id})" class="text-rose-500 hover:text-rose-700 text-xs px-2 py-1"><i class="fa-regular fa-trash-can"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            const fixedTWD = 50627;
+            const remainTWD = budgetTarget - fixedTWD - totalActualTWD;
+
+            document.getElementById('budget-target-disp').innerText = `NT$ ${budgetTarget.toLocaleString()}`;
+            document.getElementById('budget-actual-disp').innerText = `NT$ ${totalActualTWD.toLocaleString()}`;
+            document.getElementById('budget-actual-jpy').innerText = `¥ ${totalActualJPY.toLocaleString()} 日圓`;
+            
+            const remainDisp = document.getElementById('budget-remain-disp');
+            remainDisp.innerText = `NT$ ${remainTWD.toLocaleString()}`;
+            if (remainTWD < 0) {
+                remainDisp.className = 'text-lg md:text-xl font-extrabold text-rose-600 mt-1 font-mono';
+            } else {
+                remainDisp.className = 'text-lg md:text-xl font-extrabold text-emerald-600 mt-1 font-mono';
+            }
+        }
+
+        function exportExpensesCSV() {
+            if (expenses.length === 0) {
+                alert('目前尚無記帳資料可匯出！');
+                return;
+            }
+            const rate = parseFloat(document.getElementById('custom-rate').value) || 0.205;
+            let csv = '\uFEFF日期,類別,項目說明,原始幣別,原始金額,折合台幣,付款人\n';
+            expenses.forEach(item => {
+                let twdVal = (item.curr === 'JPY') ? Math.round(item.amount * rate) : item.amount;
+                csv += `"${item.date}","${item.cat}","${item.name}","${item.curr}",${item.amount},${twdVal},"${item.payer}"\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `北海道家庭記帳_${new Date().toISOString().slice(0,10)}.csv`;
+            link.click();
+        }
+
+        function saveChecklist() {
+            const checkboxes = document.querySelectorAll('#checklist-items .chk');
+            const states = Array.from(checkboxes).map(c => c.checked);
+            localStorage.setItem('hokkaido_checklist_v12', JSON.stringify(states));
+        }
+
+        function loadChecklist() {
+            const saved = localStorage.getItem('hokkaido_checklist_v12');
+            if (saved) {
+                const states = JSON.parse(saved);
+                const checkboxes = document.querySelectorAll('#checklist-items .chk');
+                checkboxes.forEach((c, i) => {
+                    if (states[i] !== undefined) c.checked = states[i];
+                });
+            }
+        }
+
+        window.onload = function() {
+            filterDay(1);
+            loadChecklist();
+            loadExpenses();
+        };
+    </script>
+</body>
+</html>
