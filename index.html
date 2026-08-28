@@ -9,6 +9,11 @@
     <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
     <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
 
+    <!-- 禁止快取標籤 (確保手機更新能即時抓取最新資料) -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
     <!-- iOS 獨立 App (PWA) 全螢幕與桌面圖示設定 -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -53,6 +58,10 @@
                     </p>
                 </div>
                 <div class="flex gap-2">
+                    <button onclick="forceUpdateApp()" class="bg-white/10 hover:bg-white/20 border border-white/20 px-3 py-2 rounded-xl text-center backdrop-blur-sm transition">
+                        <div class="text-[10px] text-blue-200">手冊版本</div>
+                        <div class="font-bold text-xs flex items-center gap-1"><i class="fa-solid fa-rotate text-emerald-300"></i> 強制更新</div>
+                    </button>
                     <div class="bg-white/10 border border-white/20 px-3 py-2 rounded-xl text-center backdrop-blur-sm">
                         <div class="text-[10px] text-blue-200">去程 (09/22)</div>
                         <div class="font-bold text-xs md:text-sm">長榮 BR116</div>
@@ -76,7 +85,7 @@
                 <i class="fa-solid fa-map-location-dot text-rose-500"></i> 官方地圖 ＆ MapCode
             </button>
             <button onclick="switchTab('spots')" id="btn-spots" class="tab-btn px-4 py-3.5 text-xs md:text-sm whitespace-nowrap text-slate-600 hover:text-blue-600 flex items-center gap-1.5 transition">
-                <i class="fa-solid fa-utensils"></i> 美食景點庫 <span class="bg-rose-500 text-white text-[10px] px-1.5 py-0.2 rounded-full font-bold ml-0.5" id="nav-spot-count">62</span>
+                <i class="fa-solid fa-utensils"></i> 美食景點庫 <span class="bg-rose-500 text-white text-[10px] px-1.5 py-0.2 rounded-full font-bold ml-0.5" id="nav-spot-count">80+</span>
             </button>
             <button onclick="switchTab('transport')" id="btn-transport" class="tab-btn px-4 py-3.5 text-xs md:text-sm whitespace-nowrap text-slate-600 hover:text-blue-600 flex items-center gap-1.5 transition">
                 <i class="fa-solid fa-train"></i> 交通與彈性班次
@@ -141,47 +150,77 @@
                 </div>
             </div>
 
-            <!-- Day 2 ~ 8 內容完整保留 -->
+            <!-- Day 2 卡片 -->
             <div id="day-card-2" class="day-detail bg-white rounded-2xl p-5 md:p-6 shadow-sm border border-slate-200 space-y-4 hidden">
                 <div class="flex justify-between items-center border-b pb-3">
                     <div><span class="badge bg-emerald-100 text-emerald-700">Day 2</span><h2 class="text-lg md:text-xl font-bold mt-1 text-slate-900">2026/09/23 (週三) 旭山動物園 ＆ 美瑛丘陵青池自駕</h2></div>
                     <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full font-medium">宿：JR Inn 旭川</span>
                 </div>
                 <div class="space-y-3 text-xs md:text-sm">
-                    <div onclick="openSpotModal('旭川市 旭山動物園', '09:20~11:30', '親子名勝', '日本第一人氣行動展示動物園！360度企鵝水中隧道、海豹垂直泳道、北極熊跳水水槽。', '旭川市旭山動物園', '車程約 20 分鐘，MapCode: 79 357 888*22。', 'G先生 / 波妞食境秀 推薦')" class="p-3 bg-emerald-50/60 hover:bg-emerald-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-emerald-200 flex justify-between items-start">
+                    <div onclick="openSpotModal('TOYOTA 租車 旭川站前店', '09:00', '自駕取車', '出飯店步行 2 分鐘取車，禁菸 C1 車型含中文導航與 CDW 免責補償。', 'トヨタレンタカー 旭川駅前店', '預約號：101853439，必備：台灣駕照正本、日文譯本、護照正本。現場付費 ¥9,570。', 'Tabirai Japan 官方預約')" class="p-3 bg-slate-50 hover:bg-blue-50/60 rounded-xl cursor-pointer transition border border-transparent hover:border-blue-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-blue-600 font-bold w-14">09:00</div><div><div class="font-semibold text-slate-900">TOYOTA 租車 旭川站前店取車（預約號: 101853439）</div><p class="text-slate-500 text-xs mt-0.5">出飯店步行 2 分鐘，備妥駕照三寶。</p></div></div>
+                        <span class="text-blue-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('旭川市 旭山動物園', '09:20~11:30', '親子名勝', '日本第一人氣行動展示動物園！360度企鵝水中隧道、海豹垂直泳道、北極熊跳水水槽。', '旭川市旭山動物園', '車程約 20 分鐘，MapCode: 79 357 888*22。', '波比看世界 / G先生 / 波妞食境秀')" class="p-3 bg-emerald-50/60 hover:bg-emerald-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-emerald-200 flex justify-between items-start">
                         <div class="flex gap-3"><div class="text-emerald-600 font-bold w-14">09:20</div><div><div class="font-semibold text-slate-900">旭山動物園（日本第一人氣行動展示）</div><p class="text-slate-500 text-xs mt-0.5">企鵝隧道、海豹垂直泳道、北極熊跳水、高空紅毛猩猩。</p></div></div>
                         <span class="text-emerald-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
                     </div>
-                    <div onclick="openSpotModal('純平洋食（洋食とCafe じゅんぺい）', '12:00', '美瑛名物', '必吃招牌海老丼（3隻酥脆巨大黑虎蝦）裹特調醬汁，或千代田農場美瑛和牛漢堡排。', '洋食とCafe じゅんぺい', '附設專屬停車場，MapCode: 389 010 564*25。', '2F頭城小夫妻 / 2A夫妻 推薦')" class="p-3 bg-amber-50/60 hover:bg-amber-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-amber-200 flex justify-between items-start">
+                    <div onclick="openSpotModal('純平洋食（洋食とCafe じゅんぺい）', '12:00', '美瑛名物', '必吃招牌海老丼（3隻酥脆巨大黑虎蝦）裹特調醬汁，或千代田農場美瑛和牛漢堡排。', '洋食とCafe じゅんぺい', '附設專屬停車場，MapCode: 389 010 564*25。', '波比看世界 / 2F頭城小夫妻 / 2A夫妻')" class="p-3 bg-amber-50/60 hover:bg-amber-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-amber-200 flex justify-between items-start">
                         <div class="flex gap-3"><div class="text-amber-600 font-bold w-14">12:00</div><div><div class="font-semibold text-slate-900">美瑛拼布名樹 ＆ 午餐：純平洋食（炸蝦丼）或 千代田農場</div><p class="text-slate-500 text-xs mt-0.5">純平洋食酥脆海老丼 / 千代田美瑛和牛牛排漢堡排。</p></div></div>
                         <span class="text-amber-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
                     </div>
-                    <div onclick="openSpotModal('白金青池 ＆ 白鬚瀑布', '13:45', '自然絕景', '初秋清澈蒂芬妮藍青池（吃蘋果霜淇淋），順遊 3 分鐘車程外白鬚瀑布鐵橋俯瞰深藍溪流。', '白金青い池', '青池停車費 ¥500，MapCode: 345 581 635*55。', '2F頭城小夫妻 / 山步五時 / 雙人徐 推薦')" class="p-3 bg-blue-50/60 hover:bg-blue-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-blue-200 flex justify-between items-start">
+                    <div onclick="openSpotModal('白金青池 ＆ 白鬚瀑布', '13:45', '自然絕景', '初秋清澈蒂芬妮藍青池（吃蘋果霜淇淋），順遊 3 分鐘車程外白鬚瀑布鐵橋俯瞰深藍溪流。', '白金青い池', '青池停車費 ¥500，MapCode: 345 581 635*55。', '波比看世界 / 老辣妹 / 雙人徐')" class="p-3 bg-blue-50/60 hover:bg-blue-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-blue-200 flex justify-between items-start">
                         <div class="flex gap-3"><div class="text-blue-600 font-bold w-14">13:45</div><div><div class="font-semibold text-slate-900">白金青池 ➔ 白鬚瀑布 ➔ 四季彩之丘</div><p class="text-slate-500 text-xs mt-0.5">蒂芬妮藍青池（蘋果霜淇淋）、白鬚瀑布鈷藍溪流、四季彩之丘羊駝餵食。</p></div></div>
                         <span class="text-blue-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('回転寿し トリトン 旭神店', '18:30', '頂級壽司', '北海道在地評分最高迴轉壽司！厚切生干貝、生牡丹蝦、炙燒和牛握壽司、花咲蟹味噌湯。', '回転寿し トリトン 旭神店', '19:00 前先於旭川站前加滿油還車，再前往用餐。', 'JJ & 非白 / Ki笑人生 / 內內 推薦')" class="p-3 bg-amber-50/60 hover:bg-amber-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-amber-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-amber-600 font-bold w-14">18:30</div><div><div class="font-semibold text-slate-900">加油還車 ➔ 晚餐：Toriton 旭神店 迴轉壽司</div><p class="text-slate-500 text-xs mt-0.5">19:00 前旭川站前還車。晚餐品嚐在地第一厚切生干貝壽司。</p></div></div>
+                        <span class="text-amber-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
                     </div>
                 </div>
             </div>
 
+            <!-- Day 3 卡片 -->
             <div id="day-card-3" class="day-detail bg-white rounded-2xl p-5 md:p-6 shadow-sm border border-slate-200 space-y-4 hidden">
                 <div class="flex justify-between items-center border-b pb-3">
                     <div><span class="badge bg-indigo-100 text-indigo-700">Day 3</span><h2 class="text-lg md:text-xl font-bold mt-1 text-slate-900">2026/09/24 (週四) 旭川 ➔ 札幌（南北軸線・室內水族館）</h2></div>
                     <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full font-medium">宿：ANA 札幌皇冠假日</span>
                 </div>
                 <div class="space-y-3 text-xs md:text-sm">
-                    <div onclick="openSpotModal('AOAO SAPPORO 都市型水族館', '16:00', '親子放電', '位於狸小路 moyuk 4~6 樓，營業至 22:00。全室內看企鵝跳水、水母光影與科學後台。', 'AOAO SAPPORO', '順路經過紅磚廳舍買生白色戀人，以及大通公園吃烤玉米。', 'E家愛吃愛旅遊 / 雙人徐 / Lester 推薦')" class="p-3 bg-indigo-50/60 hover:bg-indigo-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-indigo-200 flex justify-between items-start">
+                    <div onclick="openSpotModal('ANA 札幌全日空皇冠假日酒店', '11:25', '住宿飯店', '從旭川搭乘特急 Lilac 14號（10:00-11:25），出札幌站步行 3 分鐘抵達飯店寄放大件行李。地下通道直通地下街。', 'ANAクラウンプラザホテル札幌', '確認號：62481865。', 'Lester 萊斯特 推薦')" class="p-3 bg-slate-50 hover:bg-blue-50/60 rounded-xl cursor-pointer transition border border-transparent hover:border-blue-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-blue-600 font-bold w-14">10:00</div><div><div class="font-semibold text-slate-900">搭乘 JR 特急 Lilac 14號（全車指定席）➔ 札幌</div><p class="text-slate-500 text-xs mt-0.5">11:25 抵達札幌站，步行 3 分鐘至 ANA 皇冠假日酒店寄放大行李。</p></div></div>
+                        <span class="text-blue-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('奧芝商店 札幌站前店', '12:00', '排隊名店', '數千隻甜蝦熬製的濃郁「海老蝦高湯」湯咖哩，必點宗谷黑牛漢堡排海老湯咖哩。', '奥芝商店 駅前創成寺', '出飯店步行 3 分鐘即達，可自選辣度與飯量。', '波比看世界 / Lester / Ki笑人生')" class="p-3 bg-amber-50/60 hover:bg-amber-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-amber-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-amber-600 font-bold w-14">12:00</div><div><div class="font-semibold text-slate-900">午餐：奧芝商店 站前店（海老湯咖哩）或 SAPPORO 餃子製造所</div><p class="text-slate-500 text-xs mt-0.5">飯店旁步行即達，鮮濃蝦高湯咖哩或拳頭大巨型彈牙蝦仁水餃。</p></div></div>
+                        <span class="text-amber-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('AOAO SAPPORO 都市型水族館', '16:00', '親子放電', '位於狸小路 moyuk 4~6 樓，營業至 22:00。全室內看企鵝跳水、水母光影與科學後台。', 'AOAO SAPPORO', '順路經過紅磚廳舍買生白色戀人，以及大通公園吃烤玉米。', '老辣妹 / 波比看世界 / E家愛吃愛旅遊')" class="p-3 bg-indigo-50/60 hover:bg-indigo-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-indigo-200 flex justify-between items-start">
                         <div class="flex gap-3"><div class="text-indigo-600 font-bold w-14">13:30</div><div><div class="font-semibold text-slate-900">紅磚廳舍 ➔ 大通公園 ➔ AOAO SAPPORO 水族館</div><p class="text-slate-500 text-xs mt-0.5">全新紅磚廳舍買生白色戀人、大通公園烤玉米、水族館看企鵝。</p></div></div>
                         <span class="text-indigo-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('成吉思汗烤肉 ひげのうし 本店', '18:30', '特色晚餐', '狸小路商圈專人代烤小羔羊！獨立包廂抽風極佳無油煙，肉質極嫩，結尾必做日式高湯茶泡飯。', '成吉思汗 ひげのうし 本店', '夜間可順遊 Parfaiteria 佐藤 品嚐開心果焦糖海鹽夜聖代。', 'E家愛吃愛旅遊 / 老辣妹 推薦')" class="p-3 bg-amber-50/60 hover:bg-amber-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-amber-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-amber-600 font-bold w-14">18:30</div><div><div class="font-semibold text-slate-900">晚餐：成吉思汗烤肉「ひげのうし」或 とんかつ 檍 炸豬排</div><p class="text-slate-500 text-xs mt-0.5">代烤小羔羊收尾茶泡飯，或 300g 低溫熟成豬排。夜間甜點：Parfaiteria 佐藤。</p></div></div>
+                        <span class="text-amber-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
                     </div>
                 </div>
             </div>
 
+            <!-- Day 4 卡片 -->
             <div id="day-card-4" class="day-detail bg-white rounded-2xl p-5 md:p-6 shadow-sm border border-slate-200 space-y-4 hidden">
                 <div class="flex justify-between items-center border-b pb-3">
                     <div><span class="badge bg-purple-100 text-purple-700">Day 4</span><h2 class="text-lg md:text-xl font-bold mt-1 text-slate-900">2026/09/25 (週五) 札幌 ➔ 定山溪溫泉（大行李留札幌・私湯享受）</h2></div>
                     <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full font-medium">宿：定山溪第一寶亭留 翠山亭</span>
                 </div>
                 <div class="space-y-3 text-xs md:text-sm">
+                    <div onclick="openSpotModal('札幌站前 27號巴士站牌 (ホクレン大樓前)', '09:35', '交通乘車', '搭乘直達「河童Liner號」前往定山溪。大件行李免費留置 ANA 皇冠假日酒店櫃台，全家僅攜帶隨身過夜包！', 'ホクレンビル 札幌', '預約號：60925000001，車程約 60 分鐘直達「定山溪東2丁目」。', 'Jotetsu 巴士官方預約')" class="p-3 bg-rose-50/60 hover:bg-rose-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-rose-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-rose-600 font-bold w-14">09:00</div><div><div class="font-semibold text-rose-700">省力密技：大件行李免費寄放皇冠假日酒店櫃台！</div><p class="text-slate-500 text-xs mt-0.5">僅帶輕便隨身背包，過馬路至 27 號站牌搭乘 09:35 河童Liner號。</p></div></div>
+                        <span class="text-rose-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('定山源泉公園 ＆ J・glacée', '11:00', '溫泉散策', '體驗 60 度源泉自煮半熟溫泉蛋與戶外免費足湯，中午吃山之風小鎮厚切煙燻培根漢堡與 J・glacée 現烤手工酥皮蘋果派。', '定山源泉公園', '步行 5 分鐘即達定山溪神社與河童祈願手湯。', 'CHILL先生一家人 / 三十口米')" class="p-3 bg-slate-50 hover:bg-blue-50/60 rounded-xl cursor-pointer transition border border-transparent hover:border-blue-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-blue-600 font-bold w-14">11:00</div><div><div class="font-semibold text-slate-900">溫泉街散策 ➔ 定山源泉公園煮蛋足湯 ➔ J・glacée 蘋果派</div><p class="text-slate-500 text-xs mt-0.5">午餐吃厚切培根漢堡，打卡河童祈願手湯與岩戶觀音堂。</p></div></div>
+                        <span class="text-blue-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
                     <div onclick="openSpotModal('定山溪第一寶亭留 翠山亭', '15:00', '溫泉名宿', '桑拿＆展望私湯雙床房，1F 圖書館免費供應現做卡士達泡芙與研磨咖啡；享同集團俱樂部浴場免費巡禮。', '定山渓第一寶亭留 翠山亭', '訂單編號：21315090085246。含豪華翠山御膳一泊二食會席。', '三十口米 / 樂天高分推薦')" class="p-3 bg-purple-50/60 hover:bg-purple-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-purple-200 flex justify-between items-start">
                         <div class="flex gap-3"><div class="text-purple-600 font-bold w-14">15:00</div><div><div class="font-semibold text-slate-900">入住翠山亭（房內私湯）➔ 晚餐：翠山御膳會席晚宴</div><p class="text-slate-500 text-xs mt-0.5">1F 圖書館免費享用現做泡芙。晚上散步二見吊橋看 Nature Luminarie 光影秀。</p></div></div>
                         <span class="text-purple-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
@@ -189,54 +228,98 @@
                 </div>
             </div>
 
+            <!-- Day 5 卡片 -->
             <div id="day-card-5" class="day-detail bg-white rounded-2xl p-5 md:p-6 shadow-sm border border-slate-200 space-y-4 hidden">
                 <div class="flex justify-between items-center border-b pb-3">
                     <div><span class="badge bg-rose-100 text-rose-700">Day 5</span><h2 class="text-lg md:text-xl font-bold mt-1 text-slate-900">2026/09/26 (週六) 定山溪 ➔ 札幌 ➔ 🦀 帝王蟹火鍋盛宴</h2></div>
                     <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full font-medium">宿：ANA 札幌皇冠假日</span>
                 </div>
                 <div class="space-y-3 text-xs md:text-sm">
-                    <div onclick="openSpotModal('札幌 蟹本家（札幌站前本店）', '18:00', '重點大餐', '出 ANA 皇冠假日酒店步行 3 分鐘！獨立包廂。生帝王蟹腿涮涮鍋、炭烤蟹腳、蟹肉刺身，最後煮黃金雜炊粥！', '札幌かに本家 札幌駅前本店', '建議出發前 1 個月於官網預訂包廂。宵夜可至薄野體驗 BAR ミルク村 冰淇淋調酒。', 'E家愛吃愛旅遊 / 三十口米 狂推')" class="p-3 bg-rose-50/70 hover:bg-rose-100/70 rounded-xl cursor-pointer transition border border-transparent hover:border-rose-200 flex justify-between items-start">
+                    <div onclick="openSpotModal('ANA 札幌全日空皇冠假日酒店', '13:15', '住宿飯店', '搭乘 12:15 河童Liner號（預約號: 60926000001）返回札幌站前，步行 3 分鐘回飯店取回大行李並辦理連住入住。', 'ANAクラウンプラザホテル札幌', '確認號：43574824（連住 3 晚）。', 'IHG 官方預約')" class="p-3 bg-slate-50 hover:bg-blue-50/60 rounded-xl cursor-pointer transition border border-transparent hover:border-blue-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-blue-600 font-bold w-14">11:00</div><div><div class="font-semibold text-slate-900">翠山亭悠閒退房 ➔ 12:15 搭河童Liner號 ➔ 返回札幌</div><p class="text-slate-500 text-xs mt-0.5">13:15 抵達札幌站，回 ANA 皇冠假日酒店取回大行李並入住（連住3晚）。</p></div></div>
+                        <span class="text-blue-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('白色戀人公園（白い恋人パーク）', '14:30', '童話樂園', '搭乘地鐵東西線至宮之澤站。歐風童話花園、小矮人迷你木屋捉迷藏、整點音樂鐘人偶秀，製作客製化照片鐵盒餅乾。', '白い恋人パーク', '亦可備選前往北海道神宮，於神宮茶屋吃現烤熱騰騰判官餅。', '波比看世界 / 雙人徐 / Lester')" class="p-3 bg-blue-50/60 hover:bg-blue-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-blue-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-blue-600 font-bold w-14">14:30</div><div><div class="font-semibold text-slate-900">午後景點：白色戀人公園（童話城堡人偶秀） 或 北海道神宮</div><p class="text-slate-500 text-xs mt-0.5">白色戀人公園印客製化鐵盒餅乾，或神宮茶屋吃現烤判官餅。</p></div></div>
+                        <span class="text-blue-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('札幌 蟹本家（札幌站前本店）', '18:00', '重點大餐', '出 ANA 皇冠假日酒店步行 3 分鐘！獨立包廂。生帝王蟹腿涮涮鍋、炭烤蟹腳、蟹肉刺身，最後煮黃金雜炊粥！', '札幌かに本家 札幌駅前本店', '建議出發前 1 個月於官網預訂包廂。宵夜可至薄野體驗 BAR ミルク村 冰淇淋調酒。', '波比看世界 / E家愛吃愛旅遊 / 三十口米')" class="p-3 bg-rose-50/70 hover:bg-rose-100/70 rounded-xl cursor-pointer transition border border-transparent hover:border-rose-200 flex justify-between items-start">
                         <div class="flex gap-3"><div class="text-rose-600 font-bold w-14">18:00</div><div><div class="font-semibold text-rose-700">重點大餐：札幌 蟹本家（札幌站前本店）帝王蟹涮涮鍋</div><p class="text-slate-500 text-xs mt-0.5">出飯店步行 3 分鐘！生帝王蟹腿涮涮鍋、炭烤蟹腳、最後煮黃金雜炊粥！</p></div></div>
                         <span class="text-rose-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
                     </div>
                 </div>
             </div>
 
+            <!-- Day 6 卡片 -->
             <div id="day-card-6" class="day-detail bg-white rounded-2xl p-5 md:p-6 shadow-sm border border-slate-200 space-y-4 hidden">
                 <div class="flex justify-between items-center border-b pb-3">
                     <div><span class="badge bg-sky-100 text-sky-700">Day 6</span><h2 class="text-lg md:text-xl font-bold mt-1 text-slate-900">2026/09/27 (週日) 小樽浪漫一日遊（南小樽進、小樽出・一路下坡）</h2></div>
                     <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full font-medium">宿：ANA 札幌皇冠假日</span>
                 </div>
                 <div class="space-y-3 text-xs md:text-sm">
-                    <div onclick="openSpotModal('小樽音樂盒堂 本館 ＆ 界町通甜點街', '10:15~12:30', '甜點老街', '小樽音樂盒堂每 15 分鐘噴氣蒸氣鐘、北菓樓夢不思議大泡芙、LeTAO 雙層乳酪蛋糕、六花亭小樽店。', '小樽オルゴール堂 本館', '界町通沿線匯集北海道各大甜點旗艦店[cite: 1]。', '2A夫妻 / Lester / 內內 推薦')" class="p-3 bg-slate-50 hover:bg-blue-50/60 rounded-xl cursor-pointer transition border border-transparent hover:border-blue-200 flex justify-between items-start">
+                    <div onclick="openSpotModal('JR 南小樽站', '10:05', '鐵道抵達', '搭乘 JR 快速列車（約 35 分鐘，刷 IC 卡）。在「南小樽站」下車，順著下坡漫步至童話十字路口，完全不走回頭路！', '南小樽駅', '省力秘訣：千萬不要從小樽站逆向上坡走！', 'JR北海道官方')" class="p-3 bg-slate-50 hover:bg-blue-50/60 rounded-xl cursor-pointer transition border border-transparent hover:border-blue-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-blue-600 font-bold w-14">09:30</div><div><div class="font-semibold text-slate-900">搭乘 JR 快速列車（刷 IC 卡）➔ 直達「南小樽站」下車</div><p class="text-slate-500 text-xs mt-0.5">10:05 抵達南小樽站，一路向下坡漫步，完全不走回頭路！</p></div></div>
+                        <span class="text-blue-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('小樽音樂盒堂 本館 ＆ 界町通甜點街', '10:15~12:30', '甜點老街', '小樽音樂盒堂每 15 分鐘噴氣蒸氣鐘、北菓樓夢不思議大泡芙、LeTAO 雙層乳酪蛋糕、六花亭小樽店。', '小樽オルゴール堂 本館', '界町通沿線匯集北海道各大甜點旗艦店[cite: 1]。', '波比看世界 / 老辣妹 / 2A夫妻')" class="p-3 bg-slate-50 hover:bg-blue-50/60 rounded-xl cursor-pointer transition border border-transparent hover:border-blue-200 flex justify-between items-start">
                         <div class="flex gap-3"><div class="text-blue-600 font-bold w-14">10:15</div><div><div class="font-semibold text-slate-900">童話十字路口 ＆ 界町通甜點街</div><p class="text-slate-500 text-xs mt-0.5">音樂盒堂蒸氣鐘、北菓樓夢不思議泡芙、LeTAO 雙層乳酪蛋糕、六花亭[cite: 1]。</p></div></div>
+                        <span class="text-blue-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('三角市場 滝波食堂 / CFE 極嫩牛排飯 / 若雞時代', '12:30', '午餐推薦', '三角市場滝波食堂自選現剖生海膽干貝鮭魚卵海鮮丼，或對面 CFE 肉質極嫩如蛋豆腐的發光牛排飯，或小樽 No.1 若雞時代酥脆炸半雞。', '北のどんぶり屋 滝波食堂', '出小樽站步行 1~5 分鐘即達。', '波比看世界 / Ki笑人生 激推')" class="p-3 bg-amber-50/60 hover:bg-amber-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-amber-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-amber-600 font-bold w-14">12:30</div><div><div class="font-semibold text-slate-900">午餐：三角市場 滝波食堂（海鮮丼） 或 若雞時代炸半雞 / CFE 牛排</div><p class="text-slate-500 text-xs mt-0.5">自選現剖生海膽干貝丼，或小樽超酥脆多汁炸半雞[cite: 1]。</p></div></div>
+                        <span class="text-amber-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('日本銀行舊小樽支店（金融資料館）＆ 小樽運河', '14:30', '歷史景點', '免費入內參觀百年鋼鐵金庫，體驗抱起 10kg 一億日圓紙鈔；漫步運河畔欣賞大正紅磚倉庫與煤氣燈倒影，最後從小樽站搭車回札幌。', '金融資料館（日本銀行旧小樽支店）', '小樽運河拍照後步行 8 分鐘至 JR 小樽站搭車[cite: 1]。', '雙人徐 / 老辣妹 / 2A夫妻')" class="p-3 bg-blue-50/60 hover:bg-blue-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-blue-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-blue-600 font-bold w-14">14:30</div><div><div class="font-semibold text-slate-900">金融資料館（抱一億日圓體驗） ➔ 小樽運河紅磚倉庫群</div><p class="text-slate-500 text-xs mt-0.5">體驗 10kg 一億日圓紙鈔，漫步運河畔拍煤氣燈倒影，從小樽站搭 JR 返程[cite: 1]。</p></div></div>
                         <span class="text-blue-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
                     </div>
                 </div>
             </div>
 
+            <!-- Day 7 卡片 -->
             <div id="day-card-7" class="day-detail bg-white rounded-2xl p-5 md:p-6 shadow-sm border border-slate-200 space-y-4 hidden">
                 <div class="flex justify-between items-center border-b pb-3">
                     <div><span class="badge bg-indigo-100 text-indigo-700">Day 7</span><h2 class="text-lg md:text-xl font-bold mt-1 text-slate-900">2026/09/28 (週一) 神級親子公園放電 ＆ 札幌集中採買日</h2></div>
                     <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full font-medium">宿：ANA 札幌皇冠假日</span>
                 </div>
                 <div class="space-y-3 text-xs md:text-sm">
-                    <div onclick="openSpotModal('國營瀧野鈴蘭丘陵公園（国営滝野すずらん丘陵公園）', '09:00~12:30', '神級放電', '全北海道最大國營親子樂園！巨型白色雲朵彈跳床、長型滾輪溜滑梯、室內彩虹攀爬網[cite: 2]。', '国営滝野すずらん丘陵公園', '地鐵南北線至真駒內站，轉乘中央巴士直達公園東口[cite: 2]。小孩免費，大人門票僅 ¥450[cite: 2]。', 'CHILL先生一家人 狂推')" class="p-3 bg-indigo-50/60 hover:bg-indigo-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-indigo-200 flex justify-between items-start">
+                    <div onclick="openSpotModal('國營瀧野鈴蘭丘陵公園（国営滝野すずらん丘陵公園）', '09:00~12:30', '神級放電', '全北海道最大國營親子樂園！巨型白色雲朵彈跳床、長型滾輪溜滑梯、室內彩虹攀爬網[cite: 2]。', '国営滝野すずらん丘陵公園', '地鐵南北線至真駒內站，轉乘中央巴士直達公園東口[cite: 2]。小孩免費，大人門票僅 ¥450[cite: 2]。', 'CHILL先生一家人 / 波比看世界')" class="p-3 bg-indigo-50/60 hover:bg-indigo-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-indigo-200 flex justify-between items-start">
                         <div class="flex gap-3"><div class="text-indigo-600 font-bold w-14">09:00</div><div><div class="font-semibold text-slate-900">國營瀧野鈴蘭丘陵公園（北海道親子公園天花板）</div><p class="text-slate-500 text-xs mt-0.5">巨型白色雲朵彈跳床、長滾輪溜滑梯、室內彩虹編織攀爬網、巨球草地[cite: 2]。</p></div></div>
                         <span class="text-indigo-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('珈琲とサンドイッチ さえら（Saera）', '13:00', '午餐推薦', '大通站排隊傳奇三明治！必點「帝王蟹沙拉 ＋ 酥脆炸蝦三明治」或「漢堡排 ＋ 季節水果鮮奶油三明治」；亦可選 とんかつ 檍 300g 炸豬排。', 'さえら 札幌', '大通站地下街，吐司濕潤鬆軟爆料。', '內內 Nene / 老辣妹 狂推')" class="p-3 bg-amber-50/60 hover:bg-amber-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-amber-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-amber-600 font-bold w-14">13:00</div><div><div class="font-semibold text-slate-900">午餐：さえら（Saera 帝王蟹/炸蝦三明治） 或 とんかつ 檍 炸豬排</div><p class="text-slate-500 text-xs mt-0.5">大通站排隊傳奇蟹肉炸蝦三明治，或 300g 低溫熟成豬排。</p></div></div>
+                        <span class="text-amber-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('Sapporo Factory ＆ 札幌站商圈 / 札幌地下街完全巡禮', '15:00', '集中採買', '全道最齊全戶外用品神殿（Snow Peak / The North Face 紫標 / Mont-bell），JR Stellar Place、APIA 與 Chi-Ka-Ho 地下街完全採買。', 'サッポロファクトリー', '買完戰利品可直接步行 5 分鐘回 ANA 皇冠假日放回房間！', '看的到、聽說的 / 波比看世界')" class="p-3 bg-slate-50 hover:bg-blue-50/60 rounded-xl cursor-pointer transition border border-transparent hover:border-blue-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-blue-600 font-bold w-14">15:00</div><div><div class="font-semibold text-slate-900">Sapporo Factory（戶外露營） ＆ 札幌地下街完全採買</div><p class="text-slate-500 text-xs mt-0.5">全道最齊全 Snow Peak/The North Face 紫標，APIA 久世福商店與 Stellar Place 逛街。</p></div></div>
+                        <span class="text-blue-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('士別バーベキュー / 難陀 NANDA / 湯咖哩 GARAKU', '18:30', '晚餐盛宴', '士別バーベキュー品嚐全日本僅 0.5% 的極致黑臉「薩福克羊（Suffolk）」；或難陀三大蟹燒烤；或湯咖哩 GARAKU 燉豬肉咖哩。', '士別バーベキュー', '排隊點心：六花亭本店冰淇淋蘭姆葡萄餅乾或雪印天皇香草冰淇淋。', '波比看世界 / 老辣妹 / JJ&非白')" class="p-3 bg-amber-50/60 hover:bg-amber-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-amber-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-amber-600 font-bold w-14">18:30</div><div><div class="font-semibold text-slate-900">晚餐：士別バーベキュー（薩福克羊） 或 GARAKU 湯咖哩</div><p class="text-slate-500 text-xs mt-0.5">品嚐極致黑臉羊肉，或 GARAKU 燉豬肉炸花椰菜。吃六花亭本店限定冰淇淋餅乾。</p></div></div>
+                        <span class="text-amber-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
                     </div>
                 </div>
             </div>
 
+            <!-- Day 8 卡片 -->
             <div id="day-card-8" class="day-detail bg-white rounded-2xl p-5 md:p-6 shadow-sm border border-slate-200 space-y-4 hidden">
                 <div class="flex justify-between items-center border-b pb-3">
                     <div><span class="badge bg-rose-100 text-rose-700">Day 8</span><h2 class="text-lg md:text-xl font-bold mt-1 text-slate-900">2026/09/29 (週二) 札幌 ➔ 新千歲機場國內線 ➔ 平安返台</h2></div>
                     <span class="text-xs bg-slate-100 text-slate-600 px-3 py-1 rounded-full font-medium">航班：華航 CI131 (15:05起飛)</span>
                 </div>
                 <div class="space-y-3 text-xs md:text-sm">
-                    <div onclick="openSpotModal('新千歲機場 國內線 3F 拉麵道場 ＆ 2F 伴手禮區', '12:30', '機場名店', '午餐吃一幻甜蝦拉麵或白樺山莊；評比 KINOTOYA 極上牛乳霜淇淋 vs 雪印；買美瑛選果現烤玉米麵包。', '新千歳空港 国内線ターミナル', '國內線 2F 買齊六花亭、北菓樓與冷藏乳酪海鮮，14:00 步行至國際線辦理登機。', '心甜 Christy / Lester / 2A夫妻 推薦')" class="p-3 bg-amber-50/60 hover:bg-amber-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-amber-200 flex justify-between items-start">
+                    <div onclick="openSpotModal('JR 札幌車站（搭乘快速機場號 118號）', '11:45', '機場直達', '11:45 札幌站發 ➔ 12:23 抵達新千歲機場（建議加購 u-Seat 指定席，放置大件行李最輕鬆）。', 'JR 札幌駅', '預留 2.5 小時機場悠閒巡禮。', 'JR北海道官方')" class="p-3 bg-slate-50 hover:bg-blue-50/60 rounded-xl cursor-pointer transition border border-transparent hover:border-blue-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-blue-600 font-bold w-14">11:00</div><div><div class="font-semibold text-slate-900">退房 ➔ 札幌站搭乘 JR 快速機場號 118號（加購 u-Seat）</div><p class="text-slate-500 text-xs mt-0.5">11:45 札幌發 ➔ 12:23 抵達新千歲機場（預留 2.5 小時機場悠閒巡禮）。</p></div></div>
+                        <span class="text-blue-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('新千歲機場 國內線 3F 拉麵道場 ＆ 2F 伴手禮區', '12:30', '機場名店', '午餐吃一幻甜蝦拉麵或白樺山莊；評比 KINOTOYA 極上牛乳霜淇淋 vs 雪印；買美瑛選果現烤玉米麵包。', '新千歳空港 国内線ターミナル', '國內線 2F 買齊六花亭、北菓樓與冷藏乳酪海鮮，14:00 步行至國際線辦理登機。', '波比看世界 / 心甜 Christy / Lester')" class="p-3 bg-amber-50/60 hover:bg-amber-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-amber-200 flex justify-between items-start">
                         <div class="flex gap-3"><div class="text-amber-600 font-bold w-14">12:30</div><div><div class="font-semibold text-slate-900">國內線 3F 拉麵道場午餐 ＆ 雙冠軍霜淇淋大對決</div><p class="text-slate-500 text-xs mt-0.5">午餐吃一幻甜蝦拉麵/白樺山莊；評比 KINOTOYA 極上霜淇淋 vs 雪印，買美瑛玉米麵包。</p></div></div>
                         <span class="text-amber-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
+                    </div>
+                    <div onclick="openSpotModal('新千歲機場 國際線出境大廳', '15:05', '搭機返台', '搭乘中華航空 CI131 起飛 ➔ 18:15 平安抵達台北桃園機場。滿載回憶平安返抵台灣！', '新千歳空港 国際線ターミナル', '祝您與全家旅途平安愉快！', '華航官方')" class="p-3 bg-rose-50/60 hover:bg-rose-100/60 rounded-xl cursor-pointer transition border border-transparent hover:border-rose-200 flex justify-between items-start">
+                        <div class="flex gap-3"><div class="text-blue-600 font-bold w-14">15:05</div><div><div class="font-semibold text-slate-900">搭乘華航 CI131 起飛 ➔ 18:15 抵達台北桃園機場</div><p class="text-slate-500 text-xs mt-0.5">滿載回憶平安返抵台灣！</p></div></div>
+                        <span class="text-blue-600 text-xs font-semibold flex items-center gap-1"><i class="fa-solid fa-map-location-dot"></i> 導航</span>
                     </div>
                 </div>
             </div>
@@ -359,7 +442,7 @@
             </div>
         </section>
 
-        <!-- ================= SECTION 3: 美食景點超大資料庫 (62 筆完整收錄) ================= -->
+        <!-- ================= SECTION 3: 美食景點超大資料庫 (80+ 筆完整收錄) ================= -->
         <section id="tab-spots" class="tab-content hidden space-y-4">
             
             <!-- 即時搜尋與篩選列 -->
@@ -368,7 +451,7 @@
                 <!-- 關鍵字搜尋框 -->
                 <div class="relative">
                     <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-400"></i>
-                    <input type="text" id="spot-search-input" oninput="handleSpotSearch()" placeholder="搜尋美食、景點、甜點、伴手禮（例如：海膽、拉麵、夜聖代、青池、泡芙）..." class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs md:text-sm focus:bg-white focus:outline-blue-500 transition">
+                    <input type="text" id="spot-search-input" oninput="handleSpotSearch()" placeholder="搜尋美食、景點、甜點、伴手禮（例如：海膽、拉麵、夜聖代、青池、泡芙、炸雞）..." class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs md:text-sm focus:bg-white focus:outline-blue-500 transition">
                 </div>
 
                 <!-- 依地區篩選 -->
@@ -377,7 +460,7 @@
                         <i class="fa-solid fa-location-dot text-blue-500"></i> 地理分區篩選：
                     </div>
                     <div class="flex overflow-x-auto gap-1.5 no-scrollbar">
-                        <button onclick="setFilter('region', 'all')" class="rf-btn px-2.5 py-1 rounded-lg bg-blue-600 text-white text-xs font-medium whitespace-nowrap">全部地區 (62)</button>
+                        <button onclick="setFilter('region', 'all')" class="rf-btn px-2.5 py-1 rounded-lg bg-blue-600 text-white text-xs font-medium whitespace-nowrap">全部地區 (<span id="all-spot-count">80</span>)</button>
                         <button onclick="setFilter('region', 'sapporo')" class="rf-btn px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium whitespace-nowrap">🏙️ 札幌市區</button>
                         <button onclick="setFilter('region', 'asahikawa')" class="rf-btn px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium whitespace-nowrap">🎪 旭川市區</button>
                         <button onclick="setFilter('region', 'biei')" class="rf-btn px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium whitespace-nowrap">🚜 美瑛・富良野</button>
@@ -408,14 +491,14 @@
                 </div>
 
                 <div class="flex justify-between items-center text-[11px] text-slate-500 pt-1">
-                    <span>當前符合筆數：<strong id="filtered-count" class="text-blue-600 font-bold">62</strong> / 62 筆</span>
+                    <span>當前符合筆數：<strong id="filtered-count" class="text-blue-600 font-bold">80</strong> 筆</span>
                     <button onclick="resetSpotFilters()" class="text-blue-600 hover:underline">重設篩選條件</button>
                 </div>
             </div>
 
             <!-- 動態渲染卡片網格 -->
             <div class="grid md:grid-cols-2 gap-3" id="spot-grid">
-                <!-- JS 動態產生 62 個美食景點卡片 -->
+                <!-- JS 動態產生 80+ 個美食景點卡片 -->
             </div>
             
             <div id="no-spots-msg" class="hidden bg-white p-8 rounded-2xl border border-slate-200 text-center text-slate-400 text-xs">
@@ -763,83 +846,94 @@
         2026 Hokkaido Family Trip Guide | 祝您與全家旅途愉快、平安順心 🍁
     </footer>
 
-    <!-- JavaScript 邏輯 (包含 62 筆超大美食景點庫、篩選搜尋、記帳與換算) -->
+    <!-- JavaScript 邏輯 (包含 80+ 筆海量美食景點庫、即時搜尋、換算與記帳引擎) -->
     <script>
-        /* ===== 62 筆完整美食景點伴手禮資料庫 ===== */
+        /* ===== 80+ 筆超完整美食景點伴手禮資料庫 ===== */
         const SPOTS_DATABASE = [
             // 札幌市區 (Sapporo)
-            { id: 1, name: "札幌 蟹本家（札幌站前本店）", region: "sapporo", regionName: "札幌市區", cat: "crab", catName: "帝王蟹/海鮮", badge: "🦀 帝王蟹火鍋首選", source: "E家愛吃愛旅遊 / 三十口米", desc: "離 ANA 皇冠假日酒店步行僅 3 分鐘！日式獨立包廂。必點生帝王蟹腿涮涮鍋（かにしゃぶ）、炭烤蟹腳、蟹肉刺身，最後煮黃金雜炊粥！", query: "札幌かに本家 札幌駅前本店", tips: "建議出發前 1 個月於官網完成預約。" },
+            { id: 1, name: "札幌 蟹本家（札幌站前本店）", region: "sapporo", regionName: "札幌市區", cat: "crab", catName: "帝王蟹/海鮮", badge: "🦀 帝王蟹火鍋首選", source: "波比看世界 / E家愛吃愛旅遊", desc: "離 ANA 皇冠假日酒店步行僅 3 分鐘！日式獨立包廂。必點生帝王蟹腿涮涮鍋（かにしゃぶ）、炭烤蟹腳、蟹肉刺身，最後煮黃金雜炊粥！", query: "札幌かに本家 札幌駅前本店", tips: "建議出發前 1 個月於官網完成預約。" },
             { id: 2, name: "できたてや 時計台店（根室花丸旗下）", region: "sapporo", regionName: "札幌市區", cat: "sushi", catName: "一夜干/海鮮", badge: "🐟 炭烤一夜干名店", source: "JJ & 非白 / Ki笑人生", desc: "現點炭烤超大花魚一夜干、銀鮭魚卵蓋飯，白飯可加價換蘿蔔炊飯；結尾務必淋上免費熱魚介高湯做成鮮甜茶泡飯！", query: "できたてや 時計台店", tips: "時計台對面商場 B1F，不用像壽司店大排長龍。" },
             { id: 3, name: "士別バーベキュー（Shibetsu BBQ）", region: "sapporo", regionName: "札幌市區", cat: "bbq", catName: "烤肉/烤羊", badge: "🥩 0.5%傳奇薩福克羊", source: "JJ & 非白 激推", desc: "自家牧場放牧極稀有黑臉「薩福克羊（Suffolk）」，油花媲美頂級和牛，肉質多汁毫無羶味，結尾必吃微辣羊肉咖哩飯。", query: "士別バーベキュー", tips: "狸小路 7 丁目，建議事先訂位。" },
-            { id: 4, name: "奧芝商店 札幌站前店", region: "sapporo", regionName: "札幌市區", cat: "curry", catName: "湯咖哩", badge: "🦐 濃郁海老蝦湯咖哩", source: "Lester / Ki笑人生", desc: "數千隻甜蝦熬製的濃郁鮮蝦湯頭，配宗谷黑牛漢堡排與炸牛蒡等豐富蔬菜，擠檸檬在飯上泡入濃湯吃法超驚艷。", query: "奥芝商店 駅前創成寺", tips: "出 ANA 皇冠假日步行 3 分鐘即可到達。" },
-            { id: 5, name: "成吉思汗 ひげのうし 本店", region: "sapporo", regionName: "札幌市區", cat: "bbq", catName: "烤肉/烤羊", badge: "🐑 狸小路代烤小羔羊", source: "E家愛吃愛旅遊", desc: "狸小路商圈專人代烤小羔羊！獨立包廂抽風極佳無油煙，肉質極嫩，結尾必做日式高湯茶泡飯。", query: "成吉思汗 ひげのうし 本店", tips: "抽風設計絕佳，吃完身上完全沒有油煙味。" },
-            { id: 6, name: "とんかつ 檍（Aoki）札幌大通店", region: "sapporo", regionName: "札幌市區", cat: "western", catName: "炸豬排/洋食", badge: "🥩 300g 低溫熟成豬排", source: "內內 Nene 推薦", desc: "林 SPF 低溫熟成豬肉裹金黃麵衣，橫切面粉嫩多汁！搭配三種天然海鹽（喜馬拉雅岩鹽、蒙古岩鹽）與特製豬汁極度下飯。", query: "とんかつ檍 札幌大通店", tips: "建議點特上里肌肉豬排套餐。" },
-            { id: 7, name: "珈琲とサンドイッチ さえら（Saera）", region: "sapporo", regionName: "札幌市區", cat: "western", catName: "三明治/輕食", badge: "🦀 帝王蟹炸蝦三明治", source: "內內 Nene 狂推", desc: "大通站地下街排隊傳奇！必點「帝王蟹沙拉 ＋ 酥脆炸蝦三明治」或「漢堡排 ＋ 季節水果鮮奶油三明治」，吐司濕潤鬆軟爆料。", query: "さえら 札幌", tips: "大通站地下步行街 B3F，建議 11:00 前抵達避開人潮。" },
-            { id: 8, name: "回転寿司 根室花まる JRタワーステラプレイス店", region: "sapporo", regionName: "札幌市區", cat: "sushi", catName: "迴轉壽司", badge: "🍣 根室直送第一名壽司", source: "雙人徐 / Lester", desc: "產地直送赤咲生干貝、油花肥美時不知鮭魚、炙燒比目魚側緣、花咲蟹味噌湯，CP 值全道最高！", query: "回転寿司 根室花まる JRタワーステラプレイス店", tips: "11:00 抽號碼牌後可先逛 Stella Place 百貨。" },
-            { id: 9, name: "札幌らーめん 輝風（Kifu）すすきの店", region: "sapporo", regionName: "札幌市區", cat: "ramen", catName: "頂級拉麵", badge: "🍜 薄野元祖味噌拉麵", source: "Ki笑人生 激推", desc: "大火爆炒豆芽與洋蔥融入豚骨味噌高湯，搭配炙燒厚切叉燒與溏心蛋，微焦香氣濃郁令人欲罷不能！", query: "札幌らーめん 輝風 すすきの店", tips: "營業至凌晨，薄野排隊宵夜首選。" },
-            { id: 10, name: "麺屋 雪風 すすきの本店", region: "sapporo", regionName: "札幌市區", cat: "ramen", catName: "頂級拉麵", badge: "🍜 濃郁雞白湯味噌", source: "Tabelog 高分", desc: "白味噌融合豬骨、雞骨與海鮮高湯，濃郁滑順而不鹹膩，配上焦香叉燒與半熟蛋，排隊人潮絡繹不絕。", query: "麺屋 雪風 すすきの本店", tips: "宵夜場排隊約 30 分鐘。" },
-            { id: 11, name: "えびそば 一幻 總本店", region: "sapporo", regionName: "札幌市區", cat: "ramen", catName: "頂級拉麵", badge: "🦐 濃郁鮮蝦拉麵始祖", source: "雙人徐 推薦", desc: "整隻甜蝦頭大火爆香熬煮濃縮紅湯，撒上海老酥脆蝦油炸麵酥，可自選「純蝦湯（そのまま）」或「豚骨混合（あじわい）」。", query: "えびそば一幻 総本店", tips: "總本店空間寬敞，比機場排隊快很多。" },
-            { id: 12, name: "湯咖哩 GARAKU 札幌本店", region: "sapporo", regionName: "札幌市區", cat: "curry", catName: "湯咖哩", badge: "🍛 秘傳和風湯咖哩", source: "2A夫妻 推薦", desc: "秘傳 21 種香料搭配和風柴魚高湯，招牌嫩煎雞腿肉質軟嫩到骨肉分離，搭配香脆炙燒起司飯絕配。", query: "スープカレーGARAKU 札幌本店", tips: "可先掃描門口 QR Code 線上候位。" },
-            { id: 13, name: "Suage+（すあげプラス）本店", region: "sapporo", regionName: "札幌市區", cat: "curry", catName: "湯咖哩", badge: "🍛 脆皮串燒湯咖哩", source: "雙人徐 推薦", desc: "將北海道在地知床雞肉、馬鈴薯、茄子串起後不裹粉油炸（素揚），鎖住食材最天然鮮甜與脆度，湯頭清爽回甘。", query: "Suage+ 本店", tips: "狸小路 5 丁目商圈旁，交通便利。" },
-            { id: 14, name: "難陀 NANDA（海鮮炭火燒烤吃到飽）", region: "sapporo", regionName: "札幌市區", cat: "crab", catName: "三大蟹吃到飽", badge: "🦀 帝王蟹毛蟹松葉蟹", source: "三十口米 推薦", desc: "全場生猛帝王蟹腳、毛蟹、松葉蟹、黑毛和牛、干貝生蠔炭火現烤吃到飽，滿足全家大口吃蟹慾望！", query: "海鮮バイキング難陀", tips: "建議事先在官網預訂座位。" },
-            { id: 15, name: "札幌啤酒園 凱薩堡（Sapporo Beer Garden）", region: "sapporo", regionName: "札幌市區", cat: "bbq", catName: "烤肉/啤酒", badge: "🍺 紅磚啤酒館烤羊", source: "札幌官方推薦", desc: "在大正時代紅磚建築內享用生羊肉成吉思汗燒烤，暢飲新鮮直送的 Sapporo Classic 生啤酒！", query: "サッポロビール園", tips: "順遊旁邊的札幌啤酒博物館參觀開拓歷史。" },
-            { id: 16, name: "二條市場 大磯（Ohiso）", region: "sapporo", regionName: "札幌市區", cat: "sushi", catName: "海鮮丼", badge: "🐟 現剖馬糞海膽丼", source: "心甜 Christy 推薦", desc: "一早品嚐滿滿金黃利尻馬糞海膽、大粒鮭魚卵與厚切生干貝三色海鮮丼，海味鮮甜無腥味。", query: "二条市場 大磯", tips: "建議早上 08:30 前往免排長隊。" },
-            { id: 17, name: "SAPPORO 餃子製造所", region: "sapporo", regionName: "札幌市區", cat: "western", catName: "特色餃子", badge: "🥟 拳頭大爆汁炸餃", source: "內內 Nene 推薦", desc: "北海道在地小麥製成酥脆麵皮，包入滿滿十勝產豬肉與整隻鮮蝦，拳頭大的「大粒餃子」爆汁極度過癮！", query: "SAPPORO餃子製造所 狸小路店", tips: "出餐速度快，適合當午間快速美味餐點。" },
-            { id: 18, name: "六花亭 札幌本店", region: "sapporo", regionName: "札幌市區", cat: "sweets", catName: "甜點伴手禮", badge: "🎁 蘭姆葡萄與草莓厚鬆餅", source: "2A夫妻 推薦", desc: "2F 內用咖啡廳供應限定「現烤草莓鮮奶油厚鬆餅」與酥脆雪餅；1F 買齊六色酒糖與草莓巧克力禮盒。", query: "六花亭 札幌本店", tips: "札幌站南口步行 5 分鐘，環境清幽雅緻。" },
-            { id: 19, name: "北菓樓 札幌本館（舊廳立圖書館）", region: "sapporo", regionName: "札幌市區", cat: "sweets", catName: "甜點伴手禮", badge: "🏰 安藤忠雄書牆泡芙", source: "雙人徐 推薦", desc: "安藤忠雄將歷史圖書館改建的挑高書牆空間，必吃「夢不思議大泡芙」與「妖精之森年輪蛋糕」。", query: "北菓楼 札幌本館", tips: "2F 咖啡廳下午茶氣氛極佳。" },
-            { id: 20, name: "Parfaiteria 佐藤（Sato）", region: "sapporo", regionName: "札幌市區", cat: "sweets", catName: "夜聖代", badge: "🍨 札幌夜聖代代表", source: "內內 Nene 狂推", desc: "吃完拉麵烤肉後的札幌「夜聖代（〆パフェ）」文化！「開心果焦糖海鹽聖代」層次精緻如法式藝術品。", query: "パフェテリア 佐藤", tips: "隱身狸小路巷弄，晚上 18:00 開始營業。" },
-            { id: 21, name: "BAR ミルク村（Milk Mura）", region: "sapporo", regionName: "札幌市區", cat: "sweets", catName: "甜點冰品", badge: "🍦 夢幻冰淇淋調酒", source: "內內 Nene 推薦", desc: "昭和復古童話風酒吧！濃郁四葉鮮乳霜淇淋搭配 100 多種利口酒（附滴管淋酒），冰淇淋可免費續加！", query: "BAR ミルク村 札幌", tips: "大人小孩都能體驗，小孩可選無酒精水果糖漿。" },
-            { id: 22, name: "AOAO SAPPORO 都市型水族館", region: "sapporo", regionName: "札幌市區", cat: "kids", catName: "親子放電", badge: "🎪 狸小路室內水族館", source: "E家愛吃愛旅遊", desc: "位於狸小路 moyuk 4~6 樓，全室內冷暖氣看企鵝跳水、光影水母缸、植物科學研究室，營業至 22:00！", query: "AOAO SAPPORO", tips: "下雨或晚間帶小孩放電的最佳室內景點。" },
-            { id: 23, name: "國營瀧野鈴蘭丘陵公園", region: "sapporo", regionName: "札幌市區", cat: "kids", catName: "親子放電", badge: "🛝 北海道親子公園天花板", source: "CHILL先生一家人 狂推", desc: "全道最大國營樂園！巨型白色雲朵彈跳床、長滾輪溜滑梯、室內彩虹編織攀爬網，小孩免費，大人門票僅 ¥450！", query: "国営滝野すずらん丘陵公園", tips: "搭地鐵南北線至真駒內站，轉乘中央巴士直達公園東口。" },
-            { id: 24, name: "北海道廳舊本廳舍（紅磚廳舍）", region: "sapporo", regionName: "札幌市區", cat: "sightseeing", catName: "歷史文化", badge: "🏛️ 全新整修完工名所", source: "札幌觀光協會", desc: "巴洛克風格紅磚建築，庭園綠意盎然。整修完工後設有特產專賣店與「生白色戀人」限定品嚐區。", query: "北海道庁旧本庁舎", tips: "離 ANA 皇冠假日酒店步行僅 5 分鐘。" },
-            { id: 25, name: "札幌電視塔 ＆ 大通公園烤玉米", region: "sapporo", regionName: "札幌市區", cat: "sightseeing", catName: "觀光地標", badge: "🌽 現烤甜玉米與地標", source: "雙人徐 推薦", desc: "大通公園地標電視塔，公園噴泉旁品嚐炭火現烤刷醬甜玉米與水煮甜玉米，甜度高達 18 度！", query: "さっぽろテレビ塔", tips: "大通公園 3~4 丁目設有知名玉米攤車。" },
-            { id: 26, name: "白色戀人公園（Shiroi Koibito Park）", region: "sapporo", regionName: "札幌市區", cat: "kids", catName: "觀光樂園", badge: "🏰 英倫童話城堡工廠", source: "雙人徐 / Lester", desc: "歐風童話花園、小矮人迷你木屋捉迷藏、整點音樂鐘人偶秀，還能親手體驗製作客製化照片鐵盒餅乾！", query: "白い恋人パーク", tips: "搭地鐵東西線至宮之澤站下車步行 7 分鐘。" },
-            { id: 27, name: "藻岩山空中纜車（Mt. Moiwa）", region: "sapporo", regionName: "札幌市區", cat: "sightseeing", catName: "絕美夜景", badge: "🌃 日本新三大夜景", source: "札幌官方推薦", desc: "搭乘兩段式高空纜車直達山頂展望台，360 度俯瞰札幌市璀璨如鑽石散落的百萬夜景！", query: "札幌もいわ山ロープウェイ", tips: "建議日落前 30 分鐘搭纜車上山看夕陽轉夜景。" },
-            { id: 28, name: "北海道神宮 ＆ 神宮茶屋", region: "sapporo", regionName: "札幌市區", cat: "sightseeing", catName: "神社寺院", badge: "⛩️ 現烤判官餅", source: "雙人徐 推薦", desc: "北海道總鎮守，莊嚴參天古木參道。神宮茶屋現場鐵板現烤熱騰騰蕎麥紅豆年糕「判官餅」，外酥內 Q 彈！", query: "北海道神宮", tips: "求取拉拉熊或 Kitty 御守深受小朋友喜愛。" },
-            { id: 29, name: "札幌市鐘樓（時計台）", region: "sapporo", regionName: "札幌市區", cat: "sightseeing", catName: "歷史文化", badge: "🔔 140年歷史地標", source: "札幌觀光協會", desc: "日本現存最古老的擺鐘鐘樓，重要文化財。白色木造美式建築，可入內參觀鐘擺機械原理與歷史展示。", query: "札幌市時計台", tips: "對面商業大樓 2F 觀景台是最佳拍攝合影角度。" },
-            { id: 30, name: "札幌農學校（JR札幌站店）", region: "sapporo", regionName: "札幌市區", cat: "shopping", catName: "伴手禮", badge: "🍪 現烤紅豆奶油夾心餅", source: "心甜 Christy 推薦", desc: "Kinotoya 旗下神作！現烤純牛乳餅乾包入十勝紅豆粒與香濃奶油塊，冷熱交織香氣爆發！", query: "きのとや 札幌駅店", tips: "JR 札幌站東剪票口旁，排隊出爐極香。" },
-            { id: 31, name: "TruffleBAKERY 札幌站店", region: "sapporo", regionName: "札幌市區", cat: "western", catName: "人氣麵包", badge: "🥐 白松露鹽奶油捲", source: "內內 Nene 推薦", desc: "風靡全日本的白松露鹽奶油麵包！撕開撲鼻松露香，麵包底部因純奶油煎得焦香酥脆，鹹香完美。", query: "TruffleBAKERY 札幌ステラプレイス店", tips: "位於札幌站 Stella Place 1F，每人限購。" },
+            { id: 4, name: "奧芝商店 札幌站前店", region: "sapporo", regionName: "札幌市區", cat: "curry", catName: "湯咖哩", badge: "🦐 濃郁海老蝦湯咖哩", source: "波比看世界 / Lester", desc: "數千隻甜蝦熬製的濃郁鮮蝦湯頭，配宗谷黑牛漢堡排與炸牛蒡等豐富蔬菜，擠檸檬在飯上泡入濃湯吃法超驚艷。", query: "奥芝商店 駅前創成寺", tips: "出 ANA 皇冠假日步行 3 分鐘即可到達。" },
+            { id: 5, name: "湯咖哩 GARAKU 札幌本店", region: "sapporo", regionName: "札幌市區", cat: "curry", catName: "湯咖哩", badge: "🍛 秘傳和風湯咖哩", source: "波比看世界 狂推", desc: "札幌最強人氣冠軍！秘傳 21 種辛香料搭配和風柴魚高湯，招牌「燉豬肉咖哩」肉質軟嫩，配料炸花椰菜更是驚艷一絕！", query: "スープカレーGARAKU 札幌本店", tips: "狸小路周邊，務必提早造訪抽號碼牌。" },
+            { id: 6, name: "成吉思汗 ひげのうし 本店", region: "sapporo", regionName: "札幌市區", cat: "bbq", catName: "烤肉/烤羊", badge: "🐑 狸小路代烤小羔羊", source: "E家愛吃愛旅遊", desc: "狸小路商圈專人代烤小羔羊！獨立包廂抽風極佳無油煙，肉質極嫩，結尾必做日式高湯茶泡飯。", query: "成吉思汗 ひげのうし 本店", tips: "抽風設計絕佳，吃完身上完全沒有油煙味。" },
+            { id: 7, name: "達摩成吉思汗烤肉（本店/各分店）", region: "sapporo", regionName: "札幌市區", cat: "bbq", catName: "烤肉/烤羊", badge: "🥩 薄野必吃排隊名店", source: "波比看世界 推薦", desc: "札幌無人不知的成吉思汗老店！獨特烤羊肉肉質極嫩無腥羶味，洋蔥吸滿油脂極甜，配上獨門特製醬汁與冰啤酒超滿足！", query: "成吉思汗 だるま 本店", tips: "薄野有 6 間分店，總店煙較大但氛圍最道地。" },
+            { id: 8, name: "とんかつ 檍（Aoki）札幌大通店", region: "sapporo", regionName: "札幌市區", cat: "western", catName: "炸豬排/洋食", badge: "🥩 300g 低溫熟成豬排", source: "內內 Nene 推薦", desc: "林 SPF 低溫熟成豬肉裹金黃麵衣，橫切面粉嫩多汁！搭配三種天然海鹽（喜馬拉雅岩鹽、蒙古岩鹽）與特製豬汁極度下飯。", query: "とんかつ檍 札幌大通店", tips: "建議點特上里肌肉豬排套餐。" },
+            { id: 9, name: "珈琲とサンドイッチ さえら（Saera）", region: "sapporo", regionName: "札幌市區", cat: "western", catName: "三明治/輕食", badge: "🦀 帝王蟹炸蝦三明治", source: "老辣妹 / 內內 Nene", desc: "大通站地下街排隊傳奇！必點「帝王蟹沙拉 ＋ 酥脆炸蝦三明治」或「漢堡排 ＋ 季節水果鮮奶油三明治」，吐司濕潤鬆軟爆料。", query: "さえら 札幌", tips: "大通站地下步行街 B3F，建議 11:00 前抵達避開人潮。" },
+            { id: 10, name: "回転寿司 根室花まる JRタワーステラプレイス店", region: "sapporo", regionName: "札幌市區", cat: "sushi", catName: "迴轉壽司", badge: "🍣 根室直送第一名壽司", source: "波比看世界 / 雙人徐", desc: "產地直送赤咲生干貝、油花肥美時不知鮭魚、秋刀魚壽司、炙燒比目魚側緣、花咲蟹味噌湯，CP 值全道最高！", query: "回転寿司 根室花まる JRタワーステラプレイス店", tips: "11:00 先至 6F 抽號碼牌，再逛百貨。" },
+            { id: 11, name: "札幌市中央批發市場（場外市場）", region: "sapporo", regionName: "札幌市區", cat: "crab", catName: "活蟹海鮮", badge: "🦀 活帝王蟹現挑現煮", source: "老辣妹 / 波比看世界", desc: "規模遠大於二條市場！整排海鮮批發攤，挑選活跳跳帝王蟹、雪場蟹、毛蟹現蒸現烤代客料理，肉質 Q 彈鮮甜爆表！", query: "札幌市中央卸売市場 場外市場", tips: "早晨搭地鐵至二十四軒站下車步行 7 分鐘。" },
+            { id: 12, name: "北海道大學 ＆ 綜合博物館", region: "sapporo", regionName: "札幌市區", cat: "sightseeing", catName: "校園巡禮", badge: "🏛️ 長毛象化石與銀杏大道", source: "老辣妹 推薦 [00:01:10]", desc: "前身為札幌農學校！免費參觀綜合博物館，欣賞等比例長毛象與巨大動植物標本；秋季漫步金黃銀杏林道極美。", query: "北海道大学総合博物館", tips: "地鐵北12條站步行 5 分鐘 [00:00:49]。" },
+            { id: 13, name: "北海道大學 綠之咖啡廳（エルム）", region: "sapporo", regionName: "札幌市區", cat: "sweets", catName: "隱藏甜點", badge: "🍮 北大限定奶油蛋糕與布丁", source: "老辣妹 狂推 [00:02:28]", desc: "北大自家農場飼養乳牛鮮乳製成！機場買不到的隱藏版「發酵奶油蛋糕」[00:02:47]、冰淇淋口感「Butter Cream Cake」[00:03:22] 與限量焦糖布丁 [00:04:22]！", query: "ファカルティハウス エンレイソウ エルム", tips: "僅在北大校園限定販售，中午前易售罄 [00:03:15]。" },
+            { id: 14, name: "佐佐木水果蛋糕三明治（狸小路1丁目）", region: "sapporo", regionName: "札幌市區", cat: "sweets", catName: "水果三明治", badge: "🍓 蛋糕體水果三明治", source: "老辣妹 推薦 [00:05:13]", desc: "狸小路 1 丁目排隊名店！不同於一般吐司，採用海綿蛋糕體包入麝香葡萄 [00:05:33]、夕張哈密瓜 [00:05:26] 與輕盈北海道鮮奶油 [00:05:40]！", query: "佐々木フルーツサンド 狸小路", tips: "小巧精緻，逛街散步絕佳手拿甜點 [00:06:03]。" },
+            { id: 15, name: "本陣狸大明神社（狸小路2丁目）", region: "sapporo", regionName: "札幌市區", cat: "sightseeing", catName: "開運景點", badge: "🦝 摸狸貓求好運", source: "老辣妹 推薦 [00:06:36]", desc: "狸小路 100 週年守護神社！據傳撫摸狸貓地藏身上的 8 處不同部位（頭、手、肚子、錢袋等），能分別祈求學業、財運與良緣 [00:06:49]！", query: "本陣狸大明神社", tips: "位於狸小路 2 丁目街邊 [00:06:45]。" },
+            { id: 16, name: "Gelateria Italiana（狸小路7丁目）", region: "sapporo", regionName: "札幌市區", cat: "sweets", catName: "深夜冰淇淋", badge: "🍨 週五六限定義式冰淇淋", source: "老辣妹 激推 [00:11:06]", desc: "每週僅營業週五、週六晚上 20:00~24:00！極度濃郁「開心果 Gelato」吃得到顆粒碎粒 [00:11:24]，以及大人風櫻桃巧克力 [00:11:27]！", query: "ジェラテリア イタリアーナ 札幌", tips: "狸小路 7 丁目深夜排隊傳奇名店 [00:11:06]。" },
+            { id: 17, name: "真駒內瀧野靈園（頭大佛殿）", region: "sapporo", regionName: "札幌市區", cat: "sightseeing", catName: "建築名勝", badge: "🗿 安藤忠雄頭大佛與巨石陣", source: "老辣妹 / 札幌官方 [00:15:14]", desc: "建築大師安藤忠雄傾力設計！穿越寧靜水庭長廊，仰望聳立於穹頂之下的 13.5 米巨大釋迦牟尼佛，周圍環繞壯觀巨石陣 [00:15:50]。", query: "頭大仏殿 真駒内滝野霊園", tips: "地鐵真駒內站搭巴士約 20 分鐘 [00:17:20]。" },
+            { id: 18, name: "札幌啤酒博物館 ＆ 啤酒園烤肉", region: "sapporo", regionName: "札幌市區", cat: "bbq", catName: "烤肉/啤酒", badge: "🍺 紅磚啤酒館烤羊吃到飽", source: "波比看世界 / 老辣妹 [00:19:40]", desc: "日本唯一啤酒博物館！在百年紅磚倉庫內享受成吉思汗烤羊肉與牛肉吃到飽 [00:19:50]，暢飲直產 Sapporo Classic 生啤酒 [00:20:02]！", query: "サッポロビール園", tips: "建議出發前透過官網事先預訂座位 [00:20:09]。" },
+            { id: 19, name: "夜パフェ専門店 パフェテリア パル（Parfaiteria PaL）", region: "sapporo", regionName: "札幌市區", cat: "sweets", catName: "夜聖代", badge: "🍸 札幌夜聖代創始集團", source: "老辣妹 / 內內 Nene [00:23:18]", desc: "薄野夜聖代代表！結合大人調酒、香草冰淇淋、新鮮果物與驚喜香料（如八角茴香）的極致美學聖代 [00:24:01]，營業至凌晨 01:00 [00:24:24]！", query: "夜パフェ専門店 パフェテリア パル", tips: "居酒屋吃完宵夜後的完美句點 [00:23:15]。" },
+            { id: 20, name: "六花亭 札幌本店", region: "sapporo", regionName: "札幌市區", cat: "sweets", catName: "限定甜點", badge: "🍪 現做冰淇淋版蘭姆葡萄餅乾", source: "老辣妹 / 波比看世界 [00:42:51]", desc: "2F 喫茶室限定！必點「冰淇淋版蘭姆葡萄夾心三明治」[00:43:20] 與「生起司黑巧克力夾心餅」[00:43:54]，1F 買齊全系列伴手禮！", query: "六花亭 札幌本店", tips: "冰淇淋三明治需於 2 小時內享用完畢 [00:43:40]。" },
+            { id: 21, name: "雪印 Parlor 札幌本店（Snow Brand）", region: "sapporo", regionName: "札幌市區", cat: "sweets", catName: "皇家冰品", badge: "👑 昭和天皇御用皇家香草冰", source: "老辣妹 推薦 [00:44:31]", desc: "1968 年為昭和天皇皇后特別研發的「Snow Royal」純乳脂香草冰淇淋 [00:44:39]！不加蛋黃，純淨奶香滑順無比 [00:44:48]。", query: "雪印パーラー 本店", tips: "札幌站南口步行 3 分鐘。" },
+            { id: 22, name: "麵屋 雪風（すすきの本店）", region: "sapporo", regionName: "札幌市區", cat: "ramen", catName: "頂級拉麵", badge: "🍜 濃厚新味噌拉麵", source: "老辣妹 激推 [00:45:13]", desc: "三種熟成味噌融合豚骨、雞白湯與煮干熬成濃郁湯底 [00:45:41]，搭配西山製麵特製中捲麵 [00:46:38] 與軟嫩厚切叉燒 [00:46:30]！", query: "麺屋 雪風 すすきの本店", tips: "18:00 開門 [00:45:24]，建議開門前 15 分鐘排隊。" },
+            { id: 23, name: "JR Tower 展望室 T38", region: "sapporo", regionName: "札幌市區", cat: "sightseeing", catName: "夜景名所", badge: "🌃 札幌車站38層百萬夜景", source: "波比看世界 / 看的到聽說的 [00:00:28]", desc: "札幌站共構最高地標！地上 160 公尺 360 度眺望石狩灣與札幌棋盤街道，男廁全景景觀窗更被譽為日本最美廁所！", query: "JRタワー展望室T38", tips: "由 Stellar Place 6F 搭專用電梯前往。" },
+            { id: 24, name: "APIA 地下街 ＆ 久世福商店", region: "sapporo", regionName: "札幌市區", cat: "shopping", catName: "地下商場", badge: "🛍️ 札幌地下街美食雜貨", source: "看的到、聽說的 攻略 [00:07:34]", desc: "與札幌站 B1 連通！久世福商店精選日式高湯包、果醬與零食 [00:09:29]，還有 3COINS [00:08:03] 與各式平價餐廳居酒屋 [00:10:14]。", query: "アピア 札幌", tips: "雨雪天連接大通公園最佳室內通道 [00:11:09]。" },
+            { id: 25, name: "Chi-Ka-Ho 札幌地下步行空間", region: "sapporo", regionName: "札幌市區", cat: "shopping", catName: "地下步道", badge: "🚶 舒適直通大通公園", source: "看的到、聽說的 [00:11:14]", desc: "全長 520 米寬闊地下步道 [00:11:14]！直通 Akarenga Terrace 紅磚露台 [00:12:16]、全道最大 Mont-bell 旗艦店 [00:12:26] 與 Seicomart 超商 [00:12:41]。", query: "札幌駅前通地下歩行空間", tips: "推嬰兒車與大行李免受風雨的最佳路線。" },
+            { id: 26, name: "札幌電視塔 ＆ 大通公園烤玉米", region: "sapporo", regionName: "札幌市區", cat: "sightseeing", catName: "觀光地標", badge: "🌽 4~10月限定炭火烤玉米", source: "波比看世界 推薦", desc: "大通公園地標！4~10 月限定噴水池旁炭烤刷醬甜玉米與鬆軟奶油馬鈴薯，甜度爆表；登塔俯瞰大通綠洲全景。", query: "さっぽろテレビ塔", tips: "大通站 27 號出口直達電視塔。" },
+            { id: 27, name: "二條市場 大磯（Ohiso）", region: "sapporo", regionName: "札幌市區", cat: "sushi", catName: "海鮮丼", badge: "🐟 連霸10年馬糞海膽丼", source: "波比看世界 推薦", desc: "二條市場指標排隊王！招牌三色海鮮丼鋪滿利尻馬糞海膽、特選漬鮭魚卵與厚切生干貝，海味極度鮮甜無腥味。", query: "二条市場 大磯", tips: "建議先至門口抽號碼牌。" },
+            { id: 28, name: "串鳥 札幌站前店（平價居酒屋霸主）", region: "sapporo", regionName: "札幌市區", cat: "bbq", catName: "平價串燒", badge: "🍢 炭火現烤串燒宵夜", source: "波比看世界 推薦", desc: "北海道人氣第一平價居酒屋！炭火現烤雞肉串、烤雞翅、培根蘆筍與北海道起司馬鈴薯，一串只要 ¥170 起！", query: "串鳥 札幌駅前店", tips: "出 ANA 皇冠假日酒店步行 3 分鐘。" },
+            { id: 29, name: "藻岩山空中纜車（Mt. Moiwa）", region: "sapporo", regionName: "札幌市區", cat: "sightseeing", catName: "絕美夜景", badge: "🌃 日本新三大夜景展望", source: "老辣妹 / 看的到聽說的 [00:17:41]", desc: "搭乘兩段式纜車直達 531m 山頂展望台 [00:18:04]，360 度盡收札幌百萬夜景 [00:18:12]！出發前可上官網看 Live Cam 確認能見度 [00:18:40]。", query: "札幌もいわ山ロープウェイ", tips: "搭市電至「纜車入口站」轉免費接駁巴士 [00:19:24]。" },
+            { id: 30, name: "國營瀧野鈴蘭丘陵公園", region: "sapporo", regionName: "札幌市區", cat: "kids", catName: "親子放電", badge: "🛝 北海道親子公園天花板", source: "CHILL先生一家人 / 波比看世界", desc: "全道最大國營樂園！巨型白色雲朵彈跳床、長滾輪溜滑梯、室內彩虹編織攀爬網，小孩免費，大人門票僅 ¥450！", query: "国営滝野すずらん丘陵公園", tips: "地鐵真駒內站轉搭中央巴士直達公園東口。" },
+            { id: 31, name: "白色戀人公園（Shiroi Koibito Park）", region: "sapporo", regionName: "札幌市區", cat: "kids", catName: "觀光樂園", badge: "🏰 英倫童話城堡人偶秀", source: "波比看世界 / 雙人徐", desc: "歐風童話花園、小矮人迷你木屋捉迷藏、整點音樂鐘人偶秀，還能親手體驗製作客製化照片鐵盒餅乾！", query: "白い恋人パーク", tips: "地鐵東西線「宮之澤站」步行 7 分鐘。" },
+            { id: 32, name: "北海道神宮 ＆ 神宮茶屋", region: "sapporo", regionName: "札幌市區", cat: "sightseeing", catName: "神社寺院", badge: "⛩️ 現烤判官餅與拉拉熊御守", source: "波比看世界 推薦", desc: "北海道總鎮守！古木參天參道，神宮茶屋現場鐵板現烤熱騰騰蕎麥紅豆「判官餅」，還有限定 Hello Kitty 與拉拉熊御守！", query: "北海道神宮", tips: "地鐵圓山公園站步行 15 分鐘。" },
 
             // 旭川市區 (Asahikawa)
-            { id: 32, name: "成吉思汗烤肉 大黑屋（旭川本店）", region: "asahikawa", regionName: "旭川市區", cat: "bbq", catName: "烤肉/烤羊", badge: "🥩 全道第1名烤羊肉", source: "G先生 / 2F頭城小夫妻", desc: "厚切生羊肩里肌、特選羊里肌、生羊舌多汁嫩甜毫無羶味！洋蔥吸滿油脂極甜，結尾必配白飯肉汁。", query: "成吉思汗大黒屋 旭川本店", tips: "建議先至店門口抽號碼牌，回 JR Inn 房間休息等候叫號。" },
-            { id: 33, name: "旭川市 旭山動物園", region: "asahikawa", regionName: "旭川市區", cat: "kids", catName: "親子名勝", badge: "🎪 日本第1人氣行動展示", source: "G先生 / 波妞食境秀", desc: "360度企鵝水中隧道看企鵝飛翔、直徑1.5米海豹垂直泳道、北極熊跳水水槽、高空17米紅毛猩猩攀爬！", query: "旭川市旭山動物園", tips: "MapCode: 79 357 888*22，備有推車租借。" },
-            { id: 34, name: "回転寿し トリトン（Toriton）旭神店", region: "asahikawa", regionName: "旭川市區", cat: "sushi", catName: "迴轉壽司", badge: "🍣 旭川超人氣迴轉壽司", source: "JJ & 非白 / Ki笑人生", desc: "比札幌市區好排很多！巨大厚切生干貝、牡丹蝦、生鮭魚卵壽司、炙燒和牛，料好實在鮮甜滿分。", query: "回転寿し トリトン 旭神店", tips: "9/23 自駕傍晚還車前順路前往用餐最順暢。" },
-            { id: 35, name: "旭川拉麵 蜂屋（五條創業店）", region: "asahikawa", regionName: "旭川市區", cat: "ramen", catName: "頂級拉麵", badge: "🍜 焦香豬油醬油始祖", source: "Tabelog 知名老店", desc: "昭和22年創業！以豚骨海鮮雙湯頭為底，淋上特製高溫焦香豬油（焦がしラード），麵條吸附獨特炭香焦氣！", query: "蜂屋 五条創業店", tips: "可選擇焦油濃度，喜歡濃厚風味可選「油多め」。" },
-            { id: 36, name: "旭川拉麵 梅光軒 旭川本店", region: "asahikawa", regionName: "旭川市區", cat: "ramen", catName: "頂級拉麵", badge: "🍜 特大筍乾旭川名物", source: "在地經典名店", desc: "旭川拉麵代表名店！特製中細捲麵搭配豬骨、雞骨與昆布雙高湯，招牌特大厚切筍乾脆口鮮甜。", query: "梅光軒 旭川本店", tips: "位於旭川站前步行 3 分鐘地下街。" },
+            { id: 33, name: "成吉思汗烤肉 大黑屋（旭川本店）", region: "asahikawa", regionName: "旭川市區", cat: "bbq", catName: "烤肉/烤羊", badge: "🥩 全道第1名烤羊肉", source: "G先生 / 2F頭城小夫妻", desc: "厚切生羊肩里肌、特選羊里肌、生羊舌多汁嫩甜毫無羶味！洋蔥吸滿油脂極甜，結尾必配白飯肉汁。", query: "成吉思汗大黒屋 旭川本店", tips: "建議先至店門口抽號碼牌，回 JR Inn 房間休息等候叫號。" },
+            { id: 34, name: "旭川市 旭山動物園", region: "asahikawa", regionName: "旭川市區", cat: "kids", catName: "親子名勝", badge: "🎪 行動展示動物園王者", source: "波比看世界 / 老辣妹 [00:24:51]", desc: "360度企鵝水中隧道看企鵝飛翔、直徑1.5米海豹垂直泳道、北極熊跳水水槽、高空17米紅毛猩猩攀爬！", query: "旭川市旭山動物園", tips: "MapCode: 79 357 888*22，餵食秀時間每日 10:00 公告。" },
+            { id: 35, name: "回転寿し トリトン（Toriton）旭神店", region: "asahikawa", regionName: "旭川市區", cat: "sushi", catName: "迴轉壽司", badge: "🍣 旭川超人氣迴轉壽司", source: "JJ & 非白 / Ki笑人生", desc: "比札幌市區好排很多！巨大厚切生干貝、牡丹蝦、生鮭魚卵壽司、炙燒和牛，料好實在鮮甜滿分。", query: "回転寿し トリトン 旭神店", tips: "9/23 自駕傍晚還車前順路前往用餐最順暢。" },
+            { id: 36, name: "旭川拉麵 蜂屋（五條創業店）", region: "asahikawa", regionName: "旭川市區", cat: "ramen", catName: "頂級拉麵", badge: "🍜 焦香豬油醬油始祖", source: "Tabelog 知名老店", desc: "昭和22年創業！以豚骨海鮮雙湯頭為底，淋上特製高溫焦香豬油（焦がしラード），麵條吸附獨特炭香焦氣！", query: "蜂屋 五条創業店", tips: "可選擇焦油濃度，喜歡濃厚風味可選「油多め」。" },
+            { id: 37, name: "旭川拉麵 梅光軒 旭川本店", region: "asahikawa", regionName: "旭川市區", cat: "ramen", catName: "頂級拉麵", badge: "🍜 特大筍乾旭川名物", source: "波比看世界 推薦", desc: "旭川拉麵代表名店！特製中細捲麵搭配豬骨、雞骨與昆布雙高湯，招牌特大厚切筍乾脆口鮮甜。", query: "梅光軒 旭川本店", tips: "位於旭川站前步行 3 分鐘地下街。" },
 
             // 美瑛・富良野 (Biei & Furano)
-            { id: 37, name: "純平洋食（洋食とCafe じゅんぺい）", region: "biei", regionName: "美瑛・富良野", cat: "western", catName: "洋食名店", badge: "🍤 巨大炸蝦海老丼始祖", source: "2F頭城小夫妻 / 2A夫妻", desc: "美瑛排隊名店！3 隻巨大酥脆黑虎蝦裹獨門秘製鹹甜醬汁（海老丼），外皮酥脆蝦肉彈牙多汁！", query: "洋食とCafe じゅんぺい", tips: "MapCode: 389 010 564*25，附設免費停車場。" },
-            { id: 38, name: "千代田農場（Farm Restaurant Chiyoda）", region: "biei", regionName: "美瑛・富良野", cat: "western", catName: "農場和牛", badge: "🥩 產地直送美瑛和牛", source: "自駕老饕推薦", desc: "自家牧場放牧「美瑛和牛」！現煎厚切牛排與爆汁和牛漢堡排，肉質軟嫩油花香甜，旁邊還可餵小動物。", query: "ファームレストラン千代田", tips: "適合自駕家庭，環境遼闊風景優美。" },
-            { id: 39, name: "白金青池（Shirogane Blue Pond）", region: "biei", regionName: "美瑛・富良野", cat: "sightseeing", catName: "自然絕景", badge: "💙 蒂芬妮藍神木池", source: "2F頭城小夫妻 / 山步五時", desc: "初秋水質清澈呈現夢幻蒂芬妮藍！枯木倒映水面宛如仙境，必吃青池限定青蘋果霜淇淋！", query: "白金青い池", tips: "MapCode: 345 581 635*55，停車費 ¥500。" },
-            { id: 40, name: "白鬚瀑布（Shirahige Waterfall）", region: "biei", regionName: "美瑛・富良野", cat: "sightseeing", catName: "自然絕景", badge: "🌊 鈷藍溪流高空鐵橋", source: "雙人徐 推薦", desc: "離青池僅 3 分鐘車程！站在藍河橋上俯瞰地下水噴湧而出的白鬚瀑布與深藍美瑛川溪谷。", query: "白ひげの滝", tips: "MapCode: 796 182 604*22，免費參觀。" },
-            { id: 41, name: "四季彩之丘（Shikisai-no-oka）", region: "biei", regionName: "美瑛・富良野", cat: "kids", catName: "花海樂園", badge: "🌈 拼布花海與羊駝牧場", source: "2A夫妻 推薦", desc: "初秋廣闊丘陵種滿各色盛開花卉如彩虹地毯！可搭乘拖拉機遊園車，進入羊駝牧場體驗親手餵食樂趣。", query: "展望花畑 四季彩の丘", tips: "MapCode: 349 701 160*00，自駕順路好停車。" },
-            { id: 42, name: "Ken & Mary 之樹 ＆ 七星之樹", region: "biei", regionName: "美瑛・富良野", cat: "sightseeing", catName: "自駕名勝", badge: "🚜 拼布之路經典名樹", source: "悠悠北海道推薦", desc: "美瑛拼布之路代表性地標！挺立於丘陵上的百年白楊樹與防風林，自駕開車隨手拍皆是汽車廣告大片。", query: "ケンとメリーの木", tips: "Ken&Mary MapCode: 389 071 631*44 / 七星之樹: 389 157 129*00。" },
-            { id: 43, name: "富田農場（Farm Tomita）", region: "biei", regionName: "美瑛・富良野", cat: "sweets", catName: "觀光名所", badge: "🍈 薰衣草花田與哈密瓜", source: "經典名所", desc: "富良野最著名農場，品嚐濃郁薰衣草霜淇淋與鮮甜多汁的富良野切片哈密瓜，漫步花田極度療癒。", query: "ファーム富田", tips: "設有無障礙平緩步道，推嬰兒車極方便。" },
+            { id: 38, name: "純平洋食（洋食とCafe じゅんぺい）", region: "biei", regionName: "美瑛・富良野", cat: "western", catName: "洋食名店", badge: "🍤 巨大炸蝦海老丼始祖", source: "波比看世界 / 2A夫妻", desc: "美瑛排隊名店！3 隻巨大酥脆黑虎蝦裹獨門秘製鹹甜醬汁（海老丼），外皮酥脆蝦肉彈牙多汁！", query: "洋食とCafe じゅんぺい", tips: "MapCode: 389 010 564*25，附設免費停車場。" },
+            { id: 39, name: "千代田農場（Farm Restaurant Chiyoda）", region: "biei", regionName: "美瑛・富良野", cat: "western", catName: "農場和牛", badge: "🥩 產地直送美瑛和牛", source: "自駕老饕推薦", desc: "自家牧場放牧「美瑛和牛」！現煎厚切牛排與爆汁和牛漢堡排，肉質軟嫩油花香甜，旁邊還可餵小動物。", query: "ファームレストラン千代田", tips: "適合自駕家庭，環境遼闊風景優美。" },
+            { id: 40, name: "白金青池（Shirogane Blue Pond）", region: "biei", regionName: "美瑛・富良野", cat: "sightseeing", catName: "自然絕景", badge: "💙 蒂芬妮藍神木池", source: "波比看世界 / 老辣妹", desc: "初秋水質清澈呈現夢幻蒂芬妮藍！枯木倒映水面宛如仙境，必吃青池限定青蘋果霜淇淋！", query: "白金青い池", tips: "MapCode: 345 581 635*55，停車費 ¥500。" },
+            { id: 41, name: "白鬚瀑布（Shirahige Waterfall）", region: "biei", regionName: "美瑛・富良野", cat: "sightseeing", catName: "自然絕景", badge: "🌊 鈷藍溪流罕見潛流瀑布", source: "波比看世界 / 雙人徐", desc: "離青池僅 3 分鐘車程！站在藍河橋上俯瞰地下水噴湧而出的白鬚瀑布與深藍美瑛川溪谷。", query: "白ひげの滝", tips: "MapCode: 796 182 604*22，免費參觀。" },
+            { id: 42, name: "四季彩之丘（Shikisai-no-oka）", region: "biei", regionName: "美瑛・富良野", cat: "kids", catName: "花海樂園", badge: "🌈 拼布花海與羊駝牧場", source: "老辣妹 / 2A夫妻 [00:27:31]", desc: "初秋廣闊丘陵種滿各色盛開花卉如彩虹地毯！可搭乘拖拉機遊園車，進入羊駝牧場體驗親手餵食樂趣 [00:27:35]。", query: "展望花畑 四季彩の丘", tips: "MapCode: 349 701 160*00，自駕順路好停車。" },
+            { id: 43, name: "Ken & Mary 之樹 ＆ 七星之樹", region: "biei", regionName: "美瑛・富良野", cat: "sightseeing", catName: "自駕名勝", badge: "🚜 拼布之路經典名樹", source: "老辣妹 / 悠悠北海道 [00:29:49]", desc: "美瑛拼布之路代表性地標！挺立於丘陵上的百年白楊樹與防風林，自駕開車隨手拍皆是汽車廣告大片 [00:29:49]。", query: "ケンとメリーの木", tips: "Ken&Mary: 389 071 631*44 / 七星之樹: 389 157 129*00。" },
+            { id: 44, name: "富田農場 ＆ 富田哈密瓜工房", region: "biei", regionName: "美瑛・富良野", cat: "sweets", catName: "花田甜點", badge: "🍈 現切哈密瓜與薰衣草冰淇淋", source: "波比看世界 推薦", desc: "富良野最著名花田！必吃香濃薰衣草霜淇淋與鮮甜多汁的現切富良野紅肉哈密瓜、哈密瓜麵包！", query: "ファーム富田", tips: "設有無障礙平緩步道，推嬰兒車極方便。" },
+            { id: 45, name: "森林精靈露台（Ningle Terrace）", region: "biei", regionName: "美瑛・富良野", cat: "sightseeing", catName: "童話木屋", badge: "🌲 森林手作木屋聚落", source: "老辣妹 / 波比看世界 [00:30:02]", desc: "新富良野王子大飯店內！15 座隱身在森林裡的手作工坊小木屋 [00:30:13]，入夜點燈宛如精靈童話世界 [00:30:23]。", query: "ニングルテラス", tips: "MapCode: 919 553 425*85。" },
+            { id: 46, name: "森之時計咖啡廳（森林精靈露台旁）", region: "biei", regionName: "美瑛・富良野", cat: "western", catName: "特色咖啡", badge: "☕ 自己磨豆與雪之燉飯", source: "波比看世界 推薦", desc: "日劇《溫柔時光》拍攝地！吧台區可親手手磨咖啡豆，必點超濃郁「雪之燉飯」與溫潤「森林咖哩飯」。", query: "森の時計", tips: "精靈露台步道直通，建議先登記候位。" },
+            { id: 47, name: "Furano Delice（菓子工房）", region: "biei", regionName: "美瑛・富良野", cat: "sweets", catName: "人氣甜點", badge: "🍮 No.1 雙層乳酪與牛奶布丁", source: "波比看世界 狂推", desc: "Tabelog 超高分名店！打破傳統布丁印象的超滑嫩富良野牛乳布丁，以及入口即化的雙層起司蛋糕！", query: "フラノデリス", tips: "富良野必訪甜點殿堂，附停車場。" },
+            { id: 48, name: "Popura Farm（波普拉農場）", region: "biei", regionName: "美瑛・富良野", cat: "sweets", catName: "創意冰品", badge: "🍈 聖誕老人的鬍子哈密瓜冰", source: "波比看世界 推薦", desc: "註冊商標的經典名物！半顆香甜熟成哈密瓜上擠滿高聳濃郁牛乳霜淇淋，視覺與味覺雙重享受！", query: "ポプラファーム 中富良野本店", tips: "拍照要快，純牛乳融化較迅速。" },
 
             // 小樽港町 (Otaru)
-            { id: 44, name: "小樽音樂盒堂 本館", region: "otaru", regionName: "小樽港町", cat: "shopping", catName: "景點老街", badge: "🎵 蒸氣鐘與百年音樂盒", source: "2A夫妻 / Lester", desc: "門口世界最大蒸氣鐘每 15 分鐘噴氣奏鳴！館內三層樓陳列數萬件精美玻璃八音盒，宛如夢幻城堡。", query: "小樽オルゴール堂 本館", tips: "南小樽站下車步行 7 分鐘即達童話十字路口[cite: 1]。" },
-            { id: 45, name: "小樽 LeTAO 本店（童話十字路口）", region: "otaru", regionName: "小樽港町", cat: "sweets", catName: "甜點老街", badge: "🍰 雙層乳酪蛋糕始祖", source: "2A夫妻 狂推", desc: "必吃招牌原味與巧克力「雙層乳酪蛋糕（Double Fromage）」，入口即化奶香濃郁！頂樓設有免費觀景台俯瞰港灣。", query: "小樽洋菓子舗ルタオ 本店", tips: "可上 3F 展望台遠眺小樽港街景[cite: 1]。" },
-            { id: 46, name: "北菓樓 小樽本館", region: "otaru", regionName: "小樽港町", cat: "sweets", catName: "甜點老街", badge: "🥐 夢不思議爆漿大泡芙", source: "心甜 Christy", desc: "酥脆多層次酥皮內包入滿滿特調卡士達鮮奶油，一口咬下爆漿！必買北海道開拓おかき米果伴手禮。", query: "北菓楼 小樽本館", tips: "位於界町通商店街核心，六花亭隔壁[cite: 1]。" },
-            { id: 47, name: "北一硝子 三號館（煤氣燈咖啡廳）", region: "otaru", regionName: "小樽港町", cat: "sweets", catName: "特色咖啡", badge: "🕯️ 167盞煤氣燈與六段冰", source: "雙人徐 推薦", desc: "石造倉庫內由 167 盞真實煤氣燈點亮，氣氛極度浪漫！品嚐限定「六段/八段彩虹霜淇淋」色彩繽紛。", query: "北一硝子三号館", tips: "早晨點燈儀式極具大正復古風情[cite: 1]。" },
-            { id: 48, name: "小樽 三角市場 滝波食堂", region: "otaru", regionName: "小樽港町", cat: "sushi", catName: "海鮮丼", badge: "🦀 自選滿料現剖海膽丼", source: "2A夫妻 推薦", desc: "小樽站旁三角市場人氣王！自選 3~4 種滿料海鮮（生海膽、牡丹蝦、活干貝、鮭魚卵），份量豪邁附螃蟹味噌湯！", query: "北のどんぶり屋 滝波食堂", tips: "出小樽站左手邊步行 1 分鐘即達[cite: 1]。" },
-            { id: 49, name: "Cafe & Dining Bar CFE", region: "otaru", regionName: "小樽港町", cat: "western", catName: "排隊牛排", badge: "🥩 發光極嫩招牌牛排飯", source: "Ki笑人生 驚艷激推", desc: "三角市場旁隱藏版神店！招牌牛排飯熟度完美、肉質軟嫩如蛋豆腐，搭配特製香料粉與通心麵，老饕一致驚艷！", query: "Cafe and Dining Bar CFE 小樽", tips: "不想吃海鮮生食的最佳驚艷首選[cite: 1]。" },
-            { id: 50, name: "小樽 政壽司 本店（Otaru Masa-zushi）", region: "otaru", regionName: "小樽港町", cat: "sushi", catName: "頂級壽司", badge: "🍣 將太的壽司名門", source: "小樽名店", desc: "80 年歷史壽司老字號！名物「烏賊素麵配海膽醬汁」、極上握壽司套餐，師傅俐落手藝展現港町極致鮮度。", query: "おたる政寿司 本店", tips: "位於小樽壽司屋通，建議事先訂位[cite: 1]。" },
-            { id: 51, name: "日本銀行舊小樽支店（金融資料館）", region: "otaru", regionName: "小樽港町", cat: "sightseeing", catName: "歷史景點", badge: "💰 免費抱一億日圓體驗", source: "雙人徐 推薦", desc: "日本近代建築大師辰野金吾設計！免費參觀百年防核金庫，親手體驗抱起重達 10kg 的一億日圓紙鈔模型！", query: "金融資料館（日本銀行旧小樽支店）", tips: "冷氣充足好拍照，寓教於樂的親子景點[cite: 1]。" },
-            { id: 52, name: "小樽 Snoopy Village（史努比茶屋）", region: "otaru", regionName: "小樽港町", cat: "shopping", catName: "卡通周邊", badge: "🐶 小樽限定史努比周邊", source: "2A夫妻 推薦", desc: "歷史倉庫改建的兩層樓史努比專賣店，販售小樽限定玻璃杯、音樂盒周邊，2F 提供史努比造型甜點與飲品！", query: "SNOOPY Village 小樽店", tips: "界町通漫步必拍打卡熱點[cite: 1]。" },
+            { id: 49, name: "若雞時代 なると 本店（小樽炸半雞）", region: "otaru", regionName: "小樽港町", cat: "western", catName: "小樽No.1名物", badge: "🍗 皮脆肉嫩多汁炸半雞", source: "波比看世界 狂推", desc: "小樽美食 No.1！整隻新鮮嫩雞不裹厚粉大火酥炸，外皮薄脆鹹香、裡面肉汁狂流，在地人與遊客一致封神！", query: "若鶏時代なると 本店", tips: "出小樽站步行 7 分鐘即達。" },
+            { id: 50, name: "小樽 三角市場 滝波食堂", region: "otaru", regionName: "小樽港町", cat: "sushi", catName: "海鮮丼", badge: "🦀 自選滿料現剖海膽丼", source: "波比看世界 / 2A夫妻", desc: "小樽站旁三角市場人氣王！自選 3~4 種滿料海鮮（生海膽、牡丹蝦、活干貝、鮭魚卵），份量豪邁附螃蟹味噌湯！", query: "北のどんぶり屋 滝波食堂", tips: "出小樽站左手邊步行 1 分鐘即達[cite: 1]。" },
+            { id: 51, name: "小樽 三角市場 武田鮮魚店", region: "otaru", regionName: "小樽港町", cat: "crab", catName: "現煮活蟹", badge: "🦀 活帝王蟹代客料理", source: "波比看世界 推薦", desc: "三角市場老牌鮮魚店！現場挑選活跳跳肥美帝王蟹，現煮現烤蟹肉鮮甜多汁爆滿蟹膏，排隊流動速度快！", query: "武田鮮魚店 小樽", tips: "想吃現煮熟食活蟹的首選好店[cite: 1]。" },
+            { id: 52, name: "Cafe & Dining Bar CFE", region: "otaru", regionName: "小樽港町", cat: "western", catName: "排隊牛排", badge: "🥩 發光極嫩招牌牛排飯", source: "Ki笑人生 驚艷激推", desc: "三角市場旁隱藏版神店！招牌牛排飯熟度完美、肉質軟嫩如蛋豆腐，搭配特製香料粉與通心麵，老饕一致驚艷！", query: "Cafe and Dining Bar CFE 小樽", tips: "不想吃海鮮生食的最佳驚艷首選[cite: 1]。" },
+            { id: 53, name: "小樽 政壽司 本店（Otaru Masa-zushi）", region: "otaru", regionName: "小樽港町", cat: "sushi", catName: "頂級壽司", badge: "🍣 將太的壽司名門", source: "老辣妹 / 波比看世界 [00:35:32]", desc: "80 年歷史壽司老字號！名物「烏賊素麵配海膽醬汁」[00:36:51]、極上握壽司套餐 [00:35:56]，師傅俐落手藝展現港町極致鮮度 [00:36:04]。", query: "おたる政寿司 本店", tips: "位於小樽壽司屋通，建議事先訂位[cite: 1] [00:35:46]。" },
+            { id: 54, name: "小樽音樂盒堂 本館", region: "otaru", regionName: "小樽港町", cat: "shopping", catName: "景點老街", badge: "🎵 蒸氣鐘與百年音樂盒", source: "老辣妹 / 2A夫妻 [00:39:11]", desc: "門口世界最大蒸氣鐘每 15 分鐘噴氣奏鳴 [00:39:15]！館內三層樓陳列數萬件精美玻璃八音盒，宛如夢幻城堡。", query: "小樽オルゴール堂 本館", tips: "南小樽站下車步行 7 分鐘即達童話十字路口[cite: 1]。" },
+            { id: 55, name: "小樽 LeTAO 本店（童話十字路口）", region: "otaru", regionName: "小樽港町", cat: "sweets", catName: "甜點老街", badge: "🍰 雙層乳酪蛋糕始祖", source: "波比看世界 / 2A夫妻", desc: "必吃招牌原味與巧克力「雙層乳酪蛋糕（Double Fromage）」，入口即化奶香濃郁！頂樓設有免費觀景台俯瞰港灣。", query: "小樽洋菓子舗ルタオ 本店", tips: "可上 3F 展望台遠眺小樽港街景[cite: 1]。" },
+            { id: 56, name: "北菓樓 小樽本館", region: "otaru", regionName: "小樽港町", cat: "sweets", catName: "甜點老街", badge: "🥐 夢不思議爆漿大泡芙", source: "老辣妹 / 波比看世界 [00:39:52]", desc: "酥脆多層次酥皮內包入滿滿特調卡士達鮮奶油，一口咬下爆漿！必買北海道開拓おかき米果伴手禮。", query: "北菓楼 小樽本館", tips: "位於界町通商店街核心，六花亭隔壁[cite: 1]。" },
+            { id: 57, name: "小樽 桑田屋 ＆ 布丁大福", region: "otaru", regionName: "小樽港町", cat: "sweets", catName: "在地甜點", badge: "🍮 冰涼布丁大福與麵包饅頭", source: "老辣妹 推薦 [00:40:04]", desc: "在地人氣甜點！Q 彈大福皮內包入整顆完整雞蛋布丁與特調鮮奶油 [00:40:28]，口感像布丁雪糕冰涼濃郁 [00:40:39]！", query: "桑田屋 本店 小樽", tips: "界町通漫步必吃隱藏版甜點 [00:40:50]。" },
+            { id: 58, name: "小樽住吉神社（海景鳥居）", region: "otaru", regionName: "小樽港町", cat: "sightseeing", catName: "私房美景", badge: "⛩️ 俯瞰港灣鳥居與釣鰊魚籤", source: "老辣妹 推薦 [00:37:36]", desc: "登上神社參道頂端回望，即可拍下「紅色鳥居、筆直參道與小樽海景」同框的絕景 [00:37:44]！還能體驗釣特色的鰊魚神籤 [00:38:32]！", query: "住吉神社 小樽", tips: "南小樽站步行 8 分鐘，遊客少極度清幽 [00:37:54]。" },
+            { id: 59, name: "小樽花窗玻璃美術館（舊高橋倉庫）", region: "otaru", regionName: "小樽港町", cat: "sightseeing", catName: "藝術名勝", badge: "🎨 19世紀英國教堂真跡花窗", source: "老辣妹 推薦 [00:41:20]", desc: "小樽藝術村之一！展出 19 世紀末英國教堂拆卸保存下來的珍貴真實花窗玻璃 [00:41:40]，《最後的晚餐》等聖經故事雕工極度震撼 [00:42:10]！", query: "ステンドグラス美術館 小樽", tips: "位於小樽運河畔，室內參觀舒適[cite: 1] [00:41:24]。" },
+            { id: 60, name: "小樽啤酒 小樽倉庫No.1", region: "otaru", regionName: "小樽港町", cat: "bbq", catName: "運河啤酒", badge: "🍺 運河旁德國純釀啤酒", source: "波比看世界 推薦", desc: "小樽運河旁百年石造倉庫！遵循德國傳統純度法釀造，品嚐現釀頂級生啤酒、德式烤香腸與椒鹽脆餅。", query: "小樽ビール 小樽倉庫No.1", tips: "傍晚坐在運河窗邊用餐氣氛絕佳[cite: 1]。" },
+            { id: 61, name: "日本銀行舊小樽支店（金融資料館）", region: "otaru", regionName: "小樽港町", cat: "sightseeing", catName: "歷史景點", badge: "💰 免費抱一億日圓體驗", source: "雙人徐 / 波比看世界", desc: "日本近代建築大師辰野金吾設計！免費參觀百年防核金庫，親手體驗抱起重達 10kg 的一億日圓紙鈔模型！", query: "金融資料館（日本銀行旧小樽支店）", tips: "冷氣充足好拍照，寓教於樂的親子景點[cite: 1]。" },
+            { id: 62, name: "小樽 Snoopy Village（史努比茶屋）", region: "otaru", regionName: "小樽港町", cat: "shopping", catName: "卡通周邊", badge: "🐶 小樽限定史努比周邊", source: "2A夫妻 推薦", desc: "歷史倉庫改建的兩層樓史努比專賣店，販售小樽限定玻璃杯、音樂盒周邊，2F 提供史努比造型甜點與飲品！", query: "SNOOPY Village 小樽店", tips: "界町通漫步必拍打卡熱點[cite: 1]。" },
 
             // 定山溪溫泉 (Jozankei)
-            { id: 53, name: "定山溪 第一寶亭留 翠山亭", region: "jozankei", regionName: "定山溪", cat: "sightseeing", catName: "溫泉名宿", badge: "♨️ 展望私湯與免費泡芙", source: "三十口米 推薦", desc: "房內自帶桑拿與展望私湯，1F 圖書館免費供應現做卡士達泡芙與手沖咖啡，享翠山俱樂部浴場巡禮。", query: "定山渓第一寶亭留 翠山亭", tips: "河童Liner號「定山溪東2丁目」下車步行 2 分鐘。" },
-            { id: 54, name: "定山源泉公園（煮蛋槽與足湯）", region: "jozankei", regionName: "定山溪", cat: "sightseeing", catName: "溫泉體驗", badge: "🥚 自煮溫泉蛋與河童足湯", source: "CHILL先生一家人", desc: "80度天然源泉湧出！將生蛋放入「溫泉蛋槽」浸泡 15 分鐘自製半熟溫泉蛋，坐在河童足湯旁享用愜意無比。", query: "定山源泉公園", tips: "可在周邊商店買網袋生蛋來煮[cite: 2]。" },
-            { id: 55, name: "J・glacée（手作蘋果派）", region: "jozankei", regionName: "定山溪", cat: "sweets", catName: "甜點名店", badge: "🍎 現烤手工酥皮蘋果派", source: "三十口米 狂推", desc: "定山源泉公園旁！採用北海道在地蘋果現烤，外層千層酥皮薄脆酥香，內餡肉桂蘋果酸甜多汁，搭配香草冰淇淋極讚！", query: "J・glacée 定山渓", tips: "外帶回翠山亭房間配茶享用也是絕配[cite: 2]。" },
-            { id: 56, name: "二見吊橋 ＆ 河童淵", region: "jozankei", regionName: "定山溪", cat: "sightseeing", catName: "自然絕景", badge: "🌉 紅色吊橋與夜間光影秀", source: "定山溪官方推薦", desc: "鮮紅色吊橋橫跨豐平川溪谷，初秋綠葉漸漸轉黃。夜間二見公園至吊橋步道舉辦 Nature Luminarie 夢幻光影秀！", query: "二見吊橋", tips: "翠山亭步行 5 分鐘即達自然步道起點[cite: 2]。" },
-            { id: 57, name: "雨之日與雪之日（雨ノ日と雪ノ日）", region: "jozankei", regionName: "定山溪", cat: "sweets", catName: "冰淇淋/披薩", badge: "🍕 森林手工冰淇淋披薩", source: "CHILL先生一家人", desc: "第一寶亭留旗下森林系小店！雨雪天可享限定優惠，品嚐手作義式冰淇淋（美瑛牛乳/在地蔬果）與窯烤薄脆披薩。", query: "雨ノ日と雪ノ日", tips: "環境如童話木屋，適合全家拍照歇息。" },
+            { id: 63, name: "定山溪 第一寶亭留 翠山亭", region: "jozankei", regionName: "定山溪", cat: "sightseeing", catName: "溫泉名宿", badge: "♨️ 展望私湯與免費泡芙", source: "三十口米 推薦", desc: "房內自帶桑拿與展望私湯，1F 圖書館免費供應現做卡士達泡芙與手沖咖啡，享翠山俱樂部浴場巡禮。", query: "定山渓第一寶亭留 翠山亭", tips: "河童Liner號「定山溪東2丁目」下車步行 2 分鐘。" },
+            { id: 64, name: "定山源泉公園（煮蛋槽與足湯）", region: "jozankei", regionName: "定山溪", cat: "sightseeing", catName: "溫泉體驗", badge: "🥚 自煮溫泉蛋與河童足湯", source: "CHILL先生一家人", desc: "80度天然源泉湧出！將生蛋放入「溫泉蛋槽」浸泡 15 分鐘自製半熟溫泉蛋，坐在河童足湯旁享用愜意無比。", query: "定山源泉公園", tips: "可在周邊商店買網袋生蛋來煮[cite: 2]。" },
+            { id: 65, name: "J・glacée（手作蘋果派）", region: "jozankei", regionName: "定山溪", cat: "sweets", catName: "甜點名店", badge: "🍎 現烤手工酥皮蘋果派", source: "三十口米 狂推", desc: "定山源泉公園旁！採用北海道在地蘋果現烤，外層千層酥皮薄脆酥香，內餡肉桂蘋果酸甜多汁，搭配香草冰淇淋極讚！", query: "J・glacée 定山渓", tips: "外帶回翠山亭房間配茶享用也是絕配[cite: 2]。" },
+            { id: 66, name: "二見吊橋 ＆ 河童淵", region: "jozankei", regionName: "定山溪", cat: "sightseeing", catName: "自然絕景", badge: "🌉 紅色吊橋與夜間光影秀", source: "定山溪官方推薦", desc: "鮮紅色吊橋橫跨豐平川溪谷，初秋綠葉漸漸轉黃。夜間二見公園至吊橋步道舉辦 Nature Luminarie 夢幻光影秀！", query: "二見吊橋", tips: "翠山亭步行 5 分鐘即達自然步道起點[cite: 2]。" },
+            { id: 67, name: "雨之日與雪之日（雨ノ日と雪ノ日）", region: "jozankei", regionName: "定山溪", cat: "sweets", catName: "冰淇淋/披薩", badge: "🍕 森林手工冰淇淋披薩", source: "CHILL先生一家人", desc: "第一寶亭留旗下森林系小店！雨雪天可享限定優惠，品嚐手作義式冰淇淋（美瑛牛乳/在地蔬果）與窯烤薄脆披薩。", query: "雨ノ日と雪ノ日", tips: "環境如童話木屋，適合全家拍照歇息。" },
 
             // 新千歲機場 (New Chitose Airport)
-            { id: 58, name: "美瑛選果（びえいのコーンぱん / 新千歲2F）", region: "cts", regionName: "新千歲機場", cat: "shopping", catName: "機場限量", badge: "🌽 機場排隊傳奇玉米麵包", source: "2F頭城小夫妻 / 2A夫妻", desc: "新千歲國內線 2F 排隊傳奇！不加一滴水與糖，滿滿美瑛甜玉米粒爆漿出爐，每人限購兩盒，出爐即秒殺！", query: "美瑛選果 新千歳空港店", tips: "在國內線 2F，建議提早 30 分鐘去排隊出爐時間。" },
-            { id: 59, name: "北海道拉麵道場（國內線 3F）", region: "cts", regionName: "新千歲機場", cat: "ramen", catName: "機場美食", badge: "🍜 全道10大名店一條街", source: "Lester 推薦", desc: "集結一幻甜蝦拉麵、白樺山莊味噌拉麵、弟子屈、梅光軒等全道 10 間拉麵王者，過海關前必吃一碗熱騰騰拉麵！", query: "北海道ラーメン道場", tips: "白樺山莊店內附贈免費無限享用水煮蛋。" },
-            { id: 60, name: "KINOTOYA 極上牛乳霜淇淋（國內線 2F/3F）", region: "cts", regionName: "新千歲機場", cat: "sweets", catName: "冠軍冰品", badge: "🍦 新千歲機場第1名霜淇淋", source: "心甜 Christy 狂推", desc: "連續多年榮獲新千歲機場評比第一名！高達 6 圈半的巨無霸霜淇淋，極度濃稠如吃固態鮮乳，半熟起司塔也是必買！", query: "きのとや 新千歳空港ファクトリー店", tips: "國內線 2F 與 3F 都有分店。" },
-            { id: 61, name: "雪印Parlor（Royal Special 霜淇淋）", region: "cts", regionName: "新千歲機場", cat: "sweets", catName: "經典冰品", badge: "👑 昭和天皇御用香草冰", source: "2A夫妻 推薦", desc: "1968 年為昭和天皇皇后研發的「Snow Royal」純乳脂特製香草冰淇淋，不加雞蛋，純淨乳香滑順無比！", query: "雪印パーラー 新千歳空港店", tips: "與 KINOTOYA 進行機場雙冠軍霜淇淋對決！" },
-            { id: 62, name: "Royce' Chocolate World（Smile Road 3F）", region: "cts", regionName: "新千歲機場", cat: "shopping", catName: "生巧工廠", badge: "🍫 透明巧克力工廠與生巧麵包", source: "雙人徐 / Lester", desc: "位於國內線與國際線連通走廊 3F，設有透明生巧克力機器人生產線，烘焙坊必買爆漿生巧克力牛角可頌麵包！", query: "ロイズ チョコレートワールド", tips: "14:00 漫步走回國際線辦理登機手續順遊。" }
+            { id: 68, name: "美瑛選果（びえいのコーンぱん / 新千歲2F）", region: "cts", regionName: "新千歲機場", cat: "shopping", catName: "機場限量", badge: "🌽 機場排隊傳奇玉米麵包", source: "波比看世界 / 2F頭城小夫妻", desc: "新千歲國內線 2F 排隊傳奇！不加一滴水與糖，滿滿美瑛甜玉米粒爆漿出爐，每人限購兩盒，出爐即秒殺！", query: "美瑛選果 新千歳空港店", tips: "在國內線 2F，建議提早 30 分鐘去排隊出爐時間。" },
+            { id: 69, name: "北海道拉麵道場（國內線 3F）", region: "cts", regionName: "新千歲機場", cat: "ramen", catName: "機場美食", badge: "🍜 全道10大名店一條街", source: "波比看世界 / Lester", desc: "集結一幻甜蝦拉麵、白樺山莊味噌拉麵、弟子屈、梅光軒等全道 10 間拉麵王者，過海關前必吃一碗熱騰騰拉麵！", query: "北海道ラーメン道場", tips: "白樺山莊店內附贈免費無限享用水煮蛋。" },
+            { id: 70, name: "KINOTOYA 極上牛乳霜淇淋（國內線 2F/3F）", region: "cts", regionName: "新千歲機場", cat: "sweets", catName: "冠軍冰品", badge: "🍦 新千歲機場第1名霜淇淋", source: "心甜 Christy 狂推", desc: "連續多年榮獲新千歲機場評比第一名！高達 6 圈半的巨無霸霜淇淋，極度濃稠如吃固態鮮乳，半熟起司塔也是必買！", query: "きのとや 新千歳空港ファクトリー店", tips: "國內線 2F 與 3F 都有分店。" },
+            { id: 71, name: "雪印 Parlor（Royal Special 霜淇淋）", region: "cts", regionName: "新千歲機場", cat: "sweets", catName: "經典冰品", badge: "👑 昭和天皇御用香草冰", source: "波比看世界 / 2A夫妻", desc: "1968 年為昭和天皇皇后研發的「Snow Royal」純乳脂特製香草冰淇淋，不加雞蛋，純淨乳香滑順無比！", query: "雪印パーラー 新千歳空港店", tips: "與 KINOTOYA 進行機場雙冠軍霜淇淋對決！" },
+            { id: 72, name: "Royce' Chocolate World（Smile Road 3F）", region: "cts", regionName: "新千歲機場", cat: "shopping", catName: "生巧工廠", badge: "🍫 透明巧克力工廠與生巧麵包", source: "雙人徐 / Lester", desc: "位於國內線與國際線連通走廊 3F，設有透明生巧克力機器人生產線，烘焙坊必買爆漿生巧克力牛角可頌麵包！", query: "ロイズ チョコレートワールド", tips: "14:00 漫步走回國際線辦理登機手續順遊。" },
+            { id: 73, name: "Calbee+（現炸薯條 ＆ 薯圓）", region: "cts", regionName: "新千歲機場", cat: "sweets", catName: "現炸零食", badge: "🍟 現炸熱騰騰卡樂比薯條", source: "波比看世界 推薦", desc: "新千歲國內線 2F！現場油炸熱騰騰的「Poterico 薯條」外脆內綿軟，還有淋上 Royce 巧克力的現炸洋芋片！", query: "カルビープラス 新千歳空港店", tips: "現炸熱騰騰口感遠勝盒裝伴手禮。" }
         ];
 
         let currentRegionFilter = 'all';
@@ -851,7 +945,12 @@
             const grid = document.getElementById('spot-grid');
             const noMsg = document.getElementById('no-spots-msg');
             const counter = document.getElementById('filtered-count');
+            const navCounter = document.getElementById('nav-spot-count');
+            const allCount = document.getElementById('all-spot-count');
+            
             grid.innerHTML = '';
+            if (allCount) allCount.innerText = SPOTS_DATABASE.length;
+            if (navCounter) navCounter.innerText = SPOTS_DATABASE.length;
 
             const filtered = SPOTS_DATABASE.filter(spot => {
                 const matchRegion = (currentRegionFilter === 'all' || spot.region === currentRegionFilter);
@@ -881,7 +980,7 @@
                     <div class="space-y-1.5">
                         <div class="flex justify-between items-center gap-1">
                             <span class="badge bg-blue-50 text-blue-700 font-bold">${spot.badge}</span>
-                            <span class="text-purple-700 font-bold bg-purple-50 px-2 py-0.5 rounded text-[10px] truncate max-w-[150px]">${spot.source}</span>
+                            <span class="text-purple-700 font-bold bg-purple-50 px-2 py-0.5 rounded text-[10px] truncate max-w-[170px]">${spot.source}</span>
                         </div>
                         <div class="font-bold text-sm text-slate-900">${spot.name}</div>
                         <div class="flex gap-2 text-[10px] text-slate-400">
@@ -892,7 +991,7 @@
                         <p class="text-slate-600 leading-relaxed">${spot.desc}</p>
                     </div>
                     <div class="pt-2 border-t flex justify-between items-center text-xs">
-                        <span class="text-slate-400 text-[10px]">💡 ${spot.tips.slice(0, 20)}...</span>
+                        <span class="text-slate-400 text-[10px]">💡 ${spot.tips.slice(0, 22)}...</span>
                         <button onclick="openSpotModal('${spot.name.replace(/'/g, "\\'")}', '${spot.regionName}', '${spot.catName}', '${spot.desc.replace(/'/g, "\\'")}', '${spot.query}', '${spot.tips.replace(/'/g, "\\'")}', '${spot.source}')" class="text-blue-600 font-bold hover:underline flex items-center gap-1">
                             <span>詳細與導航</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
                         </button>
@@ -999,6 +1098,13 @@
             navigator.clipboard.writeText(text).then(() => {
                 alert('已複製：' + text);
             });
+        }
+
+        function forceUpdateApp() {
+            if (confirm('是否強制連線伺服器檢查並下載最新版手冊？（已記錄的記帳與打勾資料會完整保留）')) {
+                const cleanUrl = window.location.origin + window.location.pathname + '?v=' + new Date().getTime();
+                window.location.replace(cleanUrl);
+            }
         }
 
         function convertJPY() {
